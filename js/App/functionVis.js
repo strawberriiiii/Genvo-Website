@@ -42,7 +42,7 @@ var svg = d3.select("#functionVis").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//d3.json("foo.json", function(miserables) {
+
   var matrix = [],
       nodes = data.nodes,
       n = nodes.length;

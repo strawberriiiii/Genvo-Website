@@ -23,7 +23,7 @@ function loadData() {
    if (!treeFiles) window.location.href = "../index.html#thetool"; // Add row when done!!!
 
 
-    //localStorage.removeItem('_GSTree'); //ADD LINE LATER?
+    //localStorage.removeItem('_GSTree'); //ADD IF TO CLEAR CASHE
 
     //Decode and parse
     var treeFiles = atob(treeFiles);

@@ -78,19 +78,24 @@ function handleDragOver(evt) {
 //---------------------------------------------------------
 
 function convertData(data){
+  //TODO
   //Detect data format
   //and check if convertion is possible
+  var dataType = newick;
 
-  //Convert newick data to a tree struct in javascript
-  data = convertNewickDataToTree(data);
+  switch (dataType){
+    case 'newick':
+    data = convertNewickToGenvoTree(data);
+  }
 
+  //TODO
   //Check if the data is converted correctly
 
   return data;
 }
 
 
-function convertNewickDataToTree(data){
+function convertNewickToGenvoTree(data){
   //---------------------------------
   // Curtesy to Newick JS
   //---------------------------------

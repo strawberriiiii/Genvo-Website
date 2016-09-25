@@ -74,7 +74,7 @@ function createPlaneText( message, parameters )
 
     
     
-    // canvas contents will be used for a texture
+    // canvas contents will be used as a texture
     var texture = new THREE.Texture(canvas) 
     texture.needsUpdate = true;
     texture.minFilter = THREE.LinearFilter;
