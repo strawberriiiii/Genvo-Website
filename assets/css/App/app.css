@@ -1,0 +1,121 @@
+html,
+body{
+	background-color: #111;
+}
+
+
+
+div .application{
+  
+}
+
+.Genvo-App{
+  margin-right: 10px;
+  margin-top: 50px;
+}
+
+.toolbar{
+    margin-top: 60px;
+    margin-right: 0px;
+    padding-right: 0px;
+    margin-left: 10px;
+
+    
+}
+
+.btn-default{
+  margin: 0px;
+  margin-bottom: 5px;
+  background-color: #ccc;
+}
+
+
+
+
+.floating-toolbox{
+  position: fixed;
+  right: 10px;
+  margin-top: 5px;
+  display: inline;
+}
+
+.floating-toolbox label {
+    width: 50px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    line-height: 110%;
+}
+
+
+.legend {
+  z-index: 1;
+
+  position: absolute;
+  left: 20px;
+  top: 55px;
+
+  padding: 5px;
+  border-radius: 4px;
+
+  width: 30px;
+  height: 600px;
+  background: #ccc;
+}
+
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 60px;                  
+  height: 28px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+
+
+.eqHeight{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.row > [class*='col-'] {
+     display: flex;
+     flex-direction: column;
+}
+
+
+#accordion .glyphicon { margin-right:10px; }
+
+.panel-body { 
+  padding:0px; 
+}
+.panel-body table tr td { padding-left: 15px }
+
+.panel-body .table {margin-bottom: 0px; }
+
+
+
+
+
+line {
+  stroke: #fff;
+}
+
+text {
+ font: 1em sans-serif;
+}
+
+text.active {
+  fill: red;
+}
+
+footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}

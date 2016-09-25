@@ -1,0 +1,63 @@
+/* Custom Stylesheet */
+body, html {
+
+}
+
+
+
+.info-button, .info-button:visited {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  visibility: hidden;
+
+  background: #0F5B99; 
+  padding: 0px 0px;
+  text-align: center;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  color: white;
+  display: block;
+  border: 3px solid #0F5B99;
+
+  
+}
+
+.info-button:hover{
+  text-decoration: none; 
+  color: #0F5B99;
+  background-color: #fff;
+  
+}
+/*.info-button:active{
+  text-decoration: none; 
+  color: #0F5B99;
+  background-color: #fff;
+}*/
+
+.info-button i{
+  
+  position: relative;
+  text-align: center;
+  display: block;
+  margin: auto;
+  font-size: 22px;
+
+
+  display: block;
+}
+
+.info-button.active i{
+  text-decoration: none; 
+  color: #000;
+  background-color: #000;
+}
+
+
+#wheel {
+  visibility: visible;
+  position: absolute;
+  margin: 0px;
+
+}
