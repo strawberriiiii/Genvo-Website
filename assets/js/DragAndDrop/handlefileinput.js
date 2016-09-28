@@ -23,7 +23,7 @@ function handleFileSelect(evt) {
   var file = files[0];
   // files is a FileList of File objects. List some properties.
   var output = [];
-  
+
   output.push('<strong>', escape(file.name), '</strong> - ', file.size, ' bytes');
 
   var current_id = evt.target.id;
@@ -34,9 +34,9 @@ function handleFileSelect(evt) {
   }else{
     console.log("error 1: drop zone ID error")
   }
-  
 
-  // read the file 
+
+  // read the file
   var reader = new FileReader();
 
   reader.onload = function(evt) {
@@ -57,12 +57,12 @@ function handleFileSelect(evt) {
       }
 
       if (file_genetree != undefined && file_speciestree != undefined){
-        //Enable button  
+        //Enable button
       }
   };
 
   reader.readAsText(file);
-  
+
 }
 
 
@@ -81,7 +81,7 @@ function convertData(data){
   //TODO
   //Detect data format
   //and check if convertion is possible
-  var dataType = newick;
+  var dataType = "newick";
 
   switch (dataType){
     case 'newick':
@@ -187,7 +187,7 @@ function addExampleData(){
   .done(function(data) {file_speciestree = convertData(data) });
 
   document.getElementById('gene-list').innerHTML = '<ul> Example data cesa genes </ul>';
-  document.getElementById('species-list').innerHTML = '<ul> Example data plant species </ul>'; 
+  document.getElementById('species-list').innerHTML = '<ul> Example data plant species </ul>';
 }
 
 
@@ -204,7 +204,7 @@ function senddata(evt){
     return;
   }
 
-  
+
   // Locally store datafiles for later access
   var files = {
     GeneTree: file_genetree,
