@@ -1,0 +1,14 @@
+.dropzone {
+  position: center;
+  text-align: center;
+  font: 20px bold;
+  color: #0F5B99;
+  background-color: #fff;
+
+  min-height: 150px;
+  border: 2px dashed #0F5B99;
+  border-radius: 5px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+}

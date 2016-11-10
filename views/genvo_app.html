@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Viktor Leandersson">
+
+    <title>Genvo - gene evolution visualization</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../assets/lib/bootstrap/css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Lib CSS -->
+    <link rel="stylesheet" href="../assets/lib/animate/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/lib/jQuery/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/lib/ProgressBar/pace.css" type="text/css">
+    <link rel="stylesheet" href="../assets/lib/font/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/App/app.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/App/menu.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/App/dialog-form.css" type="text/css">
+
+
+
+
+
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="../index.html#page-top">Genvo</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="" href="../index.html">Main page</a>
+                    </li>
+                    <li>
+                        <a class="" href="../index.html#technology">The technology</a>
+                    </li>
+                    <li>
+                        <a class="" href="../index.html#about">About us</a>
+                    </li>
+                    <li>
+                        <a class="" href="../index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div class="row eqHeight">
+        <!-- TOOLBAR -->
+        <div class="col-lg-2 toolbar">
+
+            <div>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span></button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print"></span></button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+            </div>
+
+
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseOne"><span class="glyphicon glyphicon-tree-conifer">
+                            </span>Overview</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <p><img src="../assets/img/Icons/GlyfIcons-Pyramid.gif" width="15" height="15"> – Duplication</p>
+                            <p><img src="../assets/img/Icons/GlyfIcons-Square.gif" width="15" height="15"> – Loss / Transfer</p>
+                            <p><img src="../assets/img/Icons/GlyfIcons-RedPyramid.gif" width="15" height="15"> – Speciation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span>Subtrees (clades)</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseThree"><span class="glyphicon glyphicon-wrench">
+                            </span>Functions</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse"> <!-- class="in"-->
+                        <div class="panel-body">
+                            <div id="functionVis"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseFour"><span class="glyphicon glyphicon-user">
+                            </span>Species</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseFive"><span class="glyphicon glyphicon-random">
+                            </span>Reconciliation</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseSix"><span class="glyphicon glyphicon-cog">
+                            </span>Settings</a>
+                        </h4>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MAIN VISUALIZATION -->
+        <div class="col-lg-10 text-center application">
+            <!-- The app created with javascript-->
+            <div id="Genvo-App" class="Genvo-App">
+                <!-- Tool box -->
+                <div class="floating-toolbox">
+                    <label><INPUT id="btn-view-gene" type="image" src="../assets/img/app/buttons/btn-view-gene.gif" value=""/>Gene View</label>
+                    <label><INPUT id="btn-view-species" type="image" src="../assets/img/app/buttons/btn-view-species.gif" value=""></INPUT>Species View</label>
+                </div>
+            </div>
+
+            <span id="legend" class="legend">
+
+            </span>
+
+
+            <!-- On click tools -->
+            <span id="onClickTools">
+                <a id="info-button" href="#detailsOnDemand" class="info-button">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
+
+                <a id="vis-button" href="#info" class="info-button">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+                <a id="lamp-button" class="info-button">
+                    <i class="glyphicon glyphicon-lamp"></i>
+                </a>
+                <a id="move-button" class="info-button">
+                    <i class="glyphicon glyphicon-move"></i>
+                </a>
+                <a id="rotate-button" class="info-button">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
+            </span>
+
+
+
+        </div>
+    </div>
+
+
+    <div id="dialog-form" title="Node info">
+              <p>Name</p>
+
+              <form>
+                <fieldset>
+                    <p>Function group
+                    <select name="Gene functions" id="funcDropDown">
+                      <option value="volvo">undefined</option>
+                      <option value="volvo">CesA</option>
+                    </select></p>
+
+
+                    <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                </fieldset>
+              </form>
+            </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Genvo 2016</span>
+
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://www.facebook.com/viktor.leandersson" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="https://se.linkedin.com/in/viktor-leandersson-50580539" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- jQuery -->
+    <script src="../assets/lib/jQuery/jquery.js"></script>
+    <script src="../assets/lib/jQuery/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../assets/lib/jQuery/jquery.easing.min.js"></script>
+    <script src="../assets/lib/jQuery/jquery.fittext.js"></script>
+    <script src="../assets/lib/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../assets/js/creative.js"></script>
+
+    <!--WebGL-->
+    <script src="../assets/lib/threeJs/three.min.js"></script>
+    <script src="../assets/js/App/cameraControls.js"></script>
+    <script src="../assets/js/App/planeText.js"></script>
+
+    <!-- Library -->
+    <script src="../assets/lib/chromajs/chroma.min.js"></script>
+    <script src="../assets/lib/tweenjs/Tween.js"></script>
+    <script src="../assets/lib/Queue.js"></script>
+    <script src="../assets/lib/d3/d3.min.js"></script>
+    <script src="../assets/lib/InVizMenu/js/jquery.wheelmenu.js"></script>
+
+
+
+    <!--Datastrucutres-->
+    <script src="../assets/js/DataStructures/genvoTree.js"></script>
+
+    <!--Visualization-->
+    <script src="../assets/js/App/visualization.js"></script>
+    <script src="../assets/js/App/functionVis.js"></script>
+
+    <!--Other-->
+    <script src="../assets/lib/ProgressBar/pace.min.js"></script>
+
+
+</body>
+
+</html>
