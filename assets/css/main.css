@@ -16,7 +16,7 @@ body {
 
 hr {
     max-width: 50px;
-    
+
 }
 
 hr.light {
@@ -66,13 +66,13 @@ p {
 }
 
 .bg-primary-technology {
-    
-    
+
+
 }
 
 .bg-primary-about {
-    
-    
+
+
 }
 
 .bg-dark {
@@ -426,9 +426,9 @@ h2.section-heading-contact {
 }
 
 .btn-default {
-    border-color: #fff;
+    border-color: rgba(255,255,255,0.7);
     color: #0F5B99;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.7);
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -480,9 +480,10 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-primary {
-    border-color: #fff;
+    border-color: rgba(255,255,255,0.7);
     color: #0F5B99;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.7);
+    margin-top: 100px;
 
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
@@ -535,7 +536,7 @@ fieldset[disabled] .btn-primary.active {
 
 .btn {
     border: 0;
-    border-radius: 5px;
+    border-radius: 3px;
     text-transform: uppercase;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
@@ -643,4 +644,3 @@ fff
 eee
 
 */
-
