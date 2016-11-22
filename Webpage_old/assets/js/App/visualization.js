@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 //-------------------------------------------------------------
 // ---------------  Global variables --------------------------
 //-------------------------------------------------------------
@@ -10,6 +12,10 @@ var canvasSize = {x:window.innerWidth*10/12, y:window.innerHeight-100};
 var currentSelectedObject;
 var floatingToolbar = document.getElementById('onClickTools').getElementsByTagName("a"); // Attached to genvo_app.html
 
+//-------------------------------------------------------------
+// ---------------  Load scripts  -----------------------------
+//-------------------------------------------------------------
+require(['functionVis']);
 
 //-------------------------------------------------------------
 // ---------------  Data loaders ------------------------------
@@ -28,7 +34,7 @@ function loadData() {
     //Decode and parse
     var treeFiles = atob(treeFiles);
     var treeFiles = JSON.parse(treeFiles);
-   
+
     console.log("Data loaded");
 
     // Build the tree properties
@@ -38,7 +44,7 @@ function loadData() {
         separator: "_"
     }
     GeneTree.INIT(treeFiles, properties);
-   
+
 }
 
 
@@ -82,11 +88,11 @@ function getStdGeometry(parameters){
                 new THREE.Face3( 1, 0, 3),
                 new THREE.Face3( 0, 2, 3),
                 new THREE.Face3( 2, 1, 3)
-            ];   
+            ];
 
             g.applyMatrix( new THREE.Matrix4().makeScale( 5, 5, 5 ) );
 
-            //var g = new THREE.CylinderGeometry(0, 6, 10, 3, false); 
+            //var g = new THREE.CylinderGeometry(0, 6, 10, 3, false);
 
         default:
         break;
@@ -164,7 +170,7 @@ function createAnimatedMove(node, target){ // Currently only supporting move of 
             e.geometry.verticesNeedUpdate = true;
         })
         .start();
-    });  
+    });
 };
 
 
@@ -187,7 +193,7 @@ function createCameraMove(view){
             var _target = new THREE.Vector3(-cameraControls.position0.z,target.y,0);
             break;
     }
-    
+
 
     var object = cameraControls.object;
     var cameraTarget = cameraControls.target;
@@ -246,6 +252,9 @@ function createCameraMove(view){
 // ---------------  GLOBAL VAR --------------------------------
 //-------------------------------------------------------------
 var scene;
+var bloomEffectsLayerScene;
+var composer = {};
+
 var camera;
 var cameraControls;
 var renderer;
@@ -301,22 +310,22 @@ function buildViz(){
             // Create text
             var fontSize = 12;
 
-            var text = createPlaneText( g.nickname, { 
-                fontsize: fontSize, 
-                borderColor: g.species.colour, 
-                backgroundColor: g.species.subColour, 
+            var text = createPlaneText( g.nickname, {
+                fontsize: fontSize,
+                borderColor: g.species.colour,
+                backgroundColor: g.species.subColour,
                 fontface: 'Times',
                 borderThickness: 2
             });
 
             text.position.set(nodeElement.position.x - fontSize/2 + 6 , nodeElement.position.y - text.position.x - 8, nodeElement.position.z);
-            
+
             // Rotate 90 degrees
             text.rotation.z = -1.5625;
 
             // Add text to scene
             scene.add( text );
-            
+
 
             // Save changes
             g.object = nodeElement;
@@ -361,9 +370,9 @@ function buildViz(){
                 case 'trans':
                     var nodeElement = new THREE.Mesh( getStdGeometry({geometry:'cube'}), createMaterial({colour:"red", opacity:0.8}) );
                     break;
-                    
+
             }
-            
+
             ///////////////////////
             // Positions
 
@@ -404,7 +413,7 @@ function buildViz(){
             else {
                 allParents.push(g);
             }
-            
+
         }
         recurseInternalNodesG(GeneTree._root);
 
@@ -412,14 +421,14 @@ function buildViz(){
 
 
 
-        
+
         ///////////////////////////
         // Update all y positions
 
         allSpeciations.forEach(function(g){
             g.object.position.y = g.species.yPos;
 
-            createEdge(g);
+            createGraphEdge(g, true);
         });
 
         allParents.forEach(function(g){
@@ -436,7 +445,7 @@ function buildViz(){
                 g.object.position.y = Math.max(p0.y, p1.y) + childDist + Math.sqrt(childDist*2);
             }
 
-            createEdge(g);
+            createGraphEdge(g, true);
 
         });
 
@@ -455,18 +464,18 @@ function buildViz(){
         if (s.isLeaf){
             var fontSize = 12;
 
-            var text = createPlaneText( s.name, { 
+            var text = createPlaneText( s.name, {
                 fontsize: fontSize,
                 autotextcolour: true,
-                borderColor: s.colour, 
-                backgroundColor: s.subColour, 
+                borderColor: s.colour,
+                backgroundColor: s.subColour,
                 fontface: 'Times',
                 borderThickness: 2
             });
 
             text.position.set(-50 , - text.position.x - 8, s.zPos);
             //text.position.set(nodeElement.position.x - fontSize/2 + 6 , nodeElement.position.y - text.position.x - 8, nodeElement.position.z);
-            
+
             // Rotate 90 degrees
             text.rotation.z = -1.5625;
             text.rotation.y = -1.5625;
@@ -476,8 +485,8 @@ function buildViz(){
 
 
             // LEGEND
-            var div = d3.select("body").append("div")   
-                .attr("class", "tooltip")               
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
                 .style("opacity", 0);
 
             var svgHeight = (100/GeneTree.noSpeciesLeaf);
@@ -498,20 +507,20 @@ function buildViz(){
 
 
             d3.select('#' + s.name)
-                .on("mouseover", function(d) {      
-                    div.transition()        
-                        .duration(200)      
-                        .style("opacity", .9);      
-                    div .html(s.name + "<br/>")  
-                        .style("left", (d3.event.pageX) + "px")     
-                        .style("top", (d3.event.pageY - 28) + "px");    
-                    })                  
-                .on("mouseout", function(d) {       
-                    div.transition()        
-                        .duration(200)      
-                        .style("opacity", 0);   
+                .on("mouseover", function(d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div .html(s.name + "<br/>")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                .on("mouseout", function(d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", 0);
                 });
-            
+
         }
 
 
@@ -533,7 +542,7 @@ function buildViz(){
     target.z = cameraControls.position0.z;
     cameraControls.object.position.copy(target);
 
-    var target = new THREE.Vector3;
+    var target = new THREE.Vector3();
     target.copy(cameraControls.target0);
     cameraControls.target = target;
 
@@ -547,95 +556,6 @@ function buildViz(){
 
 
 }
-
-
-
-
-
-
-
-function createEdge (node){
-    var p0 = node.children[0].object.position;
-    var p1 = node.children[1].object.position;
-
-    if(node.event==='loss' && node.children[0].species.name !== node.species){
-        var e0 = drawEdge(node.object.position, p0, "#000");
-    }
-    else{
-        var e0 = drawEdge(node.object.position, p0, "#000");
-    }
-
-    if(node.event==='loss' && node.children[1].species !== node.species){
-        var e1 = drawEdge(node.object.position, p1, "#000");
-    }
-    else{
-        var e1 = drawEdge(node.object.position, p1, "#000");
-    }
-
-    
-
-    // Save changes
-    node.edges.children.push(e0); 
-    node.edges.children.push(e1); 
-
-    node.children[0].edges.parent.push(e0);
-    node.children[1].edges.parent.push(e1);
-}
-
-function drawEdge(p1, p2, colour){
-    var g = new THREE.Geometry();
-    g.vertices.push(
-        new THREE.Vector3( p1.x, p1.y, p1.z ),
-        new THREE.Vector3( p1.x, p1.y, p2.z ),
-        new THREE.Vector3( p2.x, p2.y, p2.z )
-    );
-
-    var mat = new THREE.LineBasicMaterial({
-        color: colour
-    });
-
-    var line = new THREE.Line( g, mat );
-    scene.add( line );
-
-    return line;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -667,7 +587,7 @@ function onWindowResize(){
 
 
 function onDocumentMouseDown( e ) {
-    
+
     e.preventDefault();
 
 
@@ -684,9 +604,9 @@ function onDocumentMouseDown( e ) {
             currentSelectedObject = intersects[0].object.owner; // Edit to choose first object of interest
         }
 
-        
+
         if (currentSelectedObject !== undefined){
-            for(i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}            
+            for(i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}
         }
     }
     else{
@@ -696,7 +616,7 @@ function onDocumentMouseDown( e ) {
         for(i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
 
         currentSelectedObject = undefined;
-    } 
+    }
 }
 
 
@@ -704,7 +624,7 @@ function posOnScreen(pos){
     var p = pos.clone();
     var vector = p.project(camera);
     var offsetY = 50;
-    
+
 
     vector.x = (vector.x + 1) / 2 * canvasSize.x;
     vector.y = -(vector.y - 1) / 2 * canvasSize.y + offsetY;
@@ -721,7 +641,7 @@ function onMouseMove( e ) {
     e.preventDefault();
 
     mousePos.x = 2 * ((e.offsetX) / canvasSize.x) - 1;
-    mousePos.y = 1 - 2 * ( (e.offsetY) / canvasSize.y );    
+    mousePos.y = 1 - 2 * ( (e.offsetY) / canvasSize.y );
 }
 
 function onMouseHover(){
@@ -740,7 +660,7 @@ function onMouseHover(){
             INTERSECTED = intersects[ 0 ].object;
 
             INTERSECTED.currentOpacity = INTERSECTED.material.opacity;
-            
+
             INTERSECTED.material.opacity = 1;
             document.getElementById('Genvo-App').style.cursor = "pointer";
             hover = true;
@@ -804,7 +724,7 @@ function supportCheckers(){
         buttons[0].style.left = vector.x + 'px';
         buttons[0].style.top = (vector.y-10) + 'px';
 
-        
+
 
         for (i=1; i<buttons.length; i++){
             buttons[i].style.left = (vector.x + (Math.cos(angle*i)*50)) + 'px';
@@ -834,10 +754,10 @@ function setupPage(){
     // Fake function groups
     GeneTree.allFunctionGroups["CesA"] = new functionGroup({name:"CesA", colour: chroma('#FF0DFF')});
 
-    
+
     var form,
         functionDropDown = document.getElementById("funcDropDown");
-      
+
 
         function saveData(){
             console.log("save");
@@ -858,7 +778,7 @@ function setupPage(){
           width: 350,
           modal: false,
           buttons: {
-            "Save": saveData, 
+            "Save": saveData,
             Cancel: function() {
               dialog.dialog( "close" );
             }
@@ -908,6 +828,8 @@ function init(){
 
     // INIT variables
     scene = new THREE.Scene();
+    bloomEffectsLayerScene = new THREE.Scene();
+    //bloomEffectsLayerScene.add( new THREE.AmbientLight( 0xffffff ) );
     //var canvasSize = {x:window.innerWidth*10/12, y:window.innerHeight-100};
 
     // Camera
@@ -924,10 +846,16 @@ function init(){
 
     // Setup renderer canvas
     renderer = new THREE.WebGLRenderer({ antialias: false });
+    renderer.autoClear = false;
     renderer.setSize( canvasSize.x, canvasSize.y );
-    renderer.setClearColor( 0xffffff, 1 );
+    renderer.setClearColor( 0x000000, 1 );
     document.getElementById('Genvo-App').appendChild( renderer.domElement );
 
+    // Effects
+    var bloomPass = createBloomPass(additiveShader, true, true);
+    createFinalComposer(bloomPass);
+    
+    
     // Add listeners
     window.addEventListener( 'resize', onWindowResize, false );
     window.addEventListener('mousemove', onMouseMove,false);
@@ -967,6 +895,54 @@ function init(){
     // light = new THREE.AmbientLight( 0x222222 );
     // scene.add( light );
 
+
+}
+
+function createFinalComposer(bloomPass){
+    composer.final = new THREE.EffectComposer( renderer );
+    composer.final.addPass( new THREE.RenderPass( scene, camera ) );
+    composer.final.addPass( bloomPass );
+}
+
+function createBloomPass(shader, renderToScreen = false, needSwap = false){
+    // Create the glow composer
+    composer.bloom = new THREE.EffectComposer( renderer ); //, renderTargetGlow );
+    var bloomEffectsLayerPass = new THREE.RenderPass( bloomEffectsLayerScene, camera);
+    composer.bloom.addPass( bloomEffectsLayerPass );
+
+    var blur = createBlurShaderPass();
+
+    //composer.bloom.addPass( blur.horizontal );
+    //composer.bloom.addPass( blur.vertical ); 
+    composer.bloom.addPass( new THREE.BloomPass(2, 25, 4, 256) );
+
+    /*var test = new THREE.BloomPass();
+    test.renderToScreen = true;
+    test.needSwap = true;
+    composer.bloom.addPass( test );*/
+
+    shader.uniforms[ 'tAdd' ].value = composer.bloom.renderTarget1;
+
+    var bloomPass = new THREE.ShaderPass( shader );
+    bloomPass.needSwap = needSwap;
+    bloomPass.renderToScreen = renderToScreen;
+
+    renderEffectToScreen(composer.bloom);
+
+    return bloomPass;
+}
+
+function createBlurShaderPass(){
+  var hblur = new THREE.ShaderPass( THREE.HorizontalBlurShader );
+  var vblur = new THREE.ShaderPass( THREE.VerticalBlurShader );
+
+  return {horizontal: hblur, vertical: vblur};
+}
+
+function renderEffectToScreen(comp){
+    var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
+    effectCopy.renderToScreen = true;
+    comp.addPass(effectCopy);
 }
 
 
@@ -980,7 +956,7 @@ function render() {
     requestAnimationFrame( render );
 
     // Checkers
-    supportCheckers();  
+    supportCheckers();
 
     // Ceck if mouse hover objects
     onMouseHover();
@@ -988,10 +964,10 @@ function render() {
     //Animate
     TWEEN.update();
 
-    // Render
-    renderer.render( scene, camera );
+    renderer.clear();
+    composer.bloom.render( 0.1 );
+    composer.final.render( 0.1 );
 }
-
 
 
 

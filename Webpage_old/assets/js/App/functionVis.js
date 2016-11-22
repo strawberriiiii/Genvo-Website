@@ -1,23 +1,23 @@
 GeneTree.updateFunctionList();
 
-var data = 
+var data =
     {
-  "nodes":  
+  "nodes":
   [
-    { "name": "CesA",             "group":  1 }, 
-    { "name": "undefined",           "group":  2 }//,   
+    { "name": "CesA",             "group":  1 },
+    { "name": "undefined",           "group":  2 }//,
     //{ "name": "cluster",       "group":  4 },
     //{ "name": "graph",       "group":  2 }
-    
+
   ],
 
-  "links":  
+  "links":
   [
     { "source":  0,  "target":  1,  "value":  1 }//,
     //{ "source":  1,  "target":  2,  "value": 10 },
     //{ "source":  1,  "target":  3,  "value":  5 }
   ]
-}
+};
 
 
 
@@ -64,8 +64,8 @@ var svg = d3.select("#functionVis").append("svg")
     nodes[link.target].count += link.value;
   });
 
- //alert("matrix = "+  ) 
-  
+ //alert("matrix = "+  )
+
   // Precompute the orders.
   var orders = {
     name: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].name, nodes[b].name); }),
@@ -100,7 +100,7 @@ var svg = d3.select("#functionVis").append("svg")
       .attr("text-anchor", "end")
       .text(function(d, i) { return nodes[i].name; });
 
-  var column = svg.selectAll(".column") 
+  var column = svg.selectAll(".column")
       .data(matrix)
     .enter().append("g")
       .attr("class", "column")
