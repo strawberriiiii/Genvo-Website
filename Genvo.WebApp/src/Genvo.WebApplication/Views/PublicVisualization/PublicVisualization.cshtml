@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Visualization";
+    //Layout = Layout;
+}
+
+<body id="page-top">
+    <div class="row eqHeight">
+
+        <!-- MAIN VISUALIZATION -->
+        <div class="col-lg-10 text-center application">
+            <!-- The app created with javascript-->
+            <div id="Genvo-App" class="Genvo-App">
+                <!-- Tool box -->
+                <div class="floating-toolbox">
+                    <label><INPUT id="btn-view-gene" type="image" src="~/images/app/buttons/btn-view-gene.gif" value="" />Gene View</label>
+                    <label><INPUT id="btn-view-species" type="image" src="~/images/app/buttons/btn-view-species.gif" value="">Species View</label>
+                </div>
+            </div>
+
+            <span id="legend" class="legend">
+
+            </span>
+
+
+            <!-- On click tools -->
+            <span id="onClickTools">
+                <a id="info-button" href="#detailsOnDemand" class="info-button">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
+
+                <a id="vis-button" href="#info" class="info-button">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+                <a id="lamp-button" class="info-button">
+                    <i class="glyphicon glyphicon-lamp"></i>
+                </a>
+                <a id="move-button" class="info-button">
+                    <i class="glyphicon glyphicon-move"></i>
+                </a>
+                <a id="rotate-button" class="info-button">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
+            </span>
+
+
+
+        </div>
+    </div>
+
+
+    <div id="dialog-form" title="Node info">
+        <p>Name</p>
+
+        <form>
+            <fieldset>
+                <p>
+                    Function group
+                    <select name="Gene functions" id="funcDropDown">
+                        <option value="volvo">undefined</option>
+                        <option value="volvo">CesA</option>
+                    </select>
+                </p>
+
+
+                <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+    </div>
+
+
+
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+    <!--WebGL-->
+    <script src="~/lib/threeJs/three.min.js"></script>
+    <script src="~/js/App/cameraControls.js"></script>
+    <script src="~/js/App/planeText.js"></script>
+
+    <!-- Library -->
+    <script src="~/lib/chromajs/chroma.min.js"></script>
+    <script src="~/lib/tweenjs/Tween.js"></script>
+    <script src="~/lib/Queue.js"></script>
+    <script src="~/lib/d3/d3.min.js"></script>
+    <script src="~/lib/InVizMenu/js/jquery.wheelmenu.js"></script>
+
+
+
+    <!--Datastrucutres-->
+    <script src="~/js/DataStructures/genvoTree.js"></script>
+
+    <!--GraphicEngine-->
+    <script src="~/js/App/customShader.js"></script>
+
+    <script src="~/lib/graphics/CopyShader.js"></script>
+    <script src="~/lib/graphics/HorizontalBlurShader.js"></script>
+    <script src="~/lib/graphics/VerticalBlurShader.js"></script>
+    <script src="~/lib/graphics/ConvolutionShader.js"></script>
+
+    <script src="~/lib/graphics/EffectComposer.js"></script>
+    <script src="~/lib/graphics/RenderPass.js"></script>
+    <script src="~/lib/graphics/BloomPass.js"></script>
+    <script src="~/lib/graphics/ShaderPass.js"></script>
+    <script src="~/lib/graphics/MaskPass.js"></script>
+    <script src="~/lib/graphics/SavePass.js"></script>
+
+    <!--Visualization-->
+    <!--<script src="../assets/lib/graphics/three-effectcomposer/index.js"></script>-->
+    <script src="~/js/App/createGraphEdge.js"></script>
+    <script src="~/js/App/visualization.js"></script>
+    <!--<script src="../assets/js/App/functionVis.js"></script>-->
+    <!--Other-->
+    <script src="~/lib/ProgressBar/pace.min.js"></script>
+
+</body>

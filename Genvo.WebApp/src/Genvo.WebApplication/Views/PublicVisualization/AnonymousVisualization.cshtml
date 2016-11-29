@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Visualization";
+    Layout = "_LayoutVisualization";
+}
+
+
+<!-- The app created with javascript-->
+<div id="tool-drawer-left" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+</div>
+
+<div id="Genvo-App" class="Genvo-App">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <!-- Tool box -->
+    <div class="nav-btn">
+        <label><INPUT id="btn-view-gene" type="image" src="~/images/app/buttons/btn-view-gene.gif" value=""/>Gene View</label>
+        <label><INPUT id="btn-view-species" type="image" src="~/images/app/buttons/btn-view-species.gif" value="">Species View</label>
+    </div>
+</div>
+
+
+<!-- On click tools -->
+<span id="onClickTools" class="floating-toolbox">
+    <a id="info-button" href="#detailsOnDemand" class="info-button">
+        <i class="glyphicon glyphicon-info-sign"></i>
+    </a>
+
+    <a id="vis-button" href="#info" class="info-button">
+        <i class="glyphicon glyphicon-eye-open"></i>
+    </a>
+    <a id="lamp-button" class="info-button">
+        <i class="glyphicon glyphicon-lamp"></i>
+    </a>
+    <a id="move-button" class="info-button">
+        <i class="glyphicon glyphicon-move"></i>
+    </a>
+    <a id="rotate-button" class="info-button">
+        <i class="glyphicon glyphicon-info-sign"></i>
+    </a>
+</span>
+
+
+
+<div id="dialog-form" title="Node info">
+    <p>Name</p>
+
+    <form>
+        <fieldset>
+            <p>
+                Function group
+                <select name="Gene functions" id="funcDropDown">
+                    <option value="volvo">undefined</option>
+                    <option value="volvo">CesA</option>
+                </select>
+            </p>
+
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+
+
+    
