@@ -162,7 +162,7 @@ function addExampleData(){
   //Get server-side example files
 
   $.ajax({
-    url: "./exampleData/cesa_genes.tree",
+      url: "./data/ExampleGuestTree1",
     type: "POST",
 
     success: function(){
@@ -175,7 +175,7 @@ function addExampleData(){
   .done(function(data) {file_genetree = convertData(data) });
 
   $.ajax({
-    url: "./exampleData/plants.tree",
+      url: "./data/ExampleHostTree1",
     type: "POST",
 
     success: function(){
