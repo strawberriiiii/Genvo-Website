@@ -16,7 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-    
+    font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 p{
@@ -79,3 +79,8 @@ section#contact :-moz-placeholder{font-family:Montserrat,"Helvetica Neue",Helvet
 section#contact ::-moz-placeholder{font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:700;color:#bbb}
 section#contact :-ms-input-placeholder{font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:700;color:#bbb}
 section#contact .text-danger{color:$red-400}
+
+
+.dropzone h2{
+    color: getColor(Grey, 800);
+}

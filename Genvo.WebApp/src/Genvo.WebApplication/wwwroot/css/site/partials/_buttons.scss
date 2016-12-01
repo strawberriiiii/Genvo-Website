@@ -65,7 +65,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary {
     border-color: rgba(255,255,255,0.7);
     color: getColor(Grey, 100);
-    background-color: getColor(Blue, 700);
+    background-color: getColor(Blue, 600);
     margin-top: 100px;
 
     -webkit-transition: all .35s;
@@ -81,7 +81,7 @@ fieldset[disabled] .btn-default.active {
 .open > .dropdown-toggle.btn-primary {
     border-color: $blue-500;
     color: #fff;
-    background-color: $blue-500;
+    background-color: getColor(Blue, 800);
 }
 
 .btn-primary:active,
@@ -115,6 +115,31 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary .badge {
     color: $blue-500;
     background-color: #fff;
+}
+
+.btn-info{
+    margin-top: 10px;
+    background-color:transparent;
+    color: getColor(Grey, 500);
+}
+
+.btn-info:hover{
+    color: getColor(Grey, 50);
+    background-color: transparent;
+}
+
+@media (min-width: 768px){
+    .navbar-default.affix .btn-info{
+        color: getColor(Grey, 800);
+    }
+
+    .navbar-default.affix .btn-info:hover{
+        color: getColor(Blue, 800);
+    }
+    .navbar-default.affix .btn-info:active,
+    .navbar-default.affix .btn-info:focus{
+        background-color: getColor(Grey,100);
+    }
 }
 
 
