@@ -1,4 +1,7 @@
-﻿// Modules and Variables
+﻿// Third-party
+@import "site/vendor/DropZone.scss";
+
+// Modules and Variables
 @import "site/partials/base";
 
 // Partials
@@ -20,4 +23,3 @@
 @import "site/partials-mobile/_typography.scss";
 @import "site/partials-mobile/_navbar.scss";
 
-// Third-party

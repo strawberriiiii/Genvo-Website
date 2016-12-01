@@ -2,7 +2,7 @@
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Great success! All the File APIs are supported.
 } else {
-  alert('The File APIs are not fully supported in this browser. Use the latest Chrome browser');
+  alert("The File APIs are not fully supported in this browser. Use the latest Chrome browser");
 }
 
 
@@ -27,7 +27,7 @@ function handleFileSelect(evt) {
   output.push("<strong>", escape(file.name), "</strong> - ", file.size, " bytes");
 
   var currentId = evt.target.id;
-  if (currentId === "drop_zone_genetree"){
+  if (currentId === "drop_zone_twofileformat") {
     document.getElementById("gene-list").innerHTML = "<ul>" + output.join("") + "</ul>";
   }else if (currentId === "drop_zone_speciestree"){
     document.getElementById("species-list").innerHTML = "<ul>" + output.join("") + "</ul>";
@@ -46,7 +46,7 @@ function handleFileSelect(evt) {
           return;
       }
 
-      if (currentId === "drop_zone_genetree") {
+      if (currentId === "drop_zone_twofileformat") {
         file_genetree = convertData(evt.target.result);
       }
       else if (currentId === "drop_zone_speciestree") {
@@ -159,36 +159,39 @@ function convertNewickToGenvoTree(data){
 //---------------Use example data--------------------------
 //---------------------------------------------------------
 function addExampleData(){
-  //Get server-side example files
+    //Get server-side example files
+
+    var test;
 
   $.ajax({
-      url: "./data/ExampleGuestTree1",
-    type: "POST",
+      url: "./data/ExampleTwoFormatData",
+      type: "POST",
 
-    success: function(){
-      console.log("successfully fetched example data");
+    success: function () {
+        $("#senddatatoviz").removeClass("disabled");
+        console.log("successfully fetched example data");
+        document.getElementById("gene-list").innerHTML = "<strong>Example data loaded</strong>";
     },
     error: function(){
         alert("Could not reach database");
     }
   })
-  .done(function(data) {file_genetree = convertData(data) });
+  .done(function(data) {test = data});
 
-  $.ajax({
-      url: "./data/ExampleHostTree1",
-    type: "POST",
+    console.log(test);
 
-    success: function(){
-      console.log("successfully fetched example data");
-    },
-    error: function(){
-      alert("Could not reach database");
-    }
-  })
-  .done(function(data) {file_speciestree = convertData(data) });
+    //$.ajax({
+    //    url: "./data/ExampleHostTree1",
+    //  type: "POST",
 
-  document.getElementById("gene-list").innerHTML = "<ul> Example data cesa genes </ul>";
-  document.getElementById("species-list").innerHTML = "<ul> Example data plant species </ul>";
+    //  success: function(){
+    //    console.log("successfully fetched example data");
+    //  },
+    //  error: function(){
+    //    alert("Could not reach database");
+    //  }
+    //})
+    //.done(function(data) {file_speciestree = convertData(data) });
 }
 
 
@@ -224,17 +227,18 @@ function packdatalocal(files, name){
 //---------------Set up dnd listeners----------------------
 //---------------------------------------------------------
 
-var dropZoneG = document.getElementById('drop_zone_genetree');
-dropZoneG.addEventListener('dragover', handleDragOver, false);
-dropZoneG.addEventListener('drop', handleFileSelect, false);
+var dropZoneG = document.getElementById("drop_zone_twofileformat");
+dropZoneG.addEventListener("dragover", handleDragOver, false);
+dropZoneG.addEventListener("drop", handleFileSelect, false);
+dropZoneG.addEventListener("click", handleDragOver, false);
 
-var dropZoneS = document.getElementById('drop_zone_speciestree');
-dropZoneS.addEventListener('dragover', handleDragOver, false);
-dropZoneS.addEventListener('drop', handleFileSelect, false);
+var dropZoneS = document.getElementById("drop_zone_reconciledfileformat");
+dropZoneS.addEventListener("dragover", handleDragOver, false);
+dropZoneS.addEventListener("drop", handleFileSelect, false);
 
 var sendbutton = document.getElementById("senddatatoviz");
 sendbutton.addEventListener("click", senddata, false);
 
 
-var exampledatabutton = document.getElementById('button_exampledata');
-exampledatabutton.addEventListener('click', addExampleData, false);
+var exampledatabutton = document.getElementById("button_exampledata");
+exampledatabutton.addEventListener("click", addExampleData, false);

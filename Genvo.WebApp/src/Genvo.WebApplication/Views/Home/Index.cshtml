@@ -25,26 +25,33 @@
                     <h3 class="card-header">Two file format</h3>
                     <div class="card-block">
                         <div class="card-block-content">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="chooseFileType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Fileformat
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a>Newick</a></li>
-                                    <li><a>Newick</a></li>
-                                    <li><a>Newick</a></li>
-                                </ul>
+                            <p class="p-small"><strong>Fileformat</strong></p>
+                            
+                            <div data-toggle="buttons">
+                                <label class="btn btn-default active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Newick
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">NHX
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="options" id="option3" autocomplete="off">Notung
+                                </label>
                             </div>
+                            
+
                             <div id="load_files">
-                                <form id="drop_zone_genetree" class="dropzone">
-                                    <h2> Drop files here </h2>
-                                    <output id="gene-list"><strong>No file loaded</strong></output>
+                                <form action="/upload" id="drop_zone_twofileformat" class="dropzone needsclick dz-clickable">
+                                    <div class="dz-message needsclick">
+                                        <h2> Drop files here </h2>
+                                        <output id="gene-list"><strong>No file loaded</strong></output>
+                                    </div>
                                 </form>
                             </div>
-                            <button class="btn btn-default position-r">Use example data</button>
+
+                            <button class="btn btn-default position-r" id="button_exampledata">Use example data</button>
                             <p class="card-text">Upload one host and one species tree file in selected format, or use our example data to begin now.</p>
-                            <a class="btn btn-primary btn-xl btn-block position-b-r">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary btn-xl btn-block disabled" id="senddatatoviz">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>
                 </div>
@@ -55,25 +62,25 @@
                     <h3 class="card-header">Already reconciled</h3>
                     <div class="card-block">
                         <div class="card-block-content">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="chooseFileType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Fileformat
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="">Notung</a></li>
-                                    <li><a href="">Another action</a></li>
-                                    <li><a href="">Something else here</a></li>
-                                </ul>
+                            <p class="p-small"><strong>Fileformat</strong></p>
+
+                            <div data-toggle="buttons">
+                                <label class="btn btn-default active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Notung
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">PrimeTV
+                                </label>
                             </div>
+
                             <div id="load_files">
-                                <form id="drop_zone_genetree" class="dropzone">
-                                    <h2> Drop files here </h2>
+                                <form id="drop_zone_reconciledfileformat" class="dropzone">
+                                    <h2> Drop file here </h2>
                                     <output id="gene-list"><strong>No file loaded</strong></output>
                                 </form>
                             </div>
                             <p class="card-text">Upload one host and one species tree file in selected format, or use our example data to begin now.</p>
-                            <a class="btn btn-primary btn-xl position-b-r btn-block">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary btn-xl btn-block disabled" style="background-color: red">Coming soon @*<span class="glyphicon glyphicon-chevron-right"></span>*@</a>
                         </div>
                     </div>
                 </div>
