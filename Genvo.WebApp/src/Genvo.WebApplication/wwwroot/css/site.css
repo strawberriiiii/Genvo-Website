@@ -60,9 +60,6 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; }
 
 p {
-  margin-bottom: 20px;
-  margin-right: 10%;
-  margin-left: 10%;
   font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
   font-size: 16px;
   line-height: 1.5; }
@@ -135,24 +132,29 @@ section#contact :-ms-input-placeholder {
 section#contact .text-danger {
   color: #e74c3c; }
 
+.btn {
+  border: 0;
+  border-radius: 3px; }
+
 .btn-default {
-  border-color: rgba(255, 255, 255, 0.7);
-  color: #0F5B99;
+  border: 3px solid #9E9E9E;
+  color: #9E9E9E;
   background-color: rgba(255, 255, 255, 0.7);
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
   transition: all .35s;
-  margin: 10px; }
+  margin: 0px; }
 
 .btn-default:hover,
 .btn-default:focus,
 .btn-default.focus,
 .btn-default:active,
 .btn-default.active,
+.btn-default:active:focus,
 .open > .dropdown-toggle.btn-default {
-  border-color: #eee;
+  border-color: #424242;
   color: #212121;
-  background-color: #F5F5F5; }
+  outline: none; }
 
 .btn-default:active,
 .btn-default.active,
@@ -186,8 +188,8 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   border-color: rgba(255, 255, 255, 0.7);
-  color: #0F5B99;
-  background-color: rgba(255, 255, 255, 0.7);
+  color: #F5F5F5;
+  background-color: #1976D2;
   margin-top: 100px;
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
@@ -233,13 +235,6 @@ fieldset[disabled] .btn-primary.active {
   color: #0F5B99;
   background-color: #fff; }
 
-.btn {
-  border: 0;
-  border-radius: 3px; }
-
-.btn-xl {
-  padding: 15px 30px; }
-
 .btn-posmid {
   position: absolute;
   top: 50%;
@@ -283,15 +278,36 @@ fieldset[disabled] .btn-primary.active {
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear; }
 
+.btn-xl {
+  padding: 15px 30px;
+  min-width: 150px; }
+
 .card {
-  /*background-color: getColor(White);*/ }
+  position: relative;
+  margin-top: 50px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #616161; }
+
+.card-block {
+  margin: 25px;
+  position: static; }
+
+.card-header {
+  color: white;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  background-color: #616161; }
 
 .dropzone {
   position: center;
   text-align: center;
   font: 20px bold;
-  color: #0F5B99;
-  background-color: white;
+  color: #212121;
+  background-color: #E1F5FE;
   min-height: 150px;
   border: 2px dashed #0F5B99;
   border-radius: 5px;
@@ -547,16 +563,24 @@ aside.clients img {
 .no-padding {
   padding: 0; }
 
-.eqHeight {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-
 .row > [class*='col-'] {
   display: flex;
   flex-direction: column; }
 
+@media only screen and (min-width: 768px) {
+  .eqHeight {
+    display: table; }
+
+  .eqHeight [class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top; } }
+/*.eqHeight{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}*/
 ::-moz-selection {
   text-shadow: none;
   color: #fff;
@@ -574,6 +598,20 @@ img::selection {
 img::-moz-selection {
   color: #fff;
   background: 0 0; }
+
+.position-r {
+  position: relative;
+  float: right; }
+
+.position-b-r {
+  float: right;
+  position: relative;
+  bottom: 15px; }
+
+.position-b-l {
+  float: left;
+  position: relative;
+  bottom: 15px; }
 
 @media (min-width: 768px) {
   header {

@@ -4,8 +4,8 @@
   position: center;
   text-align: center;
   font: 20px bold;
-  color: $blue-500;
-  background-color: $primary-bg-color;
+  color: getColor(Grey,900);
+  background-color: getColor(Light Blue, 50);
 
   min-height: 150px;
   border: 2px dashed $blue-500;

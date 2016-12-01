@@ -17,27 +17,64 @@
 
 <section class="sec-grey" id="thetool">
     <div class="container">
-        <h1 class="section-heading">Visualize gene evolution</h1>
+        <h1 class="section-heading text-center">Visualize gene evolution</h1>
         <div class="row eqHeight">
             
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <div class="card">
                     <h3 class="card-header">Two file format</h3>
                     <div class="card-block">
-                        <h4 class="card-title">Special title treatment</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="card-block-content">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="chooseFileType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Fileformat
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="">Newick</a></li>
+                                    <li><a href="">Another action</a></li>
+                                    <li><a href="">Something else here</a></li>
+                                </ul>
+                            </div>
+                            <div id="load_files">
+                                <form id="drop_zone_genetree" class="dropzone">
+                                    <h2> Drop files here </h2>
+                                    <output id="gene-list"><strong>No file loaded</strong></output>
+                                </form>
+                            </div>
+                            <button class="btn btn-default position-r">Use example data</button>
+                            <p class="card-text">Upload one host and one species tree file in selected format, or use our example data to begin now.</p>
+                            <a class="btn btn-primary btn-xl position-b-r">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <div class="card">
-                    <h3 class="card-header">Reconciled</h3>
+                    <h3 class="card-header">Already reconciled</h3>
                     <div class="card-block">
-                        <h4 class="card-title">Special title treatment</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="card-block-content">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="chooseFileType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Fileformat
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="">Newick</a></li>
+                                    <li><a href="">Another action</a></li>
+                                    <li><a href="">Something else here</a></li>
+                                </ul>
+                            </div>
+                            <div id="load_files">
+                                <form id="drop_zone_genetree" class="dropzone">
+                                    <h2> Drop files here </h2>
+                                    <output id="gene-list"><strong>No file loaded</strong></output>
+                                </form>
+                            </div>
+                            <p class="card-text">Upload one host and one species tree file in selected format, or use our example data to begin now.</p>
+                            <a class="btn btn-primary btn-xl position-b-r">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,46 +83,6 @@
     </div>
 </section>
 
-
-<section class="sec-grey" id="thetool">
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-lg-12 text-center">
-                <h1 class="section-heading">Visualize gene evolution</h1>
-
-                <div class="row eqHeight">
-                    <div class="col-lg-8 text-center col-lg-offset-2">
-                         col-lg-8 col-lg-offset-2 
-                        <div id="load_files">
-                            <h2 class="section-heading text-left">Upload gene tree</h2>
-                            <form id="drop_zone_genetree" class="dropzone">
-                                <h2> Drop gene tree file here </h2>
-                                <output id="gene-list"><ul><strong>No file loaded</strong></ul></output>
-                            </form>
-                        </div>
-                        <div id="load_files">
-                            <h2 class="section-heading text-left">Upload species tree</h2>
-                            <form id="drop_zone_speciestree" , class="dropzone">
-                                <h2>Drop species tree file here</h2>
-                                <output id="species-list"><ul><strong>No file loaded</strong></ul></output>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 btn btn-posmid" id="senddatatoviz">
-                        <a class="btn btn-circle">
-                            <i class="fa fa-angle-double-right animated"></i>
-                        </a>
-                        <a class="btn btn-lg">Visualize</a>
-                    </div>
-                </div>
-                <p> Upload your data in <a class="btn" href="https://en.wikipedia.org/wiki/Newick_format" target="_blank">Newick format</a> or use our <a id="button_exampledata" class="btn">example data</a> and visualize it immediatly! </p>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 
