@@ -42,7 +42,7 @@ function GenvoTree() {
 
     // Function groups
     this.allFunctionGroups = {};
-    this.allFunctionGroups["undefined"] = new functionGroup("undefined");
+    this.allFunctionGroups["undefined"] = new FunctionGroup("undefined");
 
     // Reconsciliation variables // rows = species, columns = genes
     this.noGeneEvents = 0;
@@ -65,7 +65,7 @@ function Node (parameters) {
     this.species = parameters.hasOwnProperty("species")    ? parameters["species"] : undefined;
     this.length = parameters.hasOwnProperty("length")     ? parameters["length"] : undefined;
     this.noLeafs = parameters.hasOwnProperty("noLeafs") ? parameters["noLeafs"] : 0;
-    this.functionGroup = "undefined";
+    this.FunctionGroup = "undefined";
 
     // Node grapphical attributes
     this.object = undefined; // 3D Object
@@ -104,7 +104,7 @@ function speciesNode (parameters) {
 }
 
 
-function functionGroup(parameters){
+function FunctionGroup(parameters){
     if ( parameters === undefined ) parameters = {};
 
     this.name = parameters.hasOwnProperty("name")       ? parameters["name"]   : "undefined";
@@ -151,7 +151,7 @@ GenvoTree.prototype.updateFunctionList = function(){
 
     for(i=0; i<this.geneLeafs.length; i++){
         var g = this.geneLeafs[i];
-        this.allFunctionGroups[g.functionGroup].nodes.push(g);
+        this.allFunctionGroups[g.FunctionGroup].nodes.push(g);
     }
 }
 
@@ -237,7 +237,7 @@ GenvoTree.prototype.analyzeGeneTree = function(seperator, NN){
             g.species = this.allSpecies[gs[0]];
 
             // Set function group to undefined
-            g.functionGroup = this.allFunctionGroups[{name: "undefined"}];
+            g.FunctionGroup = this.allFunctionGroups[{name: "undefined"}];
         }
 
     }
