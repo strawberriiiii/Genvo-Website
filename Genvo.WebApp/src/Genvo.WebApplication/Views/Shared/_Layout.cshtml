@@ -133,7 +133,13 @@
         <script src="~/lib/bootstrap/dist/js/creative.js"></script>
 
         <!-- SCRIPTS GENVO -->
-        <script src="~/js/DragAndDrop/handlefileinput.js"></script>
+        <script src="~/js/DataServices/exampleDataService.js"></script>
+        <script src="~/js/DataServices/fileInputService.js"></script>
+        <script src="~/js/DataServices/parsingService.js"></script>
+        
+        <script src="~/js/utility/dndListeners.js"></script>
+        @*<script src="~/js/site.min.js"></script>*@
+
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -158,7 +164,7 @@
         <script src="~/lib/bootstrap/dist/js/creative.js"></script>
 
         <!-- SCRIPTS GENVO -->
-        <script src="~/js/DragAndDrop/handlefileinput.js"></script>
+        <script src="~/js/site.min.js"></script>
     </environment>
 
     @RenderSection("scripts", required: false)

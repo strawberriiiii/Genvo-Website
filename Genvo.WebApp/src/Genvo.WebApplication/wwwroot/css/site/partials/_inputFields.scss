@@ -1,5 +1,10 @@
 ﻿@import "_base.scss";
 
+.dz-field{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
 .dropzone {
   position: center;
   text-align: center;
@@ -14,10 +19,18 @@
   padding-bottom: 70px;
 }
 
-#load_files{
-    margin-top: 30px;
-    margin-bottom: 40px;
+.dz-small{
+padding-top: 20px;
+padding-bottom: 20px;
 }
+
+.dz-small:not(:first-child) {
+    margin-top: 15px;
+}
+
+
+
+
 
 section#contact{
     position: relative;

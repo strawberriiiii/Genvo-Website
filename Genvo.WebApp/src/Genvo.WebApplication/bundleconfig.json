@@ -18,7 +18,24 @@
   {
     "outputFileName": "wwwroot/js/utility/utility.min.js",
     "inputFiles": [
+      "wwwwroot/js/DataStructures/genvoTree.js",
       "wwwroot/js/utility/_sidenav.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/DataServices/exampleDataService.js",
+      "wwwroot/js/DataServices/parsingService.js",
+      "wwwroot/js/DataServices/fileInputService.js",
+      "wwwroot/js/utility/dndListeners.js"
     ],
     // Optionally specify minification options
     "minify": {

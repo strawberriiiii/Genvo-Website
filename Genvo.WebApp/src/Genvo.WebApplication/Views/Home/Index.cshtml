@@ -40,11 +40,18 @@
                             </div>
                             
 
-                            <div id="load_files">
-                                <form action="/upload" id="drop_zone_twofileformat" class="dropzone needsclick dz-clickable">
+                            <div class="dz-field">
+                                <form action="/upload/" id="drop_zone_host" class="dropzone dz-small needsclick dz-clickable">
                                     <div class="dz-message needsclick">
-                                        <h2> Drop files here </h2>
-                                        <output id="gene-list"><strong>No file loaded</strong></output>
+                                        <h2>Drop host tree here</h2>
+                                        <output id="dz-host-text"><strong>No file loaded</strong></output>
+                                    </div>
+                                </form>
+                                
+                                <form action="/upload/" id="drop_zone_guest" class="dropzone dz-small needsclick dz-clickable">
+                                    <div class="dz-message needsclick">
+                                        <h2>Drop guest tree here</h2>
+                                        <output id="dz-guest-text"><strong>No file loaded</strong></output>
                                     </div>
                                 </form>
                             </div>
@@ -73,8 +80,8 @@
                                 </label>
                             </div>
 
-                            <div id="load_files">
-                                <form id="drop_zone_reconciledfileformat" class="dropzone">
+                            <div class="dz-field">
+                                <form action="/upload/" id="drop_zone_reconciledfileformat" class="dropzone">
                                     <h2> Drop file here </h2>
                                     <output id="gene-list"><strong>No file loaded</strong></output>
                                 </form>
