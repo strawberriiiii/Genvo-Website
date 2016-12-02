@@ -1,8 +1,8 @@
 ﻿function addExampleData() {
     //Get server-side example files
     $.when(loadExampleHostTree(), loadExampleGuestTree()).done(function (a1, a2) {
-        file_speciestree = convertData(a1[0]);
-        file_genetree = convertData(a2[0]);
+        hostTreeFile = ParseTreeData(a1[0], true);
+        guestTreeFile = ParseTreeData(a2[0], true);
 
         document.getElementById("dz-host-text").innerHTML = "<strong>Example data loaded</strong>";
         document.getElementById("dz-guest-text").innerHTML = "<strong>Example data loaded</strong>";

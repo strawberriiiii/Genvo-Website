@@ -7,8 +7,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
 
 // Global variables
-var file_genetree;
-var file_speciestree;
+var guestTreeFile;
+var hostTreeFile;
 
 
 //---------------------------------------------------------
@@ -73,16 +73,16 @@ function readSelectedFile(file, type) {
       }
 
       if (type === "host") {
-          file_speciestree = convertData(evt.target.result);
+          hostTreeFile = ParseTreeData(evt.target.result);
       }
       else if (type === "guest") {
-          file_genetree = convertData(evt.target.result);
+          guestTreeFile = ParseTreeData(evt.target.result);
       }
       else{
         console.log("error 1: drop zone ID error");
       }
 
-      if (file_genetree !== undefined && file_speciestree !== undefined){
+      if (guestTreeFile !== undefined && hostTreeFile !== undefined){
           $("#senddatatoviz").removeClass("disabled");
       }
   };
@@ -103,7 +103,7 @@ function handleDragOver(evt) {
 //---------------------------------------------------------
 function senddata(){
   // Make sure species and gene files are given
-    if (file_genetree === undefined || file_speciestree === undefined) {
+    if (guestTreeFile === undefined || hostTreeFile === undefined) {
     window.alert("Gene and / or species tree not uploaded");
     return;
   }
@@ -111,8 +111,8 @@ function senddata(){
 
   // Locally store datafiles for later access
   var files = {
-    GeneTree: file_genetree,
-    SpeciesTree: file_speciestree
+    GeneTree: guestTreeFile,
+    SpeciesTree: hostTreeFile
   }
 
   packdatalocal(files, "_GSTree");

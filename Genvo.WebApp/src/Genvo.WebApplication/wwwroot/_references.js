@@ -4,6 +4,7 @@
 /// <reference path="js/app/customShader.js" />
 /// <reference path="js/app/functionVis.js" />
 /// <reference path="js/app/planeText.js" />
+/// <reference path="js/app/reconciliationservice/genvoreconciliationservice.js" />
 /// <reference path="js/app/visualization.js" />
 /// <reference path="js/contact_me.js" />
 /// <reference path="js/dataservices/exampledataservice.js" />

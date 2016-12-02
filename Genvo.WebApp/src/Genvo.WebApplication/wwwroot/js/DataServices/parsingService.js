@@ -2,15 +2,23 @@
 //---------------Check data--------------------------------
 //---------------------------------------------------------
 
-function convertData(data) {
-    //TODO
-    //Detect data format
-    //and check if convertion is possible
-    var dataType = "newick";
+function ParseTreeData(data, isExampleData = false) {
+    if (isExampleData) {
+        return ParseNewickToGenvoTree(data);
+    }
+
+    var dataType = $('input[name="twoFileFormatOption"]:checked').val();
 
     switch (dataType) {
         case "newick":
-            data = convertNewickToGenvoTree(data);
+            data = ParseNewickToGenvoTree(data);
+            break;
+        case "nhx":
+            data = ParseNhxToGenvoTree(data);
+            break;
+        case "notung":
+            data = ParseNotungToGenvoTree(data);
+            break;
     }
 
     //TODO
@@ -19,8 +27,15 @@ function convertData(data) {
     return data;
 }
 
+function ParseNotungToGenvoTree(data) {
+    console.log("Convert from Notung");
+}
 
-function convertNewickToGenvoTree(data) {
+function ParseNhxToGenvoTree(data) {
+    console.log("convert from Nhx");
+}
+
+function ParseNewickToGenvoTree(data) {
     //---------------------------------
     // Curtesy to Newick JS
     //---------------------------------
@@ -64,6 +79,7 @@ function convertNewickToGenvoTree(data) {
                 } else if (x === ":") {
                     tree.length = parseFloat(token);
                 }
+                break;
         }
     }
     return tree;

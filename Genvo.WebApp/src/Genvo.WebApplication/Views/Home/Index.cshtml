@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Visualization for reconciled trees";
 }
 
 <header id="index">
@@ -29,14 +29,9 @@
                             
                             <div data-toggle="buttons">
                                 <label class="btn btn-default active">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Newick
+                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off" checked> Newick
                                 </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="options" id="option2" autocomplete="off">NHX
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="options" id="option3" autocomplete="off">Notung
-                                </label>
+                                
                             </div>
                             
 
@@ -73,10 +68,13 @@
 
                             <div data-toggle="buttons">
                                 <label class="btn btn-default active">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Notung
+                                    <input type="radio" name="reconciledFileFormatOption" value="notung" autocomplete="off" checked>Notung
                                 </label>
                                 <label class="btn btn-default">
-                                    <input type="radio" name="options" id="option2" autocomplete="off">PrimeTV
+                                    <input type="radio" name="reconciledFileFormatOption" value="nhx" autocomplete="off">NHX
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="reconciledFileFormatOption" value="primetv" autocomplete="off">PrimeTV
                                 </label>
                             </div>
 
