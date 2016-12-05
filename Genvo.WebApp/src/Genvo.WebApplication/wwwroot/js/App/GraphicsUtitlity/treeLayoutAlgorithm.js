@@ -49,132 +49,121 @@
     recurseNodesG(GeneTree._root);
 
 
+
+    var allSpeciations = {};
+    var allParents = {};
+    var maxAngle = 20; //degrees
+
+    function recurseInternalNodesG(g) {
+        if (g.isLeaf) { return }
+
+        g.children.forEach(function (ch) { recurseInternalNodesG(ch); });
+
+        //if (g.species.name !== s.name) { return; }
+
+        ////////////////////////
+        // 3D object
+        var nodeElement;
+        switch (g.event) {
+            case "spec":
+                nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid", radious: 4 }), createMaterial({ colour: "red", opacity: 0.8 }));
+                break;
+            case "dup":
+                nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid" }), createMaterial({ colour: "grey", opacity: 0.8 }));
+                break;
+
+            case "loss":
+                nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "grey", opacity: 0.8 }));
+                break;
+
+            case "trans":
+                nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "red", opacity: 0.8 }));
+                break;
+            default:
+                console.log("ERROR");
+                break;
+        }
+
+        ///////////////////////
+        // Positions
+
+        // Variables
+        var p0 = g.children[0].object.position;
+        var p1 = g.children[1].object.position;
+        var childDist = (p1.x - p0.x) / 2;
+
+        // Draw nodes
+        nodeElement.position.x = p0.x + childDist;
+        nodeElement.position.z = g.species.zPos;
+
+        // Set primary y pos
+        if (childDist > 2 * xDelta) {
+            nodeElement.position.y = Math.max(p0.y, p1.y) + childDist / Math.tan(maxAngle);
+            //nodeElement.position.y = Math.max(p0.y, p1.y) + Math.sqrt(childDist*50);
+        }
+        else {
+            nodeElement.position.y = Math.max(p0.y, p1.y) + childDist + Math.sqrt(childDist * 2);
+        }
+
+        scene.add(nodeElement);
+
+        // Save changes
+        g.object = nodeElement;
+        g.object.owner = g;
+
+
+        ////////////////////////
+        // Store speciation heights
+        if (g.event === "spec") {
+            g.species.yPos = Math.max(g.species.yPos, g.object.position.y);
+
+            if (allSpeciations[g.species.name] === undefined) { allSpeciations[g.species.name] = new Array() }
+            allSpeciations[g.species.name].push(g);
+        }
+        else {
+            if (allParents[g.species.name] === undefined) { allParents[g.species.name] = new Array() }
+            allParents[g.species.name].push(g);
+        }
+
+    }
+    recurseInternalNodesG(GeneTree._root);
+
+
+
     // Build rest of tree
     function recurseNodesS(s) {
         s.children.forEach(function (ch) { recurseNodesS(ch); });
 
-        var allSpeciations = new Array();
-        var allParents = new Array();
-        var maxAngle = 20; //degrees
-
-        function recurseInternalNodesG(g) {
-            if (g.isLeaf) {
-                //console.log("leaf: " + g.name); 
-                return;
-            }
-
-            g.children.forEach(function (ch) { recurseInternalNodesG(ch); });
-
-            if (g.species.name !== s.name) { return; }
-            console.log(g.species.name);
-
-            ////////////////////////
-            // 3D object
-            var nodeElement;
-            switch (g.event) {
-                case "spec":
-                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid", radious: 4 }), createMaterial({ colour: "red", opacity: 0.8 }));
-                    break;
-                case "dup":
-                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid" }), createMaterial({ colour: "grey", opacity: 0.8 }));
-                    break;
-
-                case "loss":
-                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "grey", opacity: 0.8 }));
-                    break;
-
-                case "trans":
-                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "red", opacity: 0.8 }));
-                    break;
-                default:
-                    console.log("ERROR");
-                    break;
-            }
-
-            ///////////////////////
-            // Positions
-
-            // Variables
-            console.log(g);
-            var p0 = g.children[0].object.position;
-            var p1 = g.children[1].object.position;
-            var childDist = (p1.x - p0.x) / 2;
-
-            // Draw nodes
-            nodeElement.position.x = p0.x + childDist;
-            nodeElement.position.z = g.species.zPos;
-
-            // Set primary y pos
-            if (childDist > 2 * xDelta) {
-                nodeElement.position.y = Math.max(p0.y, p1.y) + childDist / Math.tan(maxAngle);
-                //nodeElement.position.y = Math.max(p0.y, p1.y) + Math.sqrt(childDist*50);
-            }
-            else {
-                nodeElement.position.y = Math.max(p0.y, p1.y) + childDist + Math.sqrt(childDist * 2);
-            }
-
-            scene.add(nodeElement);
-
-
-            ///////////////////////
-            // Save changes
-
-            g.object = nodeElement;
-            g.object.owner = g;
-
-            ////////////////////////
-            // Store speciation heights
-
-            if (g.event === "spec") {
-                g.species.yPos = Math.max(g.species.yPos, g.object.position.y);
-                allSpeciations.push(g);
-            }
-            else {
-                allParents.push(g);
-            }
-
-        }
-        recurseInternalNodesG(GeneTree._root);
-
-
-
-
-
-
         ///////////////////////////
         // Update all y positions
+        if (allSpeciations[s.name] !== undefined) {
+            allSpeciations[s.name].forEach(function (g) {
+                g.object.position.y = g.species.yPos;
 
-        allSpeciations.forEach(function (g) {
-            g.object.position.y = g.species.yPos;
+                createGraphEdge(g, true);
+            });
+        }
+        
+        if (allParents[s.name] !== undefined) {
+            allParents[s.name].forEach(function (g) {
+                const p0 = g.children[0].object.position;
+                const p1 = g.children[1].object.position;
+                const childDist = (p1.x - p0.x) / 2;
 
-            createGraphEdge(g, true);
-        });
+                // Set y pos
+                if (childDist > 2 * xDelta) {
+                    g.object.position.y = Math.max(p0.y, p1.y) + childDist / Math.tan(maxAngle);
+                    //nodeElement.position.y = Math.max(p0.y, p1.y) + Math.sqrt(childDist*50);
+                }
+                else {
+                    g.object.position.y = Math.max(p0.y, p1.y) + childDist + Math.sqrt(childDist * 2);
+                }
 
-        allParents.forEach(function (g) {
-            var p0 = g.children[0].object.position;
-            var p1 = g.children[1].object.position;
-            var childDist = (p1.x - p0.x) / 2;
+                createGraphEdge(g, true);
 
-            // Set y pos
-            if (childDist > 2 * xDelta) {
-                g.object.position.y = Math.max(p0.y, p1.y) + childDist / Math.tan(maxAngle);
-                //nodeElement.position.y = Math.max(p0.y, p1.y) + Math.sqrt(childDist*50);
-            }
-            else {
-                g.object.position.y = Math.max(p0.y, p1.y) + childDist + Math.sqrt(childDist * 2);
-            }
-
-            createGraphEdge(g, true);
-
-        });
-
-
-
-
-
-
-
-
+            });
+        }
+        
 
 
         /////////////////////////////////
