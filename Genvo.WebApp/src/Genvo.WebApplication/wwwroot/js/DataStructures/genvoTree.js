@@ -4,11 +4,12 @@
 
 GenvoTree.prototype.INIT = function (treeFiles, parameters) {
     // Set up parameters
-    if ( parameters === undefined ) parameters = {};
+    if ( parameters === undefined || parameters === null ) parameters = {};
 
     // Visual parameters
     var seperator = parameters.hasOwnProperty("seperator") ? parameters["seperator"] : "_";
     var showNickname = parameters.hasOwnProperty("showNickname") ? parameters["showNickname"] : false;
+    var needsReconciliation = parameters.hasOwnProperty("needsReconciliation") ? parameters["needsReconciliation"] : true;
     
     // Reconciliation parameters // David and Alm (2011) (i.e., PΔ = 2, PΘ = 3, and Ploss = 1)
     var pDup = parameters.hasOwnProperty("pDup") ? parameters["pDup"] : 2;
@@ -20,7 +21,10 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
     this.addJSON(treeFiles.GeneTree);
     this.addJSON(treeFiles.SpeciesTree, "species");
     this.analyzeGeneTree(seperator, showNickname);
-    this.reconcile(pDup, pLoss, pTransfer);
+    this.generateSpeciesColour(); //Must be done after the analysis of the tree
+
+    if (needsReconciliation) { this.reconcile(pDup, pLoss, pTransfer); }
+    
     this.calculate3DPositions();
 }
 
@@ -31,8 +35,7 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
 
 
 function GenvoTree() {
-    //var node = new Node();
-    this._root = new Node(); // One for genetree and one for species tree?
+    this._root = new Node();
     this._speciesRoot = new speciesNode();
 
     // Simplified trees
@@ -61,10 +64,10 @@ function Node (parameters) {
     // Node meta-data
     this.name = parameters.hasOwnProperty("fullName")       ? parameters["fullName"] : undefined;
     this.nickname = parameters.hasOwnProperty("nickname")   ? parameters["nickname"] : undefined;
-    this.event = parameters.hasOwnProperty("event")      ? parameters["event"] : undefined;
-    this.species = parameters.hasOwnProperty("species")    ? parameters["species"] : undefined;
-    this.length = parameters.hasOwnProperty("length")     ? parameters["length"] : undefined;
-    this.noLeafs = parameters.hasOwnProperty("noLeafs") ? parameters["noLeafs"] : 0;
+    this.event = parameters.hasOwnProperty("event")         ? parameters["event"] : undefined;
+    this.species = parameters.hasOwnProperty("species")     ? parameters["species"] : undefined;
+    this.length = parameters.hasOwnProperty("length")       ? parameters["length"] : undefined;
+    this.noLeafs = parameters.hasOwnProperty("noLeafs")     ? parameters["noLeafs"] : 0;
     this.FunctionGroup = "undefined";
 
     // Node grapphical attributes
@@ -79,7 +82,7 @@ function Node (parameters) {
 }
 
 function speciesNode (parameters) {
-    if ( parameters === undefined ) parameters = {};
+    if ( parameters === undefined || parameters === null) parameters = {};
 
     // Tree data
     this.parent = parameters.hasOwnProperty("parent")       ? parameters["parent"]   : null;
@@ -94,10 +97,10 @@ function speciesNode (parameters) {
 
 
     // Node grapphical attributes
-    this.colour = parameters.hasOwnProperty("colour")   ? parameters["colour"] : chroma('#ccc');
+    this.colour = parameters.hasOwnProperty("colour")       ? parameters["colour"] : chroma('#ccc');
     this.subColour = parameters.hasOwnProperty("subColour")   ? parameters["subColour"] : chroma('#ccc');
-    this.zPos = parameters.hasOwnProperty("zPos")       ? parameters["zPos"] : 0;
-    this.yPos = parameters.hasOwnProperty("yPos")       ? parameters["yPos"] : 0;
+    this.zPos = parameters.hasOwnProperty("zPos")           ? parameters["zPos"] : 0;
+    this.yPos = parameters.hasOwnProperty("yPos")           ? parameters["yPos"] : 0;
 
     // Reconcilliation variables
     this.index = undefined;
@@ -105,7 +108,7 @@ function speciesNode (parameters) {
 
 
 function FunctionGroup(parameters){
-    if ( parameters === undefined ) parameters = {};
+    if ( parameters === undefined || parameters === null) parameters = {};
 
     this.name = parameters.hasOwnProperty("name")       ? parameters["name"]   : "undefined";
     this.colour = parameters.hasOwnProperty("colour")       ? parameters["colour"]   : chroma('#555');
@@ -113,7 +116,7 @@ function FunctionGroup(parameters){
 }
 
 
-Node.prototype.updateObjectPos = function(vThree){ // Not done! 
+Node.prototype.updateObjectPos = function(vThree){ // TODO Not done! 
     this.object.position.copy(vThree);
 }
 
@@ -163,7 +166,7 @@ GenvoTree.prototype.updateFunctionList = function(){
 
 GenvoTree.prototype.addJSON = function(JSON, treeType){
     // Check tree type and recurse from that root
-    var tmpRoot = (treeType === "species") ? this._speciesRoot : this._root;
+    const tmpRoot = (treeType === "species") ? this._speciesRoot : this._root;
     var nodeName = (treeType === "species") ? "speciesNode" : "Node";
     var tmpIndex = 0;
 
@@ -174,16 +177,27 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
         copyNodeData(currentNode, jFile);
         currentNode.index = tmpIndex;
 
+        //Check if node is leaf
+        currentNode.isLeaf = (jFile.children === undefined) ? true : false;
+
         // Add species to All Species list searchable by name or index
-        if (treeType === "species"){
+        if (treeType === "species") {
+            if (!currentNode.isLeaf && currentNode.name === "") {
+                currentNode.name = guid();
+                currentNode.nickName = "No Name";
+            }
+            if (this.allSpecies[currentNode.name] !== undefined) {
+                alert(`Doublet of species name: ${currentNode.name}`);
+            }
+
             this.allSpecies[currentNode.name] = currentNode;
             this.allSpeciesIndexes[tmpIndex] = currentNode;
         }
-
-        tmpIndex ++;
+        
+        tmpIndex++;
 
         // Set up children
-        if (jFile.children !== undefined){
+        if (!currentNode.isLeaf){
             for (var i = 0; i < jFile.children.length; i++){
                 var child = new window[nodeName]({parent: currentNode}); //Create new Node or speciesNode //var child = new Node({parent: currentNode});
                 currentNode.children.push(child);
@@ -191,7 +205,6 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
             }
         }
         else {
-            currentNode.isLeaf = true;
             if (treeType === "genes" || treeType === undefined){
                 this.geneLeafs.push(currentNode);
             } 
@@ -199,7 +212,6 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
                 this.noSpeciesLeaf ++;
             }
         }
-
     }
     this.recurse(tmpRoot, JSON);
 
@@ -208,13 +220,12 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
     }
     else if (treeType === "species"){
         this.noSpeciations = tmpIndex;
+        console.log(this.allSpecies);
     }
 };
 
 
-
-
-GenvoTree.prototype.analyzeGeneTree = function(seperator, NN){
+GenvoTree.prototype.analyzeGeneTree = function(seperator, nickName){
     GenvoTree.prototype.recurse = function(g){
         // recurse over children
         for (var i = 0, length = g.children.length; i < length; i++) {
@@ -230,10 +241,10 @@ GenvoTree.prototype.analyzeGeneTree = function(seperator, NN){
             g.children.forEach(function(ch){g.noLeafs += ch.noLeafs;});
         }
 
-        // analyze gene names
-        if (g.isLeaf){ //currentNode.name !== ""
-            var gs = this.extractSpeciesName(g.name, seperator);
-            g.nickname = (NN) ? gs[1] : g.name;
+        
+        if (g.isLeaf){
+            var gs = this.analyzeLabel(g.name, seperator);
+            g.nickname = (nickName) ? gs[1] : g.name;
             g.species = this.allSpecies[gs[0]];
 
             // Set function group to undefined
@@ -244,14 +255,10 @@ GenvoTree.prototype.analyzeGeneTree = function(seperator, NN){
 
     // Go throught all nodes and analyze gene name
     this.recurse(this._root);
-
-    // From species create colour scheme
-    this.generateSpeciesColour();
 }
 
-
 // Extract species name from full gene name
-GenvoTree.prototype.extractSpeciesName = function (name, seperator, seperatorIndex){
+GenvoTree.prototype.analyzeLabel = function (name, seperator) {
     var res = name.split(seperator);
     var r = new Array();
 
@@ -261,11 +268,12 @@ GenvoTree.prototype.extractSpeciesName = function (name, seperator, seperatorInd
 
     r.push(res.pop());
     r.push(res.join(""));
+
+    // TODO CHECK CORRECTNESS OF THIS (this just adds a new node when data is corrupt?)
+    // TODO this should try other checks to try to match data anyway - and if not give an alert to the user
     // Check if identified species is in the list for all species
-    if ( !this.allSpecies.hasOwnProperty(r[0]) ) { // Find in species tree and remove class species (replaced by species node)
-        this.allSpecies[r[0]] = new speciesNode({
-            name: r[0]
-        });
+    if (!this.allSpecies.hasOwnProperty(r[0])) { // Find in species tree and remove class species (replaced by species node)
+        alert(`Species ${r[0]} can not be matched`);
     }
 
     return r; //  r[0] = species, r[1] = gene
@@ -277,21 +285,21 @@ GenvoTree.prototype.generateSpeciesColour = function(){
     var mainColourScheme = generateColourScheme(
         this.noSpeciesLeaf, 
         1,
-        ['yellow', '33E0E0'], //['yellow', '008ae5']
+        ["yellow", "33E0E0"], //['yellow', '008ae5']
         true
     );
 
     var subColourScheme = generateColourScheme(
         this.noSpeciesLeaf, 
         0.8,
-        ['yellow', '33E0E0'], //['yellow', '008ae5'] // ['yellow', 'red']
+        ["yellow", "33E0E0"], //['yellow', '008ae5'] // ['yellow', 'red']
         false
     );
 
 
     var i = 0;
-    for (key in this.allSpecies){ // ONLY GENERATE FOR Le(S)
-        if (key !== "" && this.allSpecies[key].isLeaf){
+    for (var key in this.allSpecies) { // ONLY GENERATE FOR Le(S)
+        if (key !== "" && this.allSpecies[key].isLeaf) {
             this.allSpecies[key].colour = mainColourScheme[i];
             this.allSpecies[key].subColour = subColourScheme[i];
             i++;
@@ -304,26 +312,29 @@ function generateColourScheme(noColors, alpha, arrayOfColours, darken){
 
     // Variables
     var colourScheme = new Array();
-    var alpha = (alpha === undefined) ? 1 : alpha;
+    var step;
+    alpha = (alpha === undefined) ? 1 : alpha;
 
-    scale = chroma.scale(arrayOfColours)
-        .mode('lch')
+    var scale = chroma.scale(arrayOfColours)
+        .mode("lch")
         .correctLightness();
 
     // Generate colours
     if(noColors>1){
-       var step = 1/(noColors-1); 
+       step = 1/(noColors-1); 
    } else{step=1}
     
-    for (i=0; i<noColors; i++){
+    for (i = 0; i < noColors; i++) {
+        var color;
+
         if (darken){
-            var colour = scale(step * i).darken(2);//.saturate(1);
+            color = scale(step * i).darken(2);//.saturate(1);
         }
         else{
-            var colour = scale(step * i).saturate(1);
+            color = scale(step * i).saturate(1);
         }
 
-        colourScheme.push(colour);
+        colourScheme.push(color);
     }
 
     return colourScheme;

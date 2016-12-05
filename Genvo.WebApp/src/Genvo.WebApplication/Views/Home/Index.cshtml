@@ -19,21 +19,36 @@
     <div class="container">
         <h1 class="section-heading text-center">Visualize gene evolution</h1>
         <div class="row eqHeight">
-            
+
             <div class="col-sm-6">
                 <div class="card">
                     <h3 class="card-header">Two file format</h3>
                     <div class="card-block">
                         <div class="card-block-content">
-                            <p class="p-small"><strong>Fileformat</strong></p>
-                            
+
+                            <p class="p-small">
+                                <strong>Fileformat</strong>
+                            </p>
                             <div data-toggle="buttons">
                                 <label class="btn btn-default active">
                                     <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off" checked> Newick
                                 </label>
-                                
                             </div>
-                            
+
+                            <br />
+
+                            <p class="p-small"><strong>Specify label format</strong></p>
+                            <div data-toggle="buttons">
+                                <label class="btn btn-default active" data-toggle="tooltip" title="Prefix of the gene label (i.e. SPECIESGENE)">
+                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off" checked> Prefix
+                                </label>
+                                <label class="btn btn-default" data-toggle="tooltip" title="Postfix (underscore required) of the gene label (i.e. GENE_SPECIES)">
+                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off"> Postfix
+                                </label>
+                                <label class="btn btn-default" data-toggle="tooltip" title="NHX species tag contains the species label (i.e. GENE[&&NHX:S=SPECIES])">
+                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off"> NHX tag
+                                </label>
+                            </div>
 
                             <div class="dz-field">
                                 <form action="/upload/" id="drop_zone_host" class="dropzone dz-small needsclick dz-clickable">
@@ -42,7 +57,7 @@
                                         <output id="dz-host-text"><strong>No file loaded</strong></output>
                                     </div>
                                 </form>
-                                
+
                                 <form action="/upload/" id="drop_zone_guest" class="dropzone dz-small needsclick dz-clickable">
                                     <div class="dz-message needsclick">
                                         <h2>Drop guest tree here</h2>
@@ -58,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-6">
                 <div class="card">
                     <h3 class="card-header">Already reconciled</h3>

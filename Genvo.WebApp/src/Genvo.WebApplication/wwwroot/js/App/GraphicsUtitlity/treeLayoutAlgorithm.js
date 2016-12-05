@@ -2,18 +2,13 @@
     var xPos = 0;
     var xDelta = 20;
 
-
-    ////////////////////////////////////////////////////////
-    // Correct all speciation events height
-    ////////////////////////////////////////////////////////
-
     // Set all leaf positions
     function recurseNodesG(g) {
         g.children.forEach(function (ch) { recurseNodesG(ch); });
 
         if (g.isLeaf) {
             // Draw node
-            var nodeElement = new THREE.Mesh(getStdGeometry({ geometry: 'sphere' }), createMaterial({ colour: "grey", opacity: 0.8 }));
+            const nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "sphere" }), createMaterial({ colour: "grey", opacity: 0.8 }));
 
             // Set positions
             nodeElement.position.x = xPos;
@@ -32,7 +27,7 @@
                 fontsize: fontSize,
                 borderColor: g.species.colour,
                 backgroundColor: g.species.subColour,
-                fontface: 'Times',
+                fontface: "Times",
                 borderThickness: 2
             });
 
@@ -54,8 +49,6 @@
     recurseNodesG(GeneTree._root);
 
 
-
-
     // Build rest of tree
     function recurseNodesS(s) {
         s.children.forEach(function (ch) { recurseNodesS(ch); });
@@ -65,36 +58,44 @@
         var maxAngle = 20; //degrees
 
         function recurseInternalNodesG(g) {
-            if (g.isLeaf) { return; }
+            if (g.isLeaf) {
+                //console.log("leaf: " + g.name); 
+                return;
+            }
 
             g.children.forEach(function (ch) { recurseInternalNodesG(ch); });
 
             if (g.species.name !== s.name) { return; }
+            console.log(g.species.name);
 
             ////////////////////////
             // 3D object
+            var nodeElement;
             switch (g.event) {
-                case 'spec':
-                    var nodeElement = new THREE.Mesh(getStdGeometry({ geometry: 'pyramid', radious: 4 }), createMaterial({ colour: "red", opacity: 0.8 }));
+                case "spec":
+                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid", radious: 4 }), createMaterial({ colour: "red", opacity: 0.8 }));
                     break;
-                case 'dup':
-                    var nodeElement = new THREE.Mesh(getStdGeometry({ geometry: 'pyramid' }), createMaterial({ colour: "grey", opacity: 0.8 }));
-                    break;
-
-                case 'loss':
-                    var nodeElement = new THREE.Mesh(getStdGeometry({ geometry: 'cube' }), createMaterial({ colour: "grey", opacity: 0.8 }));
+                case "dup":
+                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "pyramid" }), createMaterial({ colour: "grey", opacity: 0.8 }));
                     break;
 
-                case 'trans':
-                    var nodeElement = new THREE.Mesh(getStdGeometry({ geometry: 'cube' }), createMaterial({ colour: "red", opacity: 0.8 }));
+                case "loss":
+                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "grey", opacity: 0.8 }));
                     break;
 
+                case "trans":
+                    nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "red", opacity: 0.8 }));
+                    break;
+                default:
+                    console.log("ERROR");
+                    break;
             }
 
             ///////////////////////
             // Positions
 
             // Variables
+            console.log(g);
             var p0 = g.children[0].object.position;
             var p1 = g.children[1].object.position;
             var childDist = (p1.x - p0.x) / 2;
@@ -124,7 +125,7 @@
             ////////////////////////
             // Store speciation heights
 
-            if (g.event === 'spec') {
+            if (g.event === "spec") {
                 g.species.yPos = Math.max(g.species.yPos, g.object.position.y);
                 allSpeciations.push(g);
             }

@@ -41,28 +41,6 @@ function getDropedFile(evt) {
 }
 
 function readSelectedFile(file, type) {
-  //evt.stopPropagation();
-  //evt.preventDefault();
-
-  //var files = evt.dataTransfer.files; // FileList object.
-  //var file = files[0];
-  // files is a FileList of File objects. List some properties.
-  //var output = [];
-
-  //output.push("<strong>", escape(file.name), "</strong> - ", file.size, " bytes");
-
-  //var currentId = evt.target.id;
-  //  console.log(currentId);
-  //if (currentId === "drop_zone_host") {
-  //    document.getElementById("dz-host-text").innerHTML = "<strong>" + output.join("") + "</strong>";
-  //} else if (currentId === "drop_zone_guest") {
-  //    document.getElementById("dz-guest-text").innerHTML = "<strong>" + output.join("") + "</strong>";
-  //}else {
-  //    console.log("error 1: drop zone ID error");
-  //}
-
-
-  // read the file
   var reader = new FileReader();
 
   reader.onload = function(evt) {

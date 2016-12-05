@@ -4,6 +4,7 @@
 // ---------------  Global variables --------------------------
 //-------------------------------------------------------------
 var GeneTree = new GenvoTree();
+
 var mousePos = new THREE.Vector3(), INTERSECTED;
 var hover = false;
 var dialog;
@@ -12,10 +13,7 @@ var canvasSize = {x:window.innerWidth, y:window.innerHeight};
 var currentSelectedObject;
 var floatingToolbar = document.getElementById("onClickTools").getElementsByTagName("a"); // Attached to genvo_app.html
 
-//-------------------------------------------------------------
-// ---------------  Load scripts  -----------------------------
-//-------------------------------------------------------------
-//require(['functionVis']);
+
 
 //-------------------------------------------------------------
 // ---------------  Data loaders ------------------------------
@@ -26,10 +24,10 @@ function loadData() {
     var treeFiles = localStorage.getItem("_GSTree");
 
    // if (!treeFiles) {console.log("Data failed to load"); return false;}
-   if (!treeFiles) window.location.href = "../index.html#thetool"; // Add row when done!!!
+   if (!treeFiles) window.location.href = "../#thetool"; // Add row when done!!!
 
 
-    //localStorage.removeItem('_GSTree'); //ADD IF TO CLEAR CASHE
+    //localStorage.removeItem("_GSTree"); //ADD IF TO CLEAR CASHE
 
     //Decode and parse
     treeFiles = atob(treeFiles);
@@ -41,10 +39,10 @@ function loadData() {
     // pLoss, pDup and pTransfer can also be set here
     var properties = {
         showNickname: true,
-        separator: "_"
+        separator: "_",
+        needsReconciliation: true
     }
     GeneTree.INIT(treeFiles, properties);
-
 }
 
 

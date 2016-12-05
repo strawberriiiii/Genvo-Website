@@ -77,7 +77,6 @@ GenvoTree.prototype.reconcile = function (pDelta, pLoss, pTransfer) {
             var g_1 = g.children[0];
             var g_2 = g.children[1];
 
-
             if (s.isLeaf) { // STEP 8
                 cSum[g.index][s.index] = Number.POSITIVE_INFINITY; // STEP 9
                 cDelta[g.index][s.index] = pDelta + c[g_1.index][s.index].value + c[g_2.index][s.index].value; // STEP 10

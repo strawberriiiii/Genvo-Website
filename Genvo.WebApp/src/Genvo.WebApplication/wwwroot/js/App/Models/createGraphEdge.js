@@ -36,7 +36,7 @@ class createGlowingEdge{
       this.createTubeCaps(seg, color);
     }
   }
-   createEdgeTubeGeometry(path, radious = 1){
+  createEdgeTubeGeometry(path, radious = 1){
      var tubeGeom = new THREE.TubeGeometry( path, 1, radious*2, 32, false );
      return tubeGeom;
    }
