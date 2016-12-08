@@ -34,6 +34,7 @@ function loadData() {
     treeFiles = JSON.parse(treeFiles);
 
     console.log("Data loaded");
+    console.log(treeFiles);
 
     // Build the tree properties
     // pLoss, pDup and pTransfer can also be set here
@@ -114,14 +115,14 @@ function onDocumentMouseDown( e ) {
 
 
         if (currentSelectedObject !== undefined){
-            for(i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}
+            for(var i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}
         }
     }
     else{
         //cameraControls.enabled = true;
 
         $('[data-toggle="popover"]').popover('hide');
-        for(i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
+        for(var i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
 
         currentSelectedObject = undefined;
     }
@@ -159,7 +160,7 @@ function onMouseHover(){
 
     if ( intersects.length > 0 ) {
 
-        if ( INTERSECTED != intersects[ 0 ].object ) {
+        if ( INTERSECTED !== intersects[ 0 ].object ) {
 
             if ( INTERSECTED ) {
                 INTERSECTED.material.opacity = INTERSECTED.currentOpacity;
@@ -225,16 +226,16 @@ function calculateArrayMax(a){
 function supportCheckers(){
     // Edit button position
     if(currentSelectedObject !== undefined){ // Edit this to only update when needed!!!
-        var vector = posOnScreen(currentSelectedObject.object.position);
-        var buttons = floatingToolbar;
-        var angle = Math.PI/buttons.length;
+        const vector = posOnScreen(currentSelectedObject.object.position);
+        const buttons = floatingToolbar;
+        const angle = Math.PI/buttons.length;
 
         buttons[0].style.left = vector.x + 'px';
         buttons[0].style.top = (vector.y-10) + 'px';
 
 
 
-        for (i=1; i<buttons.length; i++){
+        for (let i=1; i<buttons.length; i++){
             buttons[i].style.left = (vector.x + (Math.cos(angle*i)*50)) + 'px';
             buttons[i].style.top = (vector.y - (Math.sin(angle*i)*50)) + 'px';
         }
@@ -404,7 +405,7 @@ function createBloomPass(shader, renderToScreen, needSwap){
     var bloomEffectsLayerPass = new THREE.RenderPass( bloomEffectsLayerScene, camera);
     composer.bloom.addPass( bloomEffectsLayerPass );
 
-    var blur = createBlurShaderPass();
+    //var blur = createBlurShaderPass();
 
     //composer.bloom.addPass( blur.horizontal );
     //composer.bloom.addPass( blur.vertical ); 

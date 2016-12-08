@@ -88,13 +88,14 @@ function senddata(){
 
 
   // Locally store datafiles for later access
-  var files = {
-    GeneTree: guestTreeFile,
-    SpeciesTree: hostTreeFile
-  }
+    var files = {
+        Method: $("#parsingMethod input:radio").val(),
+        GeneTree: guestTreeFile,
+        SpeciesTree: hostTreeFile
+    }
 
-  packdatalocal(files, "_GSTree");
-  window.location.href = "visualization";
+    packdatalocal(files, "_GSTree");
+    window.location.href = "visualization";
 }
 
 function packdatalocal(files, name){

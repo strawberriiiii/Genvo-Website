@@ -38,15 +38,15 @@
                             <br />
 
                             <p class="p-small"><strong>Specify label format</strong></p>
-                            <div data-toggle="buttons">
+                            <div data-toggle="buttons" id="parsingMethod">
                                 <label class="btn btn-default active" data-toggle="tooltip" title="Prefix of the gene label (i.e. SPECIESGENE)">
-                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off" checked> Prefix
+                                    <input type="radio" name="twoFileFormatOption" value="prefix" autocomplete="off" checked> Prefix
                                 </label>
                                 <label class="btn btn-default" data-toggle="tooltip" title="Postfix (underscore required) of the gene label (i.e. GENE_SPECIES)">
-                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off"> Postfix
+                                    <input type="radio" name="twoFileFormatOption" value="postfix" autocomplete="off"> Postfix
                                 </label>
                                 <label class="btn btn-default" data-toggle="tooltip" title="NHX species tag contains the species label (i.e. GENE[&&NHX:S=SPECIES])">
-                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off"> NHX tag
+                                    <input type="radio" name="twoFileFormatOption" value="nhx" autocomplete="off"> NHX tag
                                 </label>
                             </div>
 

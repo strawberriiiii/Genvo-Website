@@ -1,43 +1,46 @@
 ﻿//---------------------------------------------------------
 //---------------Check data--------------------------------
 //---------------------------------------------------------
+function DataParser(data, isExampleData) {
+    if (isExampleData === undefined || isExampleData === null) { isExampleData = false }
 
-function ParseTreeData(data, isExampleData) {
-    if (isExampleData === undefined || isExampleData === null){isExampleData = false}
+    this.data = data;
 
     if (isExampleData) {
-        return ParseNewickToJSON(data);
+        this.data = this.ParseNewickToJSON();
+        return;
     }
 
     var dataType = $('input[name="twoFileFormatOption"]:checked').val();
 
     switch (dataType) {
         case "newick":
-            data = ParseNewickToJSON(data);
+            this.data = this.ParseNewickToJSON();
             break;
         case "nhx":
-            data = ParseNhxToGenvoTree(data);
+            this.data = this.ParseNhxToGenvoTree();
             break;
         case "notung":
-            data = ParseNotungToGenvoTree(data);
+            this.data = this.ParseNotungToGenvoTree();
             break;
     }
-
-    //TODO
-    //Check if the data is converted correctly
-
-    return data;
 }
 
-function ParseNotungToJSON(data) {
+function ParseTreeData(data, isExampleData) {
+    var parser = new DataParser(data, isExampleData);
+
+    return parser.data;
+}
+
+DataParser.prototype.ParseNotungToJSON = function (data) {
     console.log("Convert from Notung");
 }
 
-function ParseNhxToJSON(data) {
+DataParser.prototype.ParseNhxToJSON = function (data) {
     console.log("convert from Nhx");
 }
 
-function ParseNewickToJSON(data) {
+DataParser.prototype.ParseNewickToJSON = function () {
     //---------------------------------
     // Curtesy to Newick JS
     //---------------------------------
@@ -46,7 +49,7 @@ function ParseNewickToJSON(data) {
     var tree = {};
 
     //Prepare data from string
-    var tokens = data.split(/\s*(;|\(|\)|,|:)\s*/);
+    const tokens = this.data.split(/\s*(;|\(|\)|,|:)\s*/);
 
     //Parse tokens into JSON tree
     for (var i = 0; i < tokens.length; i++) {
