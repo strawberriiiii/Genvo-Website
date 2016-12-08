@@ -215,7 +215,7 @@
 
 
             d3.select('#' + s.name)
-                .on("mouseover", function (d) {
+                .on("mouseover", function () {
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
@@ -223,7 +223,7 @@
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })
-                .on("mouseout", function (d) {
+                .on("mouseout", function () {
                     div.transition()
                         .duration(200)
                         .style("opacity", 0);
@@ -250,7 +250,7 @@
     target.z = cameraControls.position0.z;
     cameraControls.object.position.copy(target);
 
-    var target = new THREE.Vector3();
+    target = new THREE.Vector3();
     target.copy(cameraControls.target0);
     cameraControls.target = target;
 
