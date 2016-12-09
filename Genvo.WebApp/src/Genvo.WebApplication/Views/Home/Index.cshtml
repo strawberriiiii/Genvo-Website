@@ -26,17 +26,6 @@
                     <div class="card-block">
                         <div class="card-block-content">
 
-                            <p class="p-small">
-                                <strong>Fileformat</strong>
-                            </p>
-                            <div data-toggle="buttons">
-                                <label class="btn btn-default active">
-                                    <input type="radio" name="twoFileFormatOption" value="newick" autocomplete="off" checked> Newick
-                                </label>
-                            </div>
-
-                            <br />
-
                             <p class="p-small"><strong>Specify label format</strong></p>
                             <div data-toggle="buttons" id="parsingMethod">
                                 <label class="btn btn-default active" data-toggle="tooltip" title="Prefix of the gene label (i.e. SPECIESGENE)">
@@ -47,6 +36,9 @@
                                 </label>
                                 <label class="btn btn-default" data-toggle="tooltip" title="NHX species tag contains the species label (i.e. GENE[&&NHX:S=SPECIES])">
                                     <input type="radio" name="twoFileLabelOption" value="nhx" autocomplete="off"> NHX tag
+                                </label>
+                                <label class="btn btn-default" data-toggle="tooltip" title="PRIME species tag contains the species label (i.e. GENE[&&PRIME S=SPECIES])">
+                                    <input type="radio" name="twoFileLabelOption" value="prime" autocomplete="off"> PrIME tag
                                 </label>
                             </div>
 

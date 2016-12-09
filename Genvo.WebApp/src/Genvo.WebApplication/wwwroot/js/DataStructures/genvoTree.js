@@ -7,14 +7,14 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
     if ( parameters === undefined || parameters === null ) parameters = {};
 
     // Visual parameters
-    var seperator = parameters.hasOwnProperty("seperator") ? parameters["seperator"] : "_";
-    var showNickname = parameters.hasOwnProperty("showNickname") ? parameters["showNickname"] : false;
-    var needsReconciliation = parameters.hasOwnProperty("needsReconciliation") ? parameters["needsReconciliation"] : true;
+    const seperator = parameters.hasOwnProperty("seperator") ? parameters["seperator"] : "_";
+    const showNickname = parameters.hasOwnProperty("showNickname") ? parameters["showNickname"] : false;
+    const needsReconciliation = parameters.hasOwnProperty("needsReconciliation") ? parameters["needsReconciliation"] : true;
     
     // Reconciliation parameters // David and Alm (2011) (i.e., PΔ = 2, PΘ = 3, and Ploss = 1)
-    var pDup = parameters.hasOwnProperty("pDup") ? parameters["pDup"] : 2;
-    var pLoss = parameters.hasOwnProperty("pLoss") ? parameters["pLoss"] : 1;
-    var pTransfer = parameters.hasOwnProperty("pTransfer") ? parameters["pTransfer"] : 3;
+    const pDup = parameters.hasOwnProperty("pDup") ? parameters["pDup"] : 2;
+    const pLoss = parameters.hasOwnProperty("pLoss") ? parameters["pLoss"] : 1;
+    const pTransfer = parameters.hasOwnProperty("pTransfer") ? parameters["pTransfer"] : 3;
 
 
     // Start work with tree
@@ -36,7 +36,7 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
 
 function GenvoTree() {
     this._root = new Node();
-    this._speciesRoot = new speciesNode();
+    this._speciesRoot = new SpeciesNode();
 
     // Simplified trees
     this.allSpecies = {};
@@ -81,7 +81,7 @@ function Node (parameters) {
     this.index = undefined;
 }
 
-function speciesNode (parameters) {
+function SpeciesNode (parameters) {
     if ( parameters === undefined || parameters === null) parameters = {};
 
     // Tree data

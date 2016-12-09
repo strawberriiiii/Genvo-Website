@@ -82,15 +82,14 @@ function handleDragOver(evt) {
 function senddata(){
     // Make sure species and gene files are given
     if (guestTreeFile === undefined || hostTreeFile === undefined) {
-        window.alert("Gene and / or species tree not uploaded");
+        window.alert("Host and / or guest tree not uploaded");
         return;
     }
 
 
     // Locally store datafiles for later access
     const files = {
-        Format: $('input[name="twoFileFormatOption"]:checked').val(),
-        LabelMethod: $("#parsingMethod input:radio").val(),
+        LabelFormat: $("#parsingMethod input:radio").val(),
         GeneTree: guestTreeFile,
         SpeciesTree: hostTreeFile
     }

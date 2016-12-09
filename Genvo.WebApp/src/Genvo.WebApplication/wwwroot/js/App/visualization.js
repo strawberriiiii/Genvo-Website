@@ -22,9 +22,7 @@ var floatingToolbar = document.getElementById("onClickTools").getElementsByTagNa
 function loadData() {
     console.log("Start loading data");
     var treeFiles = localStorage.getItem("_GSTree");
-
-   // if (!treeFiles) {console.log("Data failed to load"); return false;}
-   if (!treeFiles) window.location.href = "../#thetool"; // Add row when done!!!
+   if (!treeFiles) window.location.href = "../#thetool";
 
 
     //localStorage.removeItem("_GSTree"); //ADD IF TO CLEAR CASHE
@@ -37,7 +35,6 @@ function loadData() {
     console.log(treeFiles);
 
     // Build the tree properties
-    // pLoss, pDup and pTransfer can also be set here
     var properties = {
         showNickname: true,
         separator: "_",
