@@ -7,7 +7,6 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
     if ( parameters === undefined || parameters === null ) parameters = {};
 
     // Visual parameters
-    const seperator = parameters.hasOwnProperty("seperator") ? parameters["seperator"] : "_";
     const showNickname = parameters.hasOwnProperty("showNickname") ? parameters["showNickname"] : false;
     const needsReconciliation = parameters.hasOwnProperty("needsReconciliation") ? parameters["needsReconciliation"] : true;
     
@@ -20,7 +19,7 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
     // Start work with tree
     this.addJSON(treeFiles.GeneTree);
     this.addJSON(treeFiles.SpeciesTree, "species");
-    this.analyzeGeneTree(seperator, showNickname);
+    this.analyzeGeneTree(treeFiles.LabelFormat, showNickname);
     this.generateSpeciesColour(); //Must be done after the analysis of the tree
 
     if (needsReconciliation) { this.reconcile(pDup, pLoss, pTransfer); }
@@ -167,7 +166,7 @@ GenvoTree.prototype.updateFunctionList = function(){
 GenvoTree.prototype.addJSON = function(JSON, treeType){
     // Check tree type and recurse from that root
     const tmpRoot = (treeType === "species") ? this._speciesRoot : this._root;
-    var nodeName = (treeType === "species") ? "speciesNode" : "Node";
+    var nodeName = (treeType === "species") ? "SpeciesNode" : "Node";
     var tmpIndex = 0;
 
 
@@ -220,12 +219,11 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
     }
     else if (treeType === "species"){
         this.noSpeciations = tmpIndex;
-        console.log(this.allSpecies);
     }
 };
 
 
-GenvoTree.prototype.analyzeGeneTree = function(seperator, nickName){
+GenvoTree.prototype.analyzeGeneTree = function(labelFormat, nickName){
     GenvoTree.prototype.recurse = function(g){
         // recurse over children
         for (var i = 0, length = g.children.length; i < length; i++) {
@@ -235,22 +233,29 @@ GenvoTree.prototype.analyzeGeneTree = function(seperator, nickName){
         // Analyze number of Descendants to gene (not including it self)
         if (g.isLeaf){
             g.noLeafs = 1;
+            g.FunctionGroup = this.allFunctionGroups[{ name: "undefined" }];
+
+            if (labelFormat === "prefix") {
+                const gs = this.analyzeLabelPostfix(g.name, "_");
+                g.nickname = (nickName) ? gs[1] : g.name;
+                g.species = this.allSpecies[gs[0]];
+            } else if (labelFormat === "postfix") {
+                const gs = this.analyzeLabelPostfix(g.name, "_");
+                g.nickname = (nickName) ? gs[1] : g.name;
+                g.species = this.allSpecies[gs[0]];
+            } else if (labelFormat === "nhx") {
+                g.nickname = (nickName) ? g.tag.nhx.name : g.name;
+                g.species = g.tag.nhx.species;
+            } else if (labelFormat === "prime") {
+                g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
+                g.species = g.tag.prime.species;
+                console.log(g.species);
+            }
         }
         else{
             g.noLeafs = 0;
             g.children.forEach(function(ch){g.noLeafs += ch.noLeafs;});
         }
-
-        
-        if (g.isLeaf){
-            var gs = this.analyzeLabel(g.name, seperator);
-            g.nickname = (nickName) ? gs[1] : g.name;
-            g.species = this.allSpecies[gs[0]];
-
-            // Set function group to undefined
-            g.FunctionGroup = this.allFunctionGroups[{name: "undefined"}];
-        }
-
     }
 
     // Go throught all nodes and analyze gene name
@@ -258,7 +263,7 @@ GenvoTree.prototype.analyzeGeneTree = function(seperator, nickName){
 }
 
 // Extract species name from full gene name
-GenvoTree.prototype.analyzeLabel = function (name, seperator) {
+GenvoTree.prototype.analyzeLabelPostfix = function (name, seperator) {
     var res = name.split(seperator);
     var r = new Array();
 

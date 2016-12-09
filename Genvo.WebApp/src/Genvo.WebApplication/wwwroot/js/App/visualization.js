@@ -32,14 +32,13 @@ function loadData() {
     treeFiles = JSON.parse(treeFiles);
 
     console.log("Data loaded");
-    console.log(treeFiles);
 
     // Build the tree properties
     var properties = {
         showNickname: true,
-        separator: "_",
         needsReconciliation: true
     }
+    console.log(treeFiles);
     GeneTree.INIT(treeFiles, properties);
 }
 

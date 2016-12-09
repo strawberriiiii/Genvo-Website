@@ -89,7 +89,7 @@ function senddata(){
 
     // Locally store datafiles for later access
     const files = {
-        LabelFormat: $("#parsingMethod input:radio").val(),
+        LabelFormat: $("input[name=twoFileLabelOption]:checked").val(),
         GeneTree: guestTreeFile,
         SpeciesTree: hostTreeFile
     }
