@@ -80,16 +80,17 @@ function handleDragOver(evt) {
 //---------------Send files to the viz---------------------
 //---------------------------------------------------------
 function senddata(){
-  // Make sure species and gene files are given
+    // Make sure species and gene files are given
     if (guestTreeFile === undefined || hostTreeFile === undefined) {
-    window.alert("Gene and / or species tree not uploaded");
-    return;
-  }
+        window.alert("Gene and / or species tree not uploaded");
+        return;
+    }
 
 
-  // Locally store datafiles for later access
-    var files = {
-        Method: $("#parsingMethod input:radio").val(),
+    // Locally store datafiles for later access
+    const files = {
+        Format: $('input[name="twoFileFormatOption"]:checked').val(),
+        LabelMethod: $("#parsingMethod input:radio").val(),
         GeneTree: guestTreeFile,
         SpeciesTree: hostTreeFile
     }
@@ -99,8 +100,8 @@ function senddata(){
 }
 
 function packdatalocal(files, name){
-  files = JSON.stringify(files);
-  files = btoa(files);
-  localStorage.setItem(name, files);
+    files = JSON.stringify(files);
+    files = btoa(files);
+    localStorage.setItem(name, files);
 }
 

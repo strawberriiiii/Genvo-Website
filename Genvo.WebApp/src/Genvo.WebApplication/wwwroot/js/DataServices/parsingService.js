@@ -6,13 +6,15 @@ function DataParser(data, isExampleData) {
 
     this.data = data;
 
+    console.log(isExampleData);
+
     if (isExampleData) {
         this.data = this.ParseNewickToJSON();
         return;
     }
 
     var dataType = $('input[name="twoFileFormatOption"]:checked').val();
-
+    console.log(dataType);
     switch (dataType) {
         case "newick":
             this.data = this.ParseNewickToJSON();
@@ -27,8 +29,8 @@ function DataParser(data, isExampleData) {
 }
 
 function ParseTreeData(data, isExampleData) {
-    var parser = new DataParser(data, isExampleData);
 
+    var parser = new DataParser(data, isExampleData);
     return parser.data;
 }
 
@@ -50,6 +52,8 @@ DataParser.prototype.ParseNewickToJSON = function () {
 
     //Prepare data from string
     const tokens = this.data.split(/\s*(;|\(|\)|,|:)\s*/);
+
+    console.log(tokens);
 
     //Parse tokens into JSON tree
     for (var i = 0; i < tokens.length; i++) {
