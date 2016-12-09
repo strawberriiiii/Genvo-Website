@@ -1,0 +1,81 @@
+((
+  (
+    (
+      nhr1_CAEEL[&&BEEP AC=(0) ],
+      nhr1_CBRIGG[&&BEEP S=CBRIGG AC=(1) ]
+    )[&&BEEP D=0 AC=(2) ],
+    (
+      nhr1_DROME[&&BEEP S=DROME AC=(3) ],
+      (
+        (
+          nhr1_MOUSE[&&BEEP S=MOUSE AC=(4) ],
+          nhr1_HUMAN[&&BEEP S=HUMAN AC=(5) ]
+        )[&&BEEP D=0 AC=(6) ],
+        (
+          nhr1_FUGU[&&BEEP S=FUGU AC=(7) ],
+          nhr1_DRERIO[&&BEEP S=DRERIO AC=(8) ]
+        )[&&BEEP D=0 AC=(9) ]
+      )[&&BEEP D=0 AC=(10) ]
+    )[&&BEEP D=0 AC=(11) ]
+  )[&&BEEP D=0 AC=(12) ],
+  (
+    (
+      nhr2_CAEEL[&&BEEP S=CAEEL AC=(0) ],
+      nhr2_CBRIGG[&&BEEP S=CBRIGG AC=(1) ]
+    )[&&BEEP D=0 AC=(2) ],
+    (
+      nhr2_DROME[&&BEEP S=DROME AC=(3) ],
+      (
+        (
+          nhr2_MOUSE[&&BEEP S=MOUSE AC=(4) ],
+          nhr2_HUMAN[&&BEEP S=HUMAN AC=(5) ]
+        )[&&BEEP D=0 AC=(6) ],
+        (
+          nhr2_FUGU[&&BEEP S=FUGU AC=(7) ],
+          nhr2_DRERIO[&&BEEP S=DRERIO AC=(8) ]
+        )[&&BEEP D=0 AC=(9) ]
+      )[&&BEEP D=0 AC=(10) ]
+    )[&&BEEP D=0 AC=(11) ]
+  )[&&BEEP D=0 AC=(12) ]
+)[&&BEEP D=1 ],
+(
+  (
+    (
+      nhr3_CAEEL[&&BEEP S=CAEEL AC=(0) ],
+      nhr3_CBRIGG[&&BEEP S=CBRIGG AC=(1) ]
+    )[&&BEEP D=0 AC=(2) ],
+    (
+      nhr3_DROME[&&BEEP S=DROME AC=(3) ],
+      (
+        (
+          nhr3_MOUSE[&&BEEP S=MOUSE AC=(4) ],
+          nhr3_HUMAN[&&BEEP S=HUMAN AC=(5) ]
+        )[&&BEEP D=0 AC=(6) ],
+        (
+          nhr3_FUGU[&&BEEP S=FUGU AC=(7) ],
+          nhr3_DRERIO[&&BEEP S=DRERIO AC=(8) ]
+        )[&&BEEP D=0 AC=(9) ]
+      )[&&BEEP D=0 AC=(10) ]
+    )[&&BEEP D=0 AC=(11) ]
+  )[&&BEEP D=0 AC=(12) ],
+  (
+    (
+      nhr4_CAEEL[&&BEEP S=CAEEL AC=(0) ],
+      nhr4_CBRIGG[&&BEEP S=CBRIGG AC=(1) ]
+    )[&&BEEP D=0 AC=(2) ],
+    (
+      nhr4_DROME[&&BEEP S=DROME AC=(3) ],
+      (
+        (
+          nhr4_MOUSE[&&BEEP S=MOUSE AC=(4) ],
+          nhr4_HUMAN[&&BEEP S=HUMAN AC=(5) ]
+        )[&&BEEP D=0 AC=(6) ],
+        (
+          nhr4_FUGU[&&BEEP S=FUGU AC=(7) ],
+          nhr4_DRERIO[&&BEEP S=DRERIO AC=(8) ]
+        )[&&BEEP D=0 AC=(9) ]
+      )[&&BEEP D=0 AC=(10) ]
+    )[&&BEEP D=0 AC=(11) ]
+  )[&&BEEP D=0 AC=(12) ]
+)[&&BEEP D=1 ]
+)

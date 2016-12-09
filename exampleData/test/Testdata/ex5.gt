@@ -1,0 +1,10 @@
+(
+  (
+    (
+      a_HUMAN [&&BEEP AC=(0) S=HUMAN], 
+      b_HUMAN [&&BEEP AC=(0) S=HUMAN]
+    ), 
+    c_HUMAN[&&BEEP AC=(0) S=HUMAN]
+  ), 
+  a_MOUSE [&&BEEP AC=(1) S=MOUSE]
+) [&&BEEP AC=(2)];

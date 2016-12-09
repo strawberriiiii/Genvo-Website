@@ -1,0 +1,13 @@
+(
+  (
+    (
+      Q9BVK4_HUMAN_224_316 [&&BEEP S=HUMAN AC=(2) ID=0],
+      Q99L54_MOUSE_224_316 [&&BEEP S=MOUSE AC=(1) ID=1]
+    ) [&&BEEP D=0 AC=(3) ID=2],
+    (
+      RLA0_MOUSE_224_316 [&&BEEP S=HUMAN AC=(2) ID=3],
+      RLA0_HUMAN_224_316 [&&BEEP S=MOUSE AC=(1) ID=4]
+    ) [&&BEEP D=0 AC=(3) ID=5]
+  ) [&&BEEP D=1 ID=6],
+  RLA0_YEAST_222_311 [&&BEEP S=YEAST AC=(0) ID=7]
+) [&&BEEP D=0 AC=(4) ID=8]

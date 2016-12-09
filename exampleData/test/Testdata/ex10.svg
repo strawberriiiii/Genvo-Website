@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN"
+"http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">
+<svg width="19.812cm" height="19.812cm" viewBox="0 0 1 1" preserveAspectRatio="none">
+<title>SVG drawing</title>
+<desc>This was produced by version 4.1 of GNU libplot, a free library for exporting 2-D vector graphics.</desc>
+<rect x="0" y="0" width="1" height="1" style="stroke:none;fill:white;"/>
+<g transform="matrix(0 -0.0025608 -0.0022535 0 0.8 0.90909) " xml:space="preserve" style="stroke:black;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.433;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill:none;fill-rule:even-odd;fill-opacity:1;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size-adjust:none;letter-spacing:normal;word-spacing:normal;text-anchor:start;">
+<line x1="-31.95" y1="350" x2="-31.95" y2="0" style="stroke-width:0.52206;"/>
+<line x1="-31.95" y1="22.909" x2="20" y2="22.909" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="28" x2="140" y2="28" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="73.818" x2="220" y2="73.818" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="114.55" x2="180" y2="114.55" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="252" x2="100" y2="252" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="280" x2="60" y2="280" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<line x1="-31.95" y1="0" x2="-31.95" y2="0" style="stroke-width:0.01;stroke-dasharray:0.45941 1.3782;"/>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 22.909) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">@ö?</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 28) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">0.11</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 73.818) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">0.29</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 114.55) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">0.45</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 252) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">0.99</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 280) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">1.1</text>
+<text transform="matrix(0.86603 -0.5 -0.5 -0.86603 -30.075 -1.9373e-14) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">0</text>
+<text transform="translate(-30.075,315) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">Time</text>
+<polygon points="60,350 60,280 20,22.909 0,0 30,0 35,5.7273 40,0 70,0 50,22.909 87.054,261.06 100,252 80,0 110,0 126.4,206.64 180,114.55 140,28 120,0 150,0 155,7 160,0 190,0 170,28 200.4,93.775 220,73.818 200,0 230,0 235,18.455 240,0 270,0 250,73.818 210,114.55 130,252 90,280 90,350 " style="stroke:none;fill:#9999ff;"/>
+<ellipse transform="translate(35,22.909) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<ellipse transform="translate(155,28) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<ellipse transform="translate(235,73.818) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<ellipse transform="translate(195,114.55) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<ellipse transform="translate(115,252) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<ellipse transform="translate(75,280) " rx="15" ry="3.75" style="stroke:none;fill:#add8e6;"/>
+<path d="M75,332.5 L84,280 M84,280 L122.5,252 M122.5,252 L200,114.55 M200,114.55 L240,73.818 M240,73.818 L260,0 M260,0 L240,73.818 M240,73.818 L220,0 M220,0 L240,73.818 M240,73.818 L200,114.55 M200,114.55 L160,28 M160,28 L180,0 M180,0 L160,28 M160,28 L140,0 M140,0 L160,28 M160,28 L200,114.55 M200,114.55 L122.5,252 M122.5,252 L100,0 M100,0 L122.5,252 M122.5,252 L84,280 M84,280 L40,22.909 M40,22.909 L60,0 M60,0 L40,22.909 M40,22.909 L20,0 M20,0 L40,22.909 M40,22.909 L84,280 M84,280 L75,332.5 M75,332.5 L72,315 M72,315 L75,297.5 M75,297.5 L78,280 M78,280 L115,252 M115,252 L190,114.55 M190,114.55 L230,73.818 M230,73.818 L250,0 M250,0 L230,73.818 M230,73.818 L210,0 M210,0 L230,73.818 M230,73.818 L190,114.55 M190,114.55 L150,28 M150,28 L170,0 M170,0 L150,28 M150,28 L130,0 M130,0 L150,28 M150,28 L190,114.55 M190,114.55 L115,252 M115,252 L78,280 M78,280 L75,297.5 M75,297.5 L72,280 M72,280 L107.5,252 M107.5,252 L90,0 M90,0 L107.5,252 M107.5,252 L72,280 M72,280 L75,297.5 M75,297.5 L72,315 M72,315 L66,280 M66,280 L30,22.909 M30,22.909 L50,0 M50,0 L30,22.909 M30,22.909 L10,0 M10,0 L30,22.909 M30,22.909 L66,280 M66,280 L72,315 M72,315 L75,332.5 M75,332.5 V350 " style="stroke-width:0.01;fill:black;"/>
+<circle cx="84" cy="280" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="122.5" cy="252" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="200" cy="114.55" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="240" cy="73.818" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="260" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="220" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="160" cy="28" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="180" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="140" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="100" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="40" cy="22.909" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="60" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="20" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="190" cy="114.55" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="230" cy="73.818" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="250" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="210" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="150" cy="28" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="170" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="130" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="90" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="30" cy="22.909" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="50" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<circle cx="10" cy="0" r="1" style="stroke-width:0.01;fill:black;"/>
+<rect x="74" y="331.5" width="2" height="2" style="stroke-width:0.01;fill:black;"/>
+<rect x="71" y="314" width="2" height="2" style="stroke-width:0.01;fill:black;"/>
+<rect x="74" y="296.5" width="2" height="2" style="stroke-width:0.01;fill:black;"/>
+<text transform="translate(10,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_CAEEL</text>
+<text transform="translate(50,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_CBRIGG</text>
+<text transform="translate(90,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_DROME</text>
+<text transform="translate(130,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_MOUSE</text>
+<text transform="translate(170,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_HUMAN</text>
+<text transform="translate(210,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_FUGU</text>
+<text transform="translate(250,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_DRERIO</text>
+<text transform="translate(20,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_CAEEL</text>
+<text transform="translate(60,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_CBRIGG</text>
+<text transform="translate(100,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_DROME</text>
+<text transform="translate(140,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_MOUSE</text>
+<text transform="translate(180,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_HUMAN</text>
+<text transform="translate(220,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_FUGU</text>
+<text transform="translate(260,-3.75) rotate(270) scale(1,-1) " style="font-family:Times-Roman,'Times Roman',serif;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;">nhr3_DRERIO</text>
+<text transform="translate(1.4051e-15,-1.7542e-14) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> CAEEL</text>
+<text transform="translate(40,-1.5071e-14) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> CBRIGG</text>
+<text transform="translate(70,22.909) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> </text>
+<text transform="translate(80,-1.2629e-14) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> DROME</text>
+<text transform="translate(120,-1.0186e-14) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> MOUSE</text>
+<text transform="translate(160,-7.7438e-15) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> HUMAN</text>
+<text transform="translate(190,28) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> Mammals</text>
+<text transform="translate(200,-5.2736e-15) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> FUGU</text>
+<text transform="translate(240,-2.8311e-15) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> DRERIO</text>
+<text transform="translate(270,73.818) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> Teleost</text>
+<text transform="translate(250,114.55) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> </text>
+<text transform="translate(210,252) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> </text>
+<text transform="translate(130,280) rotate(270) scale(1,-1) " style="font-family:Times-Italic,'Times Roman',serif;font-style:italic;font-size:7.5;baseline-identifier:text-bottom;stroke:none;fill:black;"> </text>
+</g>
+</svg>

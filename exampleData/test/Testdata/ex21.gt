@@ -1,0 +1,8 @@
+(
+	Leaf_1_0[&&BEEP S=Leaf_1 AC=(1 5 7)],
+	(
+		Leaf_2_3[&&BEEP S=Leaf_2 AC=(2)],
+		Leaf_2_4[&&BEEP S=Leaf_2 AC=(2)]
+	)[&&BEEP D=1 AC=(5 7)]
+)[&&BEEP D=1 AC=(8)]
+

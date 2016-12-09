@@ -45,15 +45,14 @@ DataParser.prototype.ParseNhxToJSON = function (data) {
 DataParser.prototype.ParseNewickToJSON = function () {
     //---------------------------------
     // Curtesy to Newick JS
+    // This algorithm is based on the open source Newick JS
     //---------------------------------
     //Variables
     var ancestors = [];
     var tree = {};
 
     //Prepare data from string
-    const tokens = this.data.split(/\s*(;|\(|\)|,|:)\s*/);
-
-    console.log(tokens);
+    const tokens = this.data.split(/\s*(;|\(|\)|,|:|\[|\])\s*/);
 
     //Parse tokens into JSON tree
     for (var i = 0; i < tokens.length; i++) {
@@ -87,9 +86,15 @@ DataParser.prototype.ParseNewickToJSON = function () {
                     tree.name = token;
                 } else if (x === ":") {
                     tree.length = parseFloat(token);
+                } else if (x === "[") {
+                    if (tree.note === undefined) {
+                        tree.note = "";
+                    }
+                    tree.note += token + " ";
                 }
                 break;
         }
     }
+    console.log(tree);
     return tree;
 }

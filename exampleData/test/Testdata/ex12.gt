@@ -1,0 +1,13 @@
+(
+  nhr3_CAEEL[&&BEEP S=CAEEL AC=(0 2)],
+  (
+      (
+        nhr3_MOUSE[&&BEEP S=MOUSE AC=(4)],
+        nhr3_HUMAN[&&BEEP S=HUMAN AC=(5)]
+      )[&&BEEP D=0 AC=(6)],
+      (
+        nhr3_FUGU[&&BEEP S=FUGU AC=(7)],
+        nhr3_DRERIO[&&BEEP S=DRERIO AC=(8)]
+      )[&&BEEP D=0 AC=(9)]
+  )[&&BEEP D=0 AC=(10 11)]
+)[&&BEEP D=0 AC=(12)]

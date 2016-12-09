@@ -1,0 +1,7 @@
+(
+  (
+    Q9BVK4_HUMAN_224_316 [&&BEEP S=HUMAN AC=(2 3 4) ],
+    Q99L54_MOUSE_224_316 [&&BEEP S=MOUSE AC=(1 3 4) ]
+  ),
+  RLA0_YEAST_222_311 [&&BEEP S=YEAST AC=(0 4)]
+); 
