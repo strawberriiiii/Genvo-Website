@@ -244,8 +244,8 @@ GenvoTree.prototype.analyzeGeneTree = function(labelFormat, nickName){
                 g.nickname = (nickName) ? gs[1] : g.name;
                 g.species = this.allSpecies[gs[0]];
             } else if (labelFormat === "nhx") {
-                g.nickname = (nickName) ? g.tag.nhx.name : g.name;
-                g.species = g.tag.nhx.species;
+                g.nickname = (g.tag.nhx.name !== undefined) ? g.tag.nhx.name : g.name;
+                g.species = this.allSpecies[g.tag.nhx.species];
             } else if (labelFormat === "prime") {
                 g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
                 g.species = this.allSpecies[g.tag.prime.species];
