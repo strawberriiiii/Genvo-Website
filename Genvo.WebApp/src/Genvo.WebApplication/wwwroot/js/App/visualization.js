@@ -34,7 +34,7 @@ function loadData() {
     console.log("Data loaded");
 
     // Build the tree properties
-    var properties = {
+    const properties = {
         showNickname: true,
         needsReconciliation: true
     }
@@ -97,7 +97,7 @@ function onDocumentMouseDown( e ) {
 
 
     raycaster.setFromCamera( mousePos, camera );
-    var intersects = raycaster.intersectObjects( scene.children );
+    const intersects = raycaster.intersectObjects( scene.children );
 
 
     if (intersects.length > 0){
@@ -111,14 +111,14 @@ function onDocumentMouseDown( e ) {
 
 
         if (currentSelectedObject !== undefined){
-            for(var i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}
+            for(let i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "visible";}
         }
     }
     else{
         //cameraControls.enabled = true;
 
         $('[data-toggle="popover"]').popover('hide');
-        for(var i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
+        for(let i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
 
         currentSelectedObject = undefined;
     }
@@ -266,15 +266,13 @@ function setupPage(){
 
         function saveData(){
             console.log("save");
-            var valid = true;
-            if (valid){
-                // Function group
-                currentSelectedObject.functionGroup = GeneTree.allFunctionGroups[functionDropDown.options[funcDropDown.selectedIndex].text];
-                var colour = currentSelectedObject.functionGroup.colour._rgb;
-                currentSelectedObject.object.material.color = new THREE.Color("rgb("+colour[0]+","+colour[1]+","+colour[2]+")");
 
-                dialog.dialog("close");
-            }
+            // Function group
+            currentSelectedObject.functionGroup = GeneTree.allFunctionGroups[functionDropDown.options[funcDropDown.selectedIndex].text];
+            var colour = currentSelectedObject.functionGroup.colour._rgb;
+            currentSelectedObject.object.material.color = new THREE.Color("rgb("+colour[0]+","+colour[1]+","+colour[2]+")");
+
+            dialog.dialog("close");
         }
 
         dialog = $( "#dialog-form" ).dialog({
@@ -305,7 +303,7 @@ function setupPage(){
 
 function openPopOver(){
     // Hide all buttons
-    for(i=0; i<floatingToolbar.length; i++){floatingToolbar[i].style.visibility = "hidden";}
+    for(let i=0; i<floatingToolbar.length; i++){floatingToolbar[i].style.visibility = "hidden";}
 
     // Toggle camera control
     // cameraControls.enabled = false;

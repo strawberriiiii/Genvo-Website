@@ -8,6 +8,12 @@
         document.getElementById("dz-guest-text").innerHTML = "<strong>Example data loaded</strong>";
 
         $("#senddatatoviz").removeClass("disabled");
+
+        $("input[name=twoFileLabelOption]:checked").parent().removeClass("active");
+        const labelButton = $("input[name=twoFileLabelOption]:radio[value=postfix]");
+        labelButton.prop("checked", true);
+        labelButton.parent().addClass("active");
+
         console.log("successfully fetched example data");
     });
 }

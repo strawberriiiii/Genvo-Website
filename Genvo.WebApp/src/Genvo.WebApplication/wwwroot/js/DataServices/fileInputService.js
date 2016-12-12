@@ -86,7 +86,6 @@ function senddata(){
         return;
     }
 
-
     // Locally store datafiles for later access
     const files = {
         LabelFormat: $("input[name=twoFileLabelOption]:checked").val(),

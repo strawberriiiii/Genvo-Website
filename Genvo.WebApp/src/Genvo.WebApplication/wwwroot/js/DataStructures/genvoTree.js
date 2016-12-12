@@ -231,25 +231,52 @@ GenvoTree.prototype.analyzeGeneTree = function(labelFormat, nickName){
         }
 
         // Analyze number of Descendants to gene (not including it self)
-        if (g.isLeaf){
+        if (g.isLeaf) {
+            var q = ["prime", "nhx", "prefix", "postfix"];
+            let label;
             g.noLeafs = 1;
             g.FunctionGroup = this.allFunctionGroups[{ name: "undefined" }];
 
-            if (labelFormat === "prefix") {
-                const gs = this.analyzeLabelPostfix(g.name, "_");
-                g.nickname = (nickName) ? gs[1] : g.name;
-                g.species = this.allSpecies[gs[0]];
-            } else if (labelFormat === "postfix") {
-                const gs = this.analyzeLabelPostfix(g.name, "_");
-                g.nickname = (nickName) ? gs[1] : g.name;
-                g.species = this.allSpecies[gs[0]];
-            } else if (labelFormat === "nhx") {
-                g.nickname = (g.tag.nhx.name !== undefined) ? g.tag.nhx.name : g.name;
-                g.species = this.allSpecies[g.tag.nhx.species];
-            } else if (labelFormat === "prime") {
-                g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
-                g.species = this.allSpecies[g.tag.prime.species];
+            while (true) {
+                switch (labelFormat) {
+                    case "prefix":
+                        label = this.analyzeLabelPrefix(g.name);
+                        g.nickname = (nickName) ? label.guest : g.name;
+                        g.species = this.allSpecies[label.host];
+                        break;
+
+                    case "exampleData":
+                    case "postfix":
+                        var gs = this.analyzeLabelPostfix(g.name, "_");
+                        g.nickname = (nickName) ? gs[1] : g.name;
+                        g.species = this.allSpecies[gs[0]];
+                        break;
+
+                    case ("nhx"):
+                        if (g.tag.nhx !== undefined) {
+                            g.nickname = (g.tag.nhx.name !== undefined) ? g.tag.nhx.name : g.name;
+                            g.species = this.allSpecies[g.tag.nhx.species];
+                        }
+                        break;
+
+                    case ("prime"):
+                        if (g.tag.prime !== undefined) {
+                            g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
+                            g.species = this.allSpecies[g.tag.prime.species];
+                        }
+                        break;
+                }
+
+                // If mapping failed, test other method
+                if (g.species === undefined) {
+                    console.log(`Mapping with ${labelFormat} label format failed.` );
+                    labelFormat = q.pop();
+                    console.log(`Trying to map with ${labelFormat} label format insetad`);
+                } else {
+                    break;
+                }
             }
+            
         }
         else{
             g.noLeafs = 0;
@@ -261,10 +288,23 @@ GenvoTree.prototype.analyzeGeneTree = function(labelFormat, nickName){
     this.recurse(this._root);
 }
 
+GenvoTree.prototype.analyzeLabelPrefix = function (name) {
+    var label = {};
+    const keys = Object.keys(this.allSpecies);
+
+    keys.forEach(function(key) {
+        if (name.includes(key)) {
+            label.host = key;
+            label.guest = name.replace(key, "");
+        }
+    });
+    return label;
+}
+
 // Extract species name from full gene name
 GenvoTree.prototype.analyzeLabelPostfix = function (name, seperator) {
     var res = name.split(seperator);
-    var r = new Array();
+    const r = new Array();
 
     if (res.length <= 1){
         return [res[0], res[0]];
