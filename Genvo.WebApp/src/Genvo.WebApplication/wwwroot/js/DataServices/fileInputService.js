@@ -7,8 +7,10 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
 
 // Global variables
-var guestTreeFile;
-var hostTreeFile;
+let guestTreeFile;
+let hostTreeFile;
+let reconciledTreeFile;
+let reconciledHostTreeFile;
 
 
 //---------------------------------------------------------
@@ -21,7 +23,7 @@ function handleHostFile(evt) {
 
     var file = getDropedFile(evt);
 
-    document.getElementById("dz-host-text").innerHTML = "<strong>" + escape(file.name) + "</strong>";
+    document.getElementById("dz-host-text").innerHTML = `<strong>${escape(file.name)}</strong>`;
     readSelectedFile(file, "host");
 }
 
@@ -31,8 +33,18 @@ function handleGuestFile(evt) {
 
     var file = getDropedFile(evt);
 
-    document.getElementById("dz-guest-text").innerHTML = "<strong>" + escape(file.name) + "</strong>";
+    document.getElementById("dz-guest-text").innerHTML = `<strong>${escape(file.name)}</strong>`;
     readSelectedFile(file, "guest");
+}
+
+function handleReconFile(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+
+    var file = getDropedFile(evt);
+
+    document.getElementById("dz-recon-text").innerHTML = `<strong>${escape(file.name)}</strong>`;
+    readSelectedFile(file, "reconciled");
 }
 
 function getDropedFile(evt) {
@@ -50,14 +62,23 @@ function readSelectedFile(file, type) {
           return;
       }
 
-      if (type === "host") {
-          hostTreeFile = ParseTreeData(evt.target.result);
+      switch(type) {
+          case "host":
+              hostTreeFile = ParseTreeData(evt.target.result);
+              break;
+          case "guest":
+              guestTreeFile = ParseTreeData(evt.target.result);
+              break;
+          case "reconciled":
+              reconciledTreeFile = ParseTreeData(evt.target.result);
+              break;
+          default:
+              alert("error 1: drop zone ID error");
+              break;
       }
-      else if (type === "guest") {
-          guestTreeFile = ParseTreeData(evt.target.result);
-      }
-      else{
-        console.log("error 1: drop zone ID error");
+
+      if (reconciledTreeFile !== undefined) {
+          $("#btnvisualizereconciled").removeClass("disabled");
       }
 
       if (guestTreeFile !== undefined && hostTreeFile !== undefined){
@@ -66,35 +87,62 @@ function readSelectedFile(file, type) {
   };
 
   reader.readAsText(file);
-
 }
 
 function handleDragOver(evt) {
   evt.stopPropagation();
   evt.preventDefault();
-  evt.dataTransfer.dropEffect = "copy"; // Explicitly show this is a copy.
+  evt.dataTransfer.dropEffect = "copy";
 }
 
 
 //---------------------------------------------------------
 //---------------Send files to the viz---------------------
 //---------------------------------------------------------
-function senddata(){
-    // Make sure species and gene files are given
-    if (guestTreeFile === undefined || hostTreeFile === undefined) {
-        window.alert("Host and / or guest tree not uploaded");
-        return;
-    }
+function senddata(evt) {
+    var files;
 
-    // Locally store datafiles for later access
-    const files = {
-        LabelFormat: $("input[name=twoFileLabelOption]:checked").val(),
-        GeneTree: guestTreeFile,
-        SpeciesTree: hostTreeFile
+    if (evt.target.id === "btnvisualizereconciled") {
+        if (reconciledTreeFile === undefined) {
+            window.alert("Host and / or guest tree not uploaded");
+            return;
+        }
+
+        const labelFormat = $("input[name=reconciledFileFormatOption]:checked").val();
+        getReconciledSpeciesTree(labelFormat);
+
+        // Locally store datafiles for later access
+        files = {
+            isReconciled: true,
+            LabelFormat: labelFormat,
+            ReconTree: reconciledTreeFile,
+            ReconSpeciesTree: reconciledHostTreeFile
+        }
+    } else {
+        if (guestTreeFile === undefined || hostTreeFile === undefined) {
+            window.alert("Host and / or guest tree not uploaded");
+            return;
+        }
+
+        // Locally store datafiles for later access
+        files = {
+            isReconciled: false,
+            LabelFormat: $("input[name=twoFileLabelOption]:checked").val(),
+            GeneTree: guestTreeFile,
+            SpeciesTree: hostTreeFile
+        }
     }
 
     packdatalocal(files, "_GSTree");
     window.location.href = "visualization";
+}
+
+function getReconciledSpeciesTree(format) {
+    switch (format) {
+        case "nhx":
+            reconciledHostTreeFile = ParseTreeData(reconciledTreeFile.tag.notung.speciesTree);
+            break;
+    }
 }
 
 function packdatalocal(files, name){

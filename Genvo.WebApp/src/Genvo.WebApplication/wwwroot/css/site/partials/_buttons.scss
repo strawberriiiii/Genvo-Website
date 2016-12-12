@@ -117,6 +117,10 @@ fieldset[disabled] .btn-primary.active {
     background-color: #fff;
 }
 
+#btnvisualizereconciled.btn-primary{
+    background-color: getColor(Green, 800);
+}
+
 .btn-info{
     margin-top: 10px;
     background-color:transparent;

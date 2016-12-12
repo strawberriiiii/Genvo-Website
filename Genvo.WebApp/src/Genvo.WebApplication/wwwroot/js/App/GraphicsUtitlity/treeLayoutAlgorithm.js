@@ -80,7 +80,7 @@
                 nodeElement = new THREE.Mesh(getStdGeometry({ geometry: "cube" }), createMaterial({ colour: "red", opacity: 0.8 }));
                 break;
             default:
-                console.log("ERROR");
+                console.log("ERROR - no event set");
                 break;
         }
 

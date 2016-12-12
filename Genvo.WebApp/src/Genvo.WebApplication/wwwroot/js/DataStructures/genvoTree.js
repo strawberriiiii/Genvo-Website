@@ -8,7 +8,7 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
 
     // Visual parameters
     const showNickname = parameters.hasOwnProperty("showNickname") ? parameters["showNickname"] : false;
-    const needsReconciliation = parameters.hasOwnProperty("needsReconciliation") ? parameters["needsReconciliation"] : true;
+    this.isReconciled = treeFiles.isReconciled;
     
     // Reconciliation parameters // David and Alm (2011) (i.e., PΔ = 2, PΘ = 3, and Ploss = 1)
     const pDup = parameters.hasOwnProperty("pDup") ? parameters["pDup"] : 2;
@@ -17,12 +17,19 @@ GenvoTree.prototype.INIT = function (treeFiles, parameters) {
 
 
     // Start work with tree
-    this.addJSON(treeFiles.GeneTree);
-    this.addJSON(treeFiles.SpeciesTree, "species");
-    this.analyzeGeneTree(treeFiles.LabelFormat, showNickname);
+    if (!this.isReconciled) {
+        this.addJSON(treeFiles.GeneTree);
+        this.addJSON(treeFiles.SpeciesTree, "species");
+        this.analyzeGuestTree(treeFiles.LabelFormat, showNickname);
+    } else {
+        this.addJSON(treeFiles.ReconTree);
+        this.addJSON(treeFiles.ReconSpeciesTree, "species");
+        this.analyzeGuestTree(treeFiles.LabelFormat, showNickname);
+    }
+    
     this.generateSpeciesColour(); //Must be done after the analysis of the tree
 
-    if (needsReconciliation) { this.reconcile(pDup, pLoss, pTransfer); }
+    if (!this.isReconciled) { this.reconcile(pDup, pLoss, pTransfer); }
     
     this.calculate3DPositions();
 }
@@ -147,12 +154,12 @@ Node.prototype.updateEdges = function(position){
 
 GenvoTree.prototype.updateFunctionList = function(){
     // Clear set arrays
-    for(key in this.allFunctionGroups){
+    for(let key in this.allFunctionGroups){
         this.allFunctionGroups[key].nodes = [];
     }
 
-    for(i=0; i<this.geneLeafs.length; i++){
-        var g = this.geneLeafs[i];
+    for(let i=0; i<this.geneLeafs.length; i++) {
+        const g = this.geneLeafs[i];
         this.allFunctionGroups[g.FunctionGroup].nodes.push(g);
     }
 }
@@ -223,69 +230,86 @@ GenvoTree.prototype.addJSON = function(JSON, treeType){
 };
 
 
-GenvoTree.prototype.analyzeGeneTree = function(labelFormat, nickName){
+GenvoTree.prototype.analyzeGuestTree = function (labelFormat, nickName) {
     GenvoTree.prototype.recurse = function(g){
         // recurse over children
         for (var i = 0, length = g.children.length; i < length; i++) {
             this.recurse(g.children[i]);
         }
+        
+        if (this.isReconciled) {
+            this.setEventType(g, labelFormat);
+        }
 
         // Analyze number of Descendants to gene (not including it self)
-        if (g.isLeaf) {
-            var q = ["prime", "nhx", "prefix", "postfix"];
-            let label;
-            g.noLeafs = 1;
-            g.FunctionGroup = this.allFunctionGroups[{ name: "undefined" }];
-
-            while (true) {
-                switch (labelFormat) {
-                    case "prefix":
-                        label = this.analyzeLabelPrefix(g.name);
-                        g.nickname = (nickName) ? label.guest : g.name;
-                        g.species = this.allSpecies[label.host];
-                        break;
-
-                    case "exampleData":
-                    case "postfix":
-                        var gs = this.analyzeLabelPostfix(g.name, "_");
-                        g.nickname = (nickName) ? gs[1] : g.name;
-                        g.species = this.allSpecies[gs[0]];
-                        break;
-
-                    case ("nhx"):
-                        if (g.tag.nhx !== undefined) {
-                            g.nickname = (g.tag.nhx.name !== undefined) ? g.tag.nhx.name : g.name;
-                            g.species = this.allSpecies[g.tag.nhx.species];
-                        }
-                        break;
-
-                    case ("prime"):
-                        if (g.tag.prime !== undefined) {
-                            g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
-                            g.species = this.allSpecies[g.tag.prime.species];
-                        }
-                        break;
-                }
-
-                // If mapping failed, test other method
-                if (g.species === undefined) {
-                    console.log(`Mapping with ${labelFormat} label format failed.` );
-                    labelFormat = q.pop();
-                    console.log(`Trying to map with ${labelFormat} label format insetad`);
-                } else {
-                    break;
-                }
-            }
-            
+        if (g.isLeaf || this.isReconciled) {
+            this.analyzeLabel(g, labelFormat, nickName);
         }
         else{
             g.noLeafs = 0;
             g.children.forEach(function(ch){g.noLeafs += ch.noLeafs;});
         }
     }
-
-    // Go throught all nodes and analyze gene name
     this.recurse(this._root);
+}
+
+GenvoTree.prototype.setEventType = function(g, labelFormat) {
+    switch(labelFormat) {
+        case "nhx":
+            g.event = g.tag.nhx.event;
+            if (g.event === undefined) { g.event = "loss" }
+    }
+}
+
+GenvoTree.prototype.analyzeLabel = function(g, labelFormat, nickName) {
+    const q = ["prime", "nhx", "prefix", "postfix"];
+    let label;
+    g.noLeafs = 1; //TODO Fix this on reconciled data
+    g.FunctionGroup = this.allFunctionGroups[{ name: "undefined" }];
+
+    while (true) {
+        switch (labelFormat) {
+            case "prefix":
+                label = this.analyzeLabelPrefix(g.name);
+                g.nickname = (nickName) ? label.guest : g.name;
+                g.species = this.allSpecies[label.host];
+                break;
+
+            case "exampleData":
+            case "postfix":
+                var gs = this.analyzeLabelPostfix(g.name, "_");
+                g.nickname = (nickName) ? gs[1] : g.name;
+                g.species = this.allSpecies[gs[0]];
+                break;
+
+            case ("nhx"):
+                if (g.tag.nhx !== undefined) {
+                    g.nickname = (g.tag.nhx.name !== undefined) ? g.tag.nhx.name : g.name;
+                    g.species = this.allSpecies[g.tag.nhx.species];
+                }
+                break;
+
+            case ("prime"):
+                if (g.tag.prime !== undefined) {
+                    g.nickname = (g.tag.prime.name !== undefined) ? g.tag.prime.name : g.name;
+                    g.species = this.allSpecies[g.tag.prime.species];
+                }
+                break;
+        }
+
+        // If mapping failed, test other method
+        if (g.species === undefined) {
+            console.log(`Mapping with ${labelFormat} label format failed.`);
+            labelFormat = q.pop();
+            if (labelFormat === undefined) {
+                alert("We tried all our methods to map your data, but failed.");
+                return;
+            }
+            console.log(`Trying to map with ${labelFormat} label format insetad`);
+        } else {
+            break;
+        }
+    }
 }
 
 GenvoTree.prototype.analyzeLabelPrefix = function (name) {
@@ -313,27 +337,20 @@ GenvoTree.prototype.analyzeLabelPostfix = function (name, seperator) {
     r.push(res.pop());
     r.push(res.join(""));
 
-    // TODO CHECK CORRECTNESS OF THIS (this just adds a new node when data is corrupt?)
-    // TODO this should try other checks to try to match data anyway - and if not give an alert to the user
-    // Check if identified species is in the list for all species
-    if (!this.allSpecies.hasOwnProperty(r[0])) { // Find in species tree and remove class species (replaced by species node)
-        alert(`Species ${r[0]} can not be matched`);
-    }
-
     return r; //  r[0] = species, r[1] = gene
 }
 
 
 GenvoTree.prototype.generateSpeciesColour = function(){
 
-    var mainColourScheme = generateColourScheme(
+    const mainColourScheme = generateColourScheme(
         this.noSpeciesLeaf, 
         1,
         ["yellow", "33E0E0"], //['yellow', '008ae5']
         true
     );
 
-    var subColourScheme = generateColourScheme(
+    const subColourScheme = generateColourScheme(
         this.noSpeciesLeaf, 
         0.8,
         ["yellow", "33E0E0"], //['yellow', '008ae5'] // ['yellow', 'red']
@@ -368,8 +385,8 @@ function generateColourScheme(noColors, alpha, arrayOfColours, darken){
        step = 1/(noColors-1); 
    } else{step=1}
     
-    for (i = 0; i < noColors; i++) {
-        var color;
+    for (let i = 0; i < noColors; i++) {
+        let color;
 
         if (darken){
             color = scale(step * i).darken(2);//.saturate(1);

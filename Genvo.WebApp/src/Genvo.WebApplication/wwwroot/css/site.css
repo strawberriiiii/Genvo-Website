@@ -679,6 +679,9 @@ fieldset[disabled] .btn-primary.active {
   color: #0F5B99;
   background-color: #fff; }
 
+#btnvisualizereconciled.btn-primary {
+  background-color: #2E7D32; }
+
 .btn-info {
   margin-top: 10px;
   background-color: transparent;

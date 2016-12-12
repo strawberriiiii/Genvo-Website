@@ -35,10 +35,8 @@ function loadData() {
 
     // Build the tree properties
     const properties = {
-        showNickname: true,
-        needsReconciliation: true
+        showNickname: true
     }
-    console.log(treeFiles);
     GeneTree.INIT(treeFiles, properties);
 }
 

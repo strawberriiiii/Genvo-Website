@@ -17,7 +17,14 @@ DataParser.prototype.ParseNewickToJSON = function (rawData) {
     //---------------------------------
     //Variables
     var ancestors = [];
-    var tree = {};
+    var tree = {
+        tag: {
+            common: "",
+            nhx: {},
+            prime: {},
+            notung: {}
+        }
+    };
     var isInLabel = false;
     var tmpMessage = "";
 
@@ -29,7 +36,7 @@ DataParser.prototype.ParseNewickToJSON = function (rawData) {
         const token = tokens[i];
         const subtree = {};
         
-        if (isInLabel && token !== "]") {//&& tokens[i+1] !== "[" //Watch out for index out of range
+        if (isInLabel && token !== "]") {
             tmpMessage += token;
             continue;
         }
@@ -62,7 +69,7 @@ DataParser.prototype.ParseNewickToJSON = function (rawData) {
                 break;
 
             case "]":
-                tree.tag = this.parseTreeTag(tmpMessage);
+                tree.tag = this.parseTreeTag(tmpMessage, tree.tag);
                 isInLabel = false;
                 tmpMessage = "";
                 break;
@@ -77,23 +84,33 @@ DataParser.prototype.ParseNewickToJSON = function (rawData) {
                 break;
         }
     }
+    console.log(tree);
     return tree;
 }
 
-DataParser.prototype.parseTreeTag = function (token) {
-    var tags = token.split(/\s*(\${2}NHX|\&{2}PRIME|S=|ID=|NAME=)\s*/);
-
+DataParser.prototype.parseTreeTag = function (token, orgTreeTag) {
+    const tags = token.split(/\s*(\${2}NHX|\&{2}NHX|\&{2}PRIME|\&{2}NOTUNG-SPECIES-TREE|\&{2}NOTUNG-PARAMETERS|S=|ID=|NAME=|:D=|:)\s*/);
     var mode;
-    var tagTree = {
-        prime: {},
-        nhx: {},
-        common: ""
+    var endLoop = false;
+    const tagTree = {
+        notung: (orgTreeTag.notung !== undefined) ? orgTreeTag.notung : {},
+        prime: (orgTreeTag.prime !== undefined) ? orgTreeTag.prime : {},
+        nhx: (orgTreeTag.nhx !== undefined) ? orgTreeTag.nhx : {},
+        common: (orgTreeTag.common !== undefined) ? orgTreeTag.common : ""
     };
 
     for (let i = 0; i < tags.length; i++) {
         const tag = tags[i];
 
         switch (tag) {
+            
+            case "&&NOTUNG-PARAMETERS":
+            case "&&NOTUNG-SPECIES-TREE":
+                mode = "notung";
+                endLoop = true;
+                continue;
+
+            case "&&NHX":
             case "$$NHX":
                 mode = "nhx";
                 continue;
@@ -105,20 +122,48 @@ DataParser.prototype.parseTreeTag = function (token) {
 
         const prevTag = tags[i - 1];
 
-        if (mode === "prime") { parsePrimeLabel(tagTree, tag, prevTag) }
-        else if (mode === "nhx") { parseNhxLabel(tagTree, tag, prevTag) }
-        else{tagTree.common += tag}
+        switch(mode) {
+            case "prime":
+                parsePrimeLabel(tagTree, tag, prevTag);
+                break;
+            case "nhx":
+                parseNhxLabel(tagTree, tag, prevTag);
+                break;
+            case "notung":
+                this.parseNotung(tagTree, tags, prevTag);
+                break;
+            default:
+                tagTree.common += tag;
+                break;
+        }
+
+        if(endLoop){break}
     }
     return tagTree;
 }
 
+DataParser.prototype.parseNotung = function (tagTree, tags, prevTag) {
+    switch(prevTag) {
+        case "&&NOTUNG-SPECIES-TREE":
+            tagTree.notung.speciesTree = tags.slice(2).join("");
+            break;
+        case "&&NOTUNG-PARAMETERS":
+            tagTree.notung.parameters = tags.slice(2).join("");
+            break;
+    }
+}
+
 function parseNhxLabel(tagTree, tag, prevTag) {
+    
     switch (prevTag) {
+        case ":D=":
+            tagTree.nhx.event = (tag==="Y") ? "dup" : "spec";
+            break;
         case "S=":
-            tagTree.prime.species = tag;
+            tagTree.nhx.species = tag;
             break;
         case "NAME=":
-            tagTree.prime.name = tag;
+            tagTree.nhx.name = tag;
             break;
     }
 }

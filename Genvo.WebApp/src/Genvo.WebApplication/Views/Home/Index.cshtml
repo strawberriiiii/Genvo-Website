@@ -75,24 +75,24 @@
 
                             <div data-toggle="buttons">
                                 <label class="btn btn-default active">
-                                    <input type="radio" name="reconciledFileFormatOption" value="notung" autocomplete="off" checked>Notung
+                                    <input type="radio" name="reconciledFileFormatOption" value="nhx" autocomplete="off" checked>NHX tag
                                 </label>
                                 <label class="btn btn-default">
-                                    <input type="radio" name="reconciledFileFormatOption" value="nhx" autocomplete="off">NHX
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="reconciledFileFormatOption" value="primetv" autocomplete="off">PrIME
+                                    <input type="radio" name="reconciledFileFormatOption" value="prime" autocomplete="off">PrIME tag
                                 </label>
                             </div>
 
                             <div class="dz-field">
-                                <form action="/upload/" id="drop_zone_reconciledfileformat" class="dropzone">
-                                    <h2> Drop file here </h2>
-                                    <output id="gene-list"><strong>No file loaded</strong></output>
+                                <form action="/upload/" id="drop_zone_reconciledfileformat" class="dropzone needsclick dz-clickable">
+                                    <div class="dz-message needsclick">
+                                        <h2> Drop reconciled file here </h2>
+                                        <output id="dz-recon-text"><strong>No file loaded</strong></output>
+                                    </div>
                                 </form>
                             </div>
+
                             <p class="card-text">Soon you can choose to upload your already reconciled tree in Notung, PrIME or pure NHX format.</p>
-                            <a class="btn btn-primary btn-xl btn-block disabled" style="background-color: red">Coming soon @*<span class="glyphicon glyphicon-chevron-right"></span>*@</a>
+                            <a class="btn btn-primary btn-xl btn-block disabled" id="btnvisualizereconciled">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>
                 </div>
