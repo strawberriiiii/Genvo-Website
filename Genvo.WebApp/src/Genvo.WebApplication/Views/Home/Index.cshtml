@@ -7,7 +7,7 @@
         <div class="header-content-inner">
             <h1>Change the way you look at genes</h1>
             <hr>
-            <p>Discover your gene evolution data by visualizing it with Genvo. Just upload your data and start exploring things you never seen before.</p>
+            <p>Discover your gene evolution data by visualizing it with Genvo. Just upload your data and start exploring.</p>
             <a href="#thetool" class="btn btn-primary btn-xl page-scroll">Start visualizing</a>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
 <section class="sec-grey" id="thetool">
     <div class="container">
-        <h1 class="section-heading text-center">Visualize gene evolution</h1>
+        <h1 class="section-heading text-center">Visualize reconciliations</h1>
         <div class="row eqHeight">
 
             <div class="col-sm-6">
@@ -59,7 +59,7 @@
                             </div>
 
                             <button class="btn btn-default position-r" id="button_exampledata">Use example data</button>
-                            <p class="card-text">Upload one host and one species tree file in selected format, or use our example data to begin now.</p>
+                            <p class="card-text">Reconcile with our implemented reconciliation algorithm from <i>David and Alm (2011)</i>. Upload one host and one species tree file in selected format, or use our example data to try it out.</p>
                             <a class="btn btn-primary btn-xl btn-block disabled" id="senddatatoviz">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>
@@ -74,11 +74,8 @@
                             <p class="p-small"><strong>Fileformat</strong></p>
 
                             <div data-toggle="buttons">
-                                <label class="btn btn-default active">
-                                    <input type="radio" name="reconciledFileFormatOption" value="nhx" autocomplete="off" checked>NHX tag
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="reconciledFileFormatOption" value="prime" autocomplete="off">PrIME tag
+                                <label class="btn btn-default active" data-toggle="tooltip" title="Notung is a complete gene reconciliation software, and the format can be inported here (.ntg file-ending)">
+                                    <input type="radio" name="reconciledFileFormatOption" value="nhx" autocomplete="off" checked>Notung (.ntg)
                                 </label>
                             </div>
 
@@ -91,7 +88,7 @@
                                 </form>
                             </div>
 
-                            <p class="card-text">Soon you can choose to upload your already reconciled tree in Notung, PrIME or pure NHX format.</p>
+                            <p class="card-text">Reconcile in Notung, visualize in Genvo! Take your already reconciled trees in .nhx format and visualize them here.</p>
                             <a class="btn btn-primary btn-xl btn-block disabled" id="btnvisualizereconciled">Visualize <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                     </div>

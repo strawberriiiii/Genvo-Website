@@ -115,7 +115,7 @@ function onDocumentMouseDown( e ) {
     else{
         //cameraControls.enabled = true;
 
-        $('[data-toggle="popover"]').popover('hide');
+        $('[data-toggle="popover"]').popover("hide");
         for(let i=0; i<floatingToolbar.length;i++){floatingToolbar[i].style.visibility = "hidden";}
 
         currentSelectedObject = undefined;
@@ -124,9 +124,9 @@ function onDocumentMouseDown( e ) {
 
 
 function posOnScreen(pos){
-    var p = pos.clone();
-    var vector = p.project(camera);
-    var offsetY = 50;
+    const p = pos.clone();
+    const vector = p.project(camera);
+    const offsetY = 50;
 
 
     vector.x = (vector.x + 1) / 2 * canvasSize.x;
@@ -342,8 +342,8 @@ function init(){
 
     // Camera Controlls
     cameraControls = new THREE.OrbitControls(camera);
-    cameraControls.minAzimuthAngle = - Math.PI/2;
-    cameraControls.maxAzimuthAngle = Math.PI/2;
+    //cameraControls.minAzimuthAngle = - Math.PI/2;
+    //cameraControls.maxAzimuthAngle = Math.PI/2;
 
     // Setup renderer canvas
     renderer = new THREE.WebGLRenderer({ antialias: false });
@@ -359,13 +359,13 @@ function init(){
     
     // Add listeners
     window.addEventListener( "resize", onWindowResize, false );
-    window.addEventListener('mousemove', onMouseMove,false);
-    document.getElementById('Genvo-App').addEventListener( 'mousedown', onDocumentMouseDown, false );
-    document.getElementById('btn-view-gene').addEventListener( "click", function(){createCameraMove("dup");}, false );
-    document.getElementById('btn-view-species').addEventListener( "click", function(){createCameraMove("spec");}, false );
+    window.addEventListener("mousemove", onMouseMove,false);
+    document.getElementById("Genvo-App").addEventListener( "mousedown", onDocumentMouseDown, false );
+    document.getElementById("btn-view-gene").addEventListener( "click", function(){createCameraMove("dup");}, false );
+    document.getElementById("btn-view-species").addEventListener( "click", function(){createCameraMove("spec");}, false );
 
     // Add listernes for on click tools
-    document.getElementById('info-button').addEventListener( 'click', openPopOver, false );
+    document.getElementById("info-button").addEventListener( 'click', openPopOver, false );
 
 
     //Build init visualization
