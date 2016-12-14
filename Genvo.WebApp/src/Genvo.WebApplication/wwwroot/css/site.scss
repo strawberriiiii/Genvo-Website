@@ -1,0 +1,29 @@
+﻿// Third-party
+@import "site/vendor/DropZone.scss";
+
+// Modules and Variables
+@import "site/partials/base";
+
+// Partials
+@import "site/partials/reset";
+@import "site/partials/_global_design.scss";
+@import "site/partials/typography";
+@import "site/partials/buttons";
+@import "site/partials/figures";
+@import "site/partials/grids";
+@import "site/partials/_material.scss";
+@import "site/partials/_inputFields.scss";
+@import "site/partials/_timeline.scss";
+@import "site/partials/_navbar.scss";
+@import "site/partials/_utilityDesign.scss";
+@import "site/partials/app/_app-btns.scss";
+@import "site/partials/app/_toolbar.scss";
+@import "site/partials/app/_layout.scss";
+@import "site/partials/app/_visualization.scss";
+
+// Partials - size dependent
+@import "site/partials-mobile/_base.scss";
+@import "site/partials-mobile/_global_design.scss";
+@import "site/partials-mobile/_typography.scss";
+@import "site/partials-mobile/_navbar.scss";
+

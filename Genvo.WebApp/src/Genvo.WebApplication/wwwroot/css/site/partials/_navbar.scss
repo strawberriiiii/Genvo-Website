@@ -1,0 +1,149 @@
+﻿@import "_base.scss";
+
+
+
+.navbar-default {
+    border-color: rgba(34,34,34,.05);
+    background-color: $primary-bg-color;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    text-align: center;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-default .navbar-header .navbar-brand .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+    color: $blue-500;
+}
+
+.navbar-default .nav > li>a,
+.navbar-default .nav>li>a:focus {
+    color: $grey-900;
+}
+
+.navbar-default .nav > li>a:hover,
+.navbar-default .nav>li>a:focus:hover
+{
+    color: $blue-500;
+    /*background-color: $grey-200;*/
+}
+
+.navbar-default .nav > li.active>a,
+.navbar-default .nav>li.active>a:focus {
+    color: $blue-500;
+    /*background-color: transparent;*/
+}
+
+.navbar-default .nav > li.active>a:hover,
+.navbar-default .nav>li.active>a:focus:hover {
+    background-color: transparent;
+}
+
+.sidenav {
+    height: 100%;
+    width: 270px;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    background-color: getColor(Grey, 900);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav .drawer-edge-left{
+    height: 100%;
+    width: 13px;
+    color: getColor(Grey, 300);
+    background-color: getColor(Black, Primary);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.sidenav i{
+    font-size: 12px;
+    position: relative;
+    top: 45%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.bottomnav{
+    height: 150px;
+    width: 100%;
+    position: fixed;
+    padding-top: 6px;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    text-align:center;
+
+    background-color: rgba(20,20,20,0.5);
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(161,6,158,0.4)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(161,6,158,0.4)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(161,6,158,0.4)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(0,0,0,0), rgba(161,6,158,0.4)); /* Standard syntax */
+    overflow: hidden;
+    transition: 0.5s;
+    border-top: 1px solid getColor(Grey,900);
+}
+
+.bottomnav .row{
+    display: inline-block;
+    margin:0;
+    width: 80%;
+    height: 90%;
+}
+
+.bottomnav .row .column{
+    
+    display: inline-block;
+    bottom: 0px;
+    height: 100%;
+    width: 170px;
+
+    padding-top: 20px;
+}
+
+.column .content{
+    color: getColor(Grey, 100);
+    text-shadow: 0px 0px 4px getColor(Grey, 900);
+}
+

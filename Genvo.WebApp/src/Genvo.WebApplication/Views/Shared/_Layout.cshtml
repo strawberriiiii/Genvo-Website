@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="In order to visualize gene evolution data intuitively, Genvo uses the third dimention to let the user understand its relationship to species">
+    <meta name="author" content="Viktor Leandersson">
+    <title>Genvo – @ViewData["Title"]</title>
+
+    <environment names="Development">
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet'>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+        
+        <!-- CSS Framework -->
+        <link rel="stylesheet" href="~/lib/animate/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="~/lib/font/css/font-awesome.min.css" type="text/css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="~/css/site.min.css" type="text/css" asp-append-version="true">
+        
+        <!--Favicon-->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    </environment>
+    <environment names="Staging,Production">
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        
+        <!-- CSS Framework -->
+        <link rel="stylesheet" href="~/lib/animate/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="~/lib/font/css/font-awesome.min.css" type="text/css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="~/css/site.min.css" type="text/css" asp-append-version="true">
+        
+        <!--Favicon-->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    </environment>
+</head>
+
+    
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Genvo</a>
+                <a class="btn btn-info" href="https://github.com/vleandersson/Genvo-Website" target="_blank"><i class="fa fa-github"></i> Fork repo</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a class="page-scroll" href="#thetool">Visualize</a></li>
+                    <li><a class="page-scroll" href="#technology">Technology</a></li>
+                    <li><a class="page-scroll" href="#about">About</a></li>
+                    <li><a class="page-scroll" href="#contact">Contact</a></li>
+                </ul>
+                @*<ul class="nav navbar-nav navbar-right">
+                    <a class="btn btn-default" href="https://github.com/vleandersson/Genvo-Website" target="_blank">Log in</a>
+                    <a class="btn btn-default" href="https://github.com/vleandersson/Genvo-Website" target="_blank">Sign up</a>
+                </ul>*@
+                
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    @RenderBody()
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Genvo 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                            <a href="https://www.facebook.com/viktor.leandersson" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://se.linkedin.com/in/viktor-leandersson-50580539" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <!-- Plugin JavaScript -->
+        <script src="~/lib/jquery/dist/jquery.easing.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.fittext.js"></script>
+        <script src="~/lib/wow.min.js"></script>
+
+        <!-- Contact Form JavaScript -->
+        <script src="~/lib/jquery/dist/jqBootstrapValidation.js"></script>
+        <script src="~/js/contact_me.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="~/lib/bootstrap/dist/js/creative.js"></script>
+
+        <!-- SCRIPTS GENVO -->
+        <script src="~/js/DataServices/exampleDataService.js"></script>
+        <script src="~/js/DataServices/fileInputService.js"></script>
+        <script src="~/js/DataServices/parsingService.js"></script>
+        
+        <script src="~/js/utility/dndListeners.js"></script>
+        @*<script src="~/js/site.min.js"></script>*@
+
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        
+        '<!-- Plugin JavaScript -->
+        <script src="~/lib/jquery/dist/jquery.easing.min.js"></script>
+        <script src="~/lib/jQuery/dist/jquery.fittext.js"></script>
+        <script src="~/lib/wow.min.js"></script>
+
+        <!-- Contact Form JavaScript -->
+        <script src="~/lib/jquery/dist/jqBootstrapValidation.js"></script>
+        <script src="~/js/contact_me.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="~/lib/bootstrap/dist/js/creative.js"></script>
+
+        <!-- SCRIPTS GENVO -->
+        <script src="~/js/site.min.js"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Visualization";
+    Layout = "_LayoutVisualization";
+}
+
+
+
+<div id="tool-drawer-bottom" class="bottomnav">
+    <a href="javascript:void(0)" id="drawer-btn-bottom" class="btn btn-circle" onclick="closeBottomNav()"><i class="glyphicon glyphicon-chevron-down"></i></a>
+    <div class="row">
+        <div class="column">
+            <div class="content">
+                <h3>Gene View</h3>
+                <INPUT id="btn-view-gene" type="image" src="~/images/app/buttons/btn-view-gene.gif" value=""/>
+            </div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h3>Species View</h3>
+                <INPUT id="btn-view-species" type="image" src="~/images/app/buttons/btn-view-species.gif" value="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tool-drawer-left" class="sidenav">
+    <a href="javascript:void(0)" id="drawer-edge-left" class="drawer-edge-left" onclick="closeNav()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+</div>
+
+<!-- The app is created with javascript-->
+<div id="Genvo-App" class="Genvo-App">
+
+    <!-- On click tools -->
+    <span id="onClickTools" class="floating-toolbox">
+        <a id="info-button" href="#detailsOnDemand" class="info-button">
+            <i class="glyphicon glyphicon-info-sign"></i>
+        </a>
+
+        <a id="vis-button" href="#info" class="info-button">
+            <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+        <a id="lamp-button" class="info-button">
+            <i class="glyphicon glyphicon-lamp"></i>
+        </a>
+        <a id="move-button" class="info-button">
+            <i class="glyphicon glyphicon-move"></i>
+        </a>
+        <a id="rotate-button" class="info-button">
+            <i class="glyphicon glyphicon-info-sign"></i>
+        </a>
+    </span>
+    <div id="dialog-form" title="Node info">
+        <p>Name</p>
+
+        <form>
+            <fieldset>
+                <p>
+                    Function group
+                    <select name="Gene functions" id="funcDropDown">
+                        <option value="volvo">undefined</option>
+                        <option value="volvo">CesA</option>
+                    </select>
+                </p>
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+

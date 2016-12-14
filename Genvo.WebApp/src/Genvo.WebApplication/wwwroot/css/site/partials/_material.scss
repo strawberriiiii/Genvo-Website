@@ -1,0 +1,23 @@
+﻿@import "_base.scss";
+.card {
+    position: relative;
+    margin-top: 50px;
+    overflow:hidden;
+    background-color: getColor(White);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px getColor(Grey,700);
+}
+
+.card-block{
+    margin: 25px;
+    position: static;
+}
+
+.card-header{
+    color: white;
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: getColor(Grey, 700);
+}

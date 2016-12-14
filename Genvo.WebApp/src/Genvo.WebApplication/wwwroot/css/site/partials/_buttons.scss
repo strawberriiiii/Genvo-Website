@@ -1,0 +1,212 @@
+﻿@import "_base.scss";
+
+.btn {
+    border: 0;
+    border-radius: 3px;
+}
+
+
+
+.btn-default {
+    border: 3px solid getColor(Grey, 500);
+    color: getColor(Grey, 500);
+    background-color: rgba(255,255,255,0.7);
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+    margin: 0px;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.btn-default:active:focus,
+.open > .dropdown-toggle.btn-default {
+    border-color: getColor(Grey, 800);
+    color: getColor(Grey, 900);
+    outline: none;
+}
+
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    background-image: none;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+    border-color: #fff;
+    background-color: $primary-bg-color;
+}
+
+.btn-default .badge {
+    color: #fff;
+    background-color: $grey-900;
+}
+
+.btn-primary {
+    border-color: rgba(255,255,255,0.7);
+    color: getColor(Grey, 100);
+    background-color: getColor(Blue, 600);
+    margin-top: 20px;
+
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    border-color: $blue-500;
+    color: #fff;
+    background-color: getColor(Blue, 800);
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    border-color: $blue-500;
+    background-color: $blue-500;
+}
+
+.btn-primary .badge {
+    color: $blue-500;
+    background-color: #fff;
+}
+
+#btnvisualizereconciled.btn-primary{
+    background-color: getColor(Green, 800);
+}
+
+.btn-info{
+    margin-top: 10px;
+    background-color:transparent;
+    color: getColor(Grey, 500);
+}
+
+.btn-info:hover{
+    color: getColor(Grey, 50);
+    background-color: transparent;
+}
+
+@media (min-width: 768px){
+    .navbar-default.affix .btn-info{
+        color: getColor(Grey, 800);
+    }
+
+    .navbar-default.affix .btn-info:hover{
+        color: getColor(Blue, 800);
+    }
+    .navbar-default.affix .btn-info:active,
+    .navbar-default.affix .btn-info:focus{
+        background-color: getColor(Grey,100);
+    }
+}
+
+
+
+.btn-posmid{
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+}
+
+
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+
+    border: none;
+    border-radius: 100%;
+    font-size: 15px;
+    color: getColor(Grey, 300);
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+.btn-circle:hover,
+.btn-circle:focus {
+    outline: 0;
+    color: $blue-500;
+    background: rgba(50,50,50,.1);
+}
+
+.bottomnav .btn-circle{
+    position: absolute;
+    top:-25px;
+    left: 50%;
+    background-color: getColor(Black, Primary);
+}
+
+.btn-circle i{
+    margin-top: 55%;
+}
+
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 0.3s;
+}
+
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.2s;
+    -moz-animation-duration: 1.2s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+.btn-xl {
+    padding: 15px 30px;
+    min-width: 150px;
+}
