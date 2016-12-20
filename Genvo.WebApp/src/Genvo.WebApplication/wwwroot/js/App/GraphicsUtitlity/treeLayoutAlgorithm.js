@@ -21,9 +21,9 @@
             xPos += xDelta;
 
             // Create text
-            var fontSize = 12;
+            const fontSize = 12;
 
-            var text = createPlaneText(g.nickname, {
+            const text = createPlaneText(g.nickname, {
                 fontsize: fontSize,
                 borderColor: g.species.colour,
                 backgroundColor: g.species.subColour,
@@ -193,52 +193,47 @@
 
 
             // LEGEND
-            var div = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("opacity", 0);
+            //var div = d3.select("body").append("div")
+            //    .attr("class", "tooltip")
+            //    .style("opacity", 0);
 
-            var svgHeight = (100 / GeneTree.noSpeciesLeaf);
-            d3.select("#legend")
-                .append("div")
-                    .attr("id", s.name)
-                    .style("height", svgHeight + "%")
-                    .style("width", "100%")
-                    .style("background", s.subColour.hex());
-
-
-            d3.select('#' + s.name)
-                .append("div")
-                    .html(s.name + "<br/>")
-                    .style("position", "relative")
-                    .style("left", "30px")
-                    .style("top", "10px");
+            //var svgHeight = (100 / GeneTree.noSpeciesLeaf);
+            //d3.select("#legend")
+            //    .append("div")
+            //        .attr("id", s.name)
+            //        .style("height", svgHeight + "%")
+            //        .style("width", "100%")
+            //        .style("background", s.subColour.hex());
 
 
-            d3.select('#' + s.name)
-                .on("mouseover", function () {
-                    div.transition()
-                        .duration(200)
-                        .style("opacity", .9);
-                    div.html(s.name + "<br/>")
-                        .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY - 28) + "px");
-                })
-                .on("mouseout", function () {
-                    div.transition()
-                        .duration(200)
-                        .style("opacity", 0);
-                });
+            //d3.select('#' + s.name)
+            //    .append("div")
+            //        .html(s.name + "<br/>")
+            //        .style("position", "relative")
+            //        .style("left", "30px")
+            //        .style("top", "10px");
+
+
+            //d3.select('#' + s.name)
+            //    .on("mouseover", function () {
+            //        div.transition()
+            //            .duration(200)
+            //            .style("opacity", .9);
+            //        div.html(s.name + "<br/>")
+            //            .style("left", (d3.event.pageX) + "px")
+            //            .style("top", (d3.event.pageY - 28) + "px");
+            //    })
+            //    .on("mouseout", function () {
+            //        div.transition()
+            //            .duration(200)
+            //            .style("opacity", 0);
+            //    });
 
         }
 
 
     }
     recurseNodesS(GeneTree._speciesRoot);
-
-
-
-
-
 
 
     //Initialize camera position centering the tree

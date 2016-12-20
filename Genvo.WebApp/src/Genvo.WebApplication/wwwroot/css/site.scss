@@ -16,8 +16,12 @@
 @import "site/partials/_timeline.scss";
 @import "site/partials/_navbar.scss";
 @import "site/partials/_utilityDesign.scss";
+@import "site/partials/app/_app-btns.scss";
+@import "site/partials/app/_toolbar.scss";
+@import "site/partials/app/_layout.scss";
+@import "site/partials/app/_visualization.scss";
 
-// Partials - mobile
+// Partials - size dependent
 @import "site/partials-mobile/_base.scss";
 @import "site/partials-mobile/_global_design.scss";
 @import "site/partials-mobile/_typography.scss";

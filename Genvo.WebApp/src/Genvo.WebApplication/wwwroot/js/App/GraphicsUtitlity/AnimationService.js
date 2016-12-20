@@ -1,6 +1,6 @@
 ﻿function createCameraMove(view) {
-    var target = cameraControls.target0;
-    var zoomTarget = cameraControls.zoom0;
+    const target = cameraControls.target0;
+    const zoomTarget = cameraControls.zoom0;
     var _target;
     switch (view) {
         case "dup":
@@ -15,14 +15,11 @@
             _target = new THREE.Vector3(-cameraControls.position0.z, target.y, 0);
             break;
     }
+    
 
-
-    var object = cameraControls.object;
-    var cameraTarget = cameraControls.target;
-
-
-
-    time = 2000;
+    const object = cameraControls.object;
+    const cameraTarget = cameraControls.target;
+    const time = 2000;
 
     new TWEEN.Tween({ zoom: object.zoom })
         .to({ zoom: zoomTarget }, time)
@@ -51,10 +48,9 @@
 
 
 function createAnimatedMove(node, target) { // Currently only supporting move of nodes
-    var object = node.object;
-    var edges = node.edges;
-
-    time = 3000;
+    const object = node.object;
+    const edges = node.edges;
+    const time = 3000;
 
     new TWEEN.Tween(object.position)
         .to(target, time)

@@ -1,5 +1,5 @@
 //ADDITIVE SHADER
-var additiveShader = {
+Composer.prototype.additiveShader = {
     uniforms: {
         tDiffuse: { type: "t", value: 0, texture: null },
         tAdd: { type: "t", value: 1, texture: null },
@@ -35,7 +35,7 @@ var additiveShader = {
 }
 
 //CUSOM BLOOM SHADER
-var bloomShader = {
+Composer.bloomShader = {
     uniforms:{
         
     },

@@ -24,6 +24,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @-moz-keyframes passing-through {
   0% {
     opacity: 0;
@@ -46,6 +47,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @keyframes passing-through {
   0% {
     opacity: 0;
@@ -68,6 +70,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @-webkit-keyframes slide-in {
   0% {
     opacity: 0;
@@ -83,6 +86,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @-moz-keyframes slide-in {
   0% {
     opacity: 0;
@@ -98,6 +102,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @keyframes slide-in {
   0% {
     opacity: 0;
@@ -113,6 +118,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -132,6 +138,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 @-moz-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -151,6 +158,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 @keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -170,6 +178,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 .dropzone, .dropzone * {
   box-sizing: border-box; }
 
@@ -694,29 +703,25 @@ fieldset[disabled] .btn-primary.active {
 @media (min-width: 768px) {
   .navbar-default.affix .btn-info {
     color: #424242; }
-
   .navbar-default.affix .btn-info:hover {
     color: #1565C0; }
-
   .navbar-default.affix .btn-info:active,
   .navbar-default.affix .btn-info:focus {
     background-color: #F5F5F5; } }
+
 .btn-posmid {
   position: absolute;
   top: 50%;
   margin-top: -20px; }
 
 .btn-circle {
-  width: 100px;
-  height: 100px;
-  padding: 0px 30px;
-  position: relative;
-  left: 50%;
-  margin-left: -50px;
-  border: 2px solid #555;
-  border-radius: 100% !important;
-  font-size: 65px;
-  color: #555;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 100%;
+  font-size: 15px;
+  color: #E0E0E0;
   background: 0 0;
   -webkit-transition: background .3s ease-in-out;
   -moz-transition: background .3s ease-in-out;
@@ -727,6 +732,15 @@ fieldset[disabled] .btn-primary.active {
   outline: 0;
   color: #0F5B99;
   background: rgba(50, 50, 50, 0.1); }
+
+.bottomnav .btn-circle {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.87); }
+
+.btn-circle i {
+  margin-top: 55%; }
 
 .btn-circle i.animated {
   -webkit-transition-property: -webkit-transform;
@@ -915,68 +929,58 @@ section#contact .form-control:focus {
 @media (min-width: 768px) {
   .timeline:before {
     left: 50%; }
-
   .timeline > li {
     margin-bottom: 100px;
     min-height: 100px; }
-
   .timeline > li .timeline-panel {
     width: 41%;
     float: left;
     padding: 0 20px 20px 30px;
     text-align: right; }
-
   .timeline > li .timeline-image {
     width: 100px;
     height: 100px;
     left: 50%;
     margin-left: -50px; }
-
   .timeline > li .timeline-image h4 {
     font-size: 13px;
     margin-top: 16px;
     line-height: 18px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     float: right;
     text-align: left;
     padding: 0 30px 20px 20px; } }
+
 @media (min-width: 992px) {
   .timeline > li {
     min-height: 150px; }
-
   .timeline > li .timeline-panel {
     padding: 0 20px 20px; }
-
   .timeline > li .timeline-image {
     width: 150px;
     height: 150px;
     margin-left: -75px; }
-
   .timeline > li .timeline-image h4 {
     font-size: 18px;
     margin-top: 30px;
     line-height: 26px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 20px 20px; } }
+
 @media (min-width: 1200px) {
   .timeline > li {
     min-height: 170px; }
-
   .timeline > li .timeline-panel {
     padding: 0 20px 20px 100px; }
-
   .timeline > li .timeline-image {
     width: 170px;
     height: 170px;
     margin-left: -85px; }
-
   .timeline > li .timeline-image h4 {
     margin-top: 40px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 100px 20px 20px; } }
+
 .team-member {
   text-align: center;
   margin-bottom: 50px; }
@@ -1033,6 +1037,97 @@ aside.clients img {
 .navbar-default .nav > li.active > a:focus:hover {
   background-color: transparent; }
 
+.sidenav {
+  height: 100%;
+  width: 270px;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: #212121;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px; }
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s; }
+
+.sidenav a:hover, .offcanvas a:focus {
+  color: #f1f1f1; }
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px; }
+
+.sidenav .drawer-edge-left {
+  height: 100%;
+  width: 13px;
+  color: #E0E0E0;
+  background-color: rgba(0, 0, 0, 0.87);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  text-align: center; }
+
+.sidenav i {
+  font-size: 12px;
+  position: relative;
+  top: 45%; }
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px; }
+  .sidenav a {
+    font-size: 18px; } }
+
+.bottomnav {
+  height: 150px;
+  width: 100%;
+  position: fixed;
+  padding-top: 6px;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  background-color: rgba(20, 20, 20, 0.5);
+  background: -webkit-linear-gradient(transparent, rgba(161, 6, 158, 0.4));
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(transparent, rgba(161, 6, 158, 0.4));
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(transparent, rgba(161, 6, 158, 0.4));
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(transparent, rgba(161, 6, 158, 0.4));
+  /* Standard syntax */
+  overflow: hidden;
+  transition: 0.5s;
+  border-top: 1px solid #212121; }
+
+.bottomnav .row {
+  display: inline-block;
+  margin: 0;
+  width: 80%;
+  height: 90%; }
+
+.bottomnav .row .column {
+  display: inline-block;
+  bottom: 0px;
+  height: 100%;
+  width: 170px;
+  padding-top: 20px; }
+
+.column .content {
+  color: #F5F5F5;
+  text-shadow: 0px 0px 4px #212121; }
+
 .no-padding {
   padding: 0; }
 
@@ -1043,11 +1138,11 @@ aside.clients img {
 @media only screen and (min-width: 768px) {
   .eqHeight {
     display: table; }
-
   .eqHeight [class*="col-"] {
     float: none;
     display: table-cell;
     vertical-align: top; } }
+
 /*.eqHeight{
   display: -webkit-box;
   display: -webkit-flex;
@@ -1086,10 +1181,100 @@ img::-moz-selection {
   position: relative;
   bottom: 15px; }
 
+.info-button, .info-button:visited {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  visibility: hidden;
+  background: #0F5B99;
+  padding: 0px 0px;
+  text-align: center;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  color: white;
+  display: block;
+  border: 3px solid #0F5B99; }
+
+.info-button:hover {
+  text-decoration: none;
+  color: #0F5B99;
+  background-color: #fff; }
+
+.info-button i {
+  position: relative;
+  text-align: center;
+  display: block;
+  margin: auto;
+  font-size: 22px;
+  display: block; }
+
+.info-button.active i {
+  text-decoration: none;
+  color: #000;
+  background-color: #000; }
+
+.nav-btn {
+  position: fixed;
+  right: 10px;
+  margin-top: 5px;
+  display: inline; }
+
+.nav-btn label {
+  width: 50px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 110%; }
+
+.floating-toolbox {
+  position: fixed;
+  top: 10px; }
+
+.legend {
+  z-index: 1;
+  position: absolute;
+  left: 20px;
+  top: 55px;
+  padding: 5px;
+  border-radius: 4px;
+  width: 30px;
+  height: 600px;
+  background: #ccc; }
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none; }
+
+#wheel {
+  visibility: visible;
+  position: absolute;
+  margin: 0px; }
+
+#accordion .glyphicon {
+  margin-right: 10px; }
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px; }
+
+.Genvo-App {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: margin-left .5s; }
+
 @media (min-width: 768px) {
   header {
     min-height: 100%; }
-
   header .header-content {
     position: absolute;
     top: 50%;
@@ -1097,62 +1282,53 @@ img::-moz-selection {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
-
   header .header-content .header-content-inner {
     margin-right: auto;
     margin-left: auto;
     max-width: 1000px; }
-
   header .header-content .header-content-inner p {
     margin-right: auto;
     margin-left: auto;
     max-width: 80%;
     /*DONE*/
     font-size: 18px; } }
+
 @media (min-width: 992px) {
   .service-box {
     margin: 20px auto 0; } }
+
 @media (min-width: 768px) {
   header .header-content .header-content-inner p {
     font-size: 18px; } }
+
 @media (min-width: 768px) {
   .navbar-default {
     border-color: rgba(255, 255, 255, 0.3);
     background-color: transparent; }
-
   .navbar-default .navbar-header .navbar-brand {
     color: rgba(255, 255, 255, 0.7); }
-
   .navbar-default .navbar-header .navbar-brand:hover,
   .navbar-default .navbar-header .navbar-brand:focus {
     color: #fff; }
-
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
     color: rgba(255, 255, 255, 0.7); }
-
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
     color: #fff; }
-
   .navbar-default.affix {
     border-color: rgba(34, 34, 34, 0.05);
     background-color: #fff; }
-
   .navbar-default.affix .navbar-header .navbar-brand {
     font-size: 14px;
     color: #0F5B99; }
-
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
     color: #0F5B99; }
-
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
     color: #222; }
-
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #0F5B99; } }
 
-/*# sourceMappingURL=site.css.map */
