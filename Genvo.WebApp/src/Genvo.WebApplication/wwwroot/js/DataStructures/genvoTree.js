@@ -341,31 +341,28 @@ GenvoTree.prototype.analyzeLabelPostfix = function (name, seperator) {
 }
 
 
-GenvoTree.prototype.generateSpeciesColour = function(){
-
-    const mainColourScheme = generateColourScheme(
-        this.noSpeciesLeaf, 
+GenvoTree.prototype.generateSpeciesColour = function() {
+    const noSpecies = Object.keys(this.allSpecies).length;
+    const mainColorScheme = generateColourScheme(
+        noSpecies,
         1,
         ["yellow", "33E0E0"], //['yellow', '008ae5']
         true
     );
 
-    const subColourScheme = generateColourScheme(
-        this.noSpeciesLeaf, 
+    const subColorScheme = generateColourScheme(
+        noSpecies,
         0.8,
         ["yellow", "33E0E0"], //['yellow', '008ae5'] // ['yellow', 'red']
         false
     );
 
-
-    var i = 0;
-    for (var key in this.allSpecies) { // ONLY GENERATE FOR Le(S)
-        if (key !== "" && this.allSpecies[key].isLeaf) {
-            this.allSpecies[key].colour = mainColourScheme[i];
-            this.allSpecies[key].subColour = subColourScheme[i];
-            i++;
-        }
-    }
+    visualisation.Update({
+        postOrder: true,
+        traverseGuest: true,
+        mainColorScheme: mainColorScheme,
+        subColorScheme: subColorScheme
+    });
 }
 
 
@@ -465,7 +462,7 @@ GenvoTree.prototype.calculate3DPositions = function(){
 //---------------------------------------------------------
 
 function copyNodeData(node, JSON){
-    for (var key in JSON){
+    for (let key in JSON){
         if (key !== "children"){
             node[key] = JSON[key];
         } 

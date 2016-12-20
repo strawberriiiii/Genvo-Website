@@ -96,7 +96,8 @@ THREE.BloomPass.prototype = Object.assign( Object.create( THREE.Pass.prototype )
 		this.convolutionUniforms[ "tDiffuse" ].value = this.renderTargetX.texture;
 		this.convolutionUniforms[ "uImageIncrement" ].value = THREE.BloomPass.blurY;
 
-		renderer.render( this.scene, this.camera, this.renderTargetY, true );
+		renderer.render( this.scene, this.camera, this.renderTargetY, false );
+		//renderer.render( this.scene, this.camera, this.renderTargetY, true );
 
 		// Render original scene with superimposed blur to texture
 

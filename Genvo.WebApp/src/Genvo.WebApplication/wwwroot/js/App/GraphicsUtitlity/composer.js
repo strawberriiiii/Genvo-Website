@@ -1,37 +1,33 @@
 ﻿function Composer() {
 }
 
-Composer.prototype.createFinalComposer = function(bloomPass){
-    this.final = new THREE.EffectComposer( renderer );
-    this.final.addPass( new THREE.RenderPass( scene, camera ) );
-    this.final.addPass( bloomPass );
+Composer.prototype.createFinalComposer = function(){
+    this.final = new THREE.EffectComposer(renderer);
+    this.final.addPass( new THREE.RenderPass(scene, camera) );
+    this.final.addPass( this.bloomPass );
 }
 
-Composer.prototype.createBloomPass = function(shader, renderToScreen, needSwap){
+Composer.prototype.createBloomPass = function(renderToScreen, needSwap){
     if (renderToScreen === undefined) { renderToScreen = false }
     if (needSwap === undefined) { needSwap = false }
 
+    // Create the bloom composer
+    this.bloom = new THREE.EffectComposer( renderer ); //, renderTargetGlow );
+    this.bloom.addPass(new THREE.RenderPass(bloomEffectsLayerScene, camera));
+    this.bloom.addPass(new THREE.BloomPass(4, 25, 4, 256));
 
-    // Create the glow composer
-    composer.bloom = new THREE.EffectComposer( renderer ); //, renderTargetGlow );
-    const bloomEffectsLayerPass = new THREE.RenderPass( bloomEffectsLayerScene, camera);
-    composer.bloom.addPass( bloomEffectsLayerPass );
+    //const blur = this.createBlurShaderPass(); //Makes a fusss
+    //this.bloom.addPass( blur.horizontal );
+    //this.bloom.addPass(blur.vertical);
 
-    //var blur = this.createBlurShaderPass();
+    const shader = composer.additiveShader;
+    shader.uniforms[ "tAdd" ].value = this.bloom.renderTarget1;
 
-    //composer.bloom.addPass( blur.horizontal );
-    //composer.bloom.addPass( blur.vertical ); 
-    composer.bloom.addPass( new THREE.BloomPass(2, 25, 4, 256) );
+    this.bloomPass = new THREE.ShaderPass( shader );
+    this.bloomPass.needSwap = needSwap;
+    this.bloomPass.renderToScreen = renderToScreen;
 
-    shader.uniforms[ "tAdd" ].value = composer.bloom.renderTarget1;
-
-    var bloomPass = new THREE.ShaderPass( shader );
-    bloomPass.needSwap = needSwap;
-    bloomPass.renderToScreen = renderToScreen;
-
-    this.renderEffectToScreen(composer.bloom);
-    
-    return bloomPass;
+    this.renderEffectToScreen(this.bloom);
 }
 
 Composer.prototype.createBlurShaderPass = function(){

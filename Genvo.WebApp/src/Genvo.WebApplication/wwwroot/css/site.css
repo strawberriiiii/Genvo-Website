@@ -24,6 +24,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @-moz-keyframes passing-through {
   0% {
     opacity: 0;
@@ -46,6 +47,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @keyframes passing-through {
   0% {
     opacity: 0;
@@ -68,6 +70,7 @@
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px); } }
+
 @-webkit-keyframes slide-in {
   0% {
     opacity: 0;
@@ -83,6 +86,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @-moz-keyframes slide-in {
   0% {
     opacity: 0;
@@ -98,6 +102,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @keyframes slide-in {
   0% {
     opacity: 0;
@@ -113,6 +118,7 @@
     -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px); } }
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -132,6 +138,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 @-moz-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -151,6 +158,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 @keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -170,6 +178,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
+
 .dropzone, .dropzone * {
   box-sizing: border-box; }
 
@@ -694,13 +703,12 @@ fieldset[disabled] .btn-primary.active {
 @media (min-width: 768px) {
   .navbar-default.affix .btn-info {
     color: #424242; }
-
   .navbar-default.affix .btn-info:hover {
     color: #1565C0; }
-
   .navbar-default.affix .btn-info:active,
   .navbar-default.affix .btn-info:focus {
     background-color: #F5F5F5; } }
+
 .btn-posmid {
   position: absolute;
   top: 50%;
@@ -921,68 +929,58 @@ section#contact .form-control:focus {
 @media (min-width: 768px) {
   .timeline:before {
     left: 50%; }
-
   .timeline > li {
     margin-bottom: 100px;
     min-height: 100px; }
-
   .timeline > li .timeline-panel {
     width: 41%;
     float: left;
     padding: 0 20px 20px 30px;
     text-align: right; }
-
   .timeline > li .timeline-image {
     width: 100px;
     height: 100px;
     left: 50%;
     margin-left: -50px; }
-
   .timeline > li .timeline-image h4 {
     font-size: 13px;
     margin-top: 16px;
     line-height: 18px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     float: right;
     text-align: left;
     padding: 0 30px 20px 20px; } }
+
 @media (min-width: 992px) {
   .timeline > li {
     min-height: 150px; }
-
   .timeline > li .timeline-panel {
     padding: 0 20px 20px; }
-
   .timeline > li .timeline-image {
     width: 150px;
     height: 150px;
     margin-left: -75px; }
-
   .timeline > li .timeline-image h4 {
     font-size: 18px;
     margin-top: 30px;
     line-height: 26px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 20px 20px; } }
+
 @media (min-width: 1200px) {
   .timeline > li {
     min-height: 170px; }
-
   .timeline > li .timeline-panel {
     padding: 0 20px 20px 100px; }
-
   .timeline > li .timeline-image {
     width: 170px;
     height: 170px;
     margin-left: -85px; }
-
   .timeline > li .timeline-image h4 {
     margin-top: 40px; }
-
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 100px 20px 20px; } }
+
 .team-member {
   text-align: center;
   margin-bottom: 50px; }
@@ -1088,9 +1086,9 @@ aside.clients img {
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px; }
-
   .sidenav a {
     font-size: 18px; } }
+
 .bottomnav {
   height: 150px;
   width: 100%;
@@ -1140,11 +1138,11 @@ aside.clients img {
 @media only screen and (min-width: 768px) {
   .eqHeight {
     display: table; }
-
   .eqHeight [class*="col-"] {
     float: none;
     display: table-cell;
     vertical-align: top; } }
+
 /*.eqHeight{
   display: -webkit-box;
   display: -webkit-flex;
@@ -1260,11 +1258,6 @@ img::-moz-selection {
   position: absolute;
   margin: 0px; }
 
-html,
-body {
-  background-color: #111;
-  height: 100%; }
-
 #accordion .glyphicon {
   margin-right: 10px; }
 
@@ -1282,7 +1275,6 @@ footer {
 @media (min-width: 768px) {
   header {
     min-height: 100%; }
-
   header .header-content {
     position: absolute;
     top: 50%;
@@ -1290,62 +1282,53 @@ footer {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
-
   header .header-content .header-content-inner {
     margin-right: auto;
     margin-left: auto;
     max-width: 1000px; }
-
   header .header-content .header-content-inner p {
     margin-right: auto;
     margin-left: auto;
     max-width: 80%;
     /*DONE*/
     font-size: 18px; } }
+
 @media (min-width: 992px) {
   .service-box {
     margin: 20px auto 0; } }
+
 @media (min-width: 768px) {
   header .header-content .header-content-inner p {
     font-size: 18px; } }
+
 @media (min-width: 768px) {
   .navbar-default {
     border-color: rgba(255, 255, 255, 0.3);
     background-color: transparent; }
-
   .navbar-default .navbar-header .navbar-brand {
     color: rgba(255, 255, 255, 0.7); }
-
   .navbar-default .navbar-header .navbar-brand:hover,
   .navbar-default .navbar-header .navbar-brand:focus {
     color: #fff; }
-
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
     color: rgba(255, 255, 255, 0.7); }
-
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
     color: #fff; }
-
   .navbar-default.affix {
     border-color: rgba(34, 34, 34, 0.05);
     background-color: #fff; }
-
   .navbar-default.affix .navbar-header .navbar-brand {
     font-size: 14px;
     color: #0F5B99; }
-
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
     color: #0F5B99; }
-
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
     color: #222; }
-
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #0F5B99; } }
 
-/*# sourceMappingURL=site.css.map */

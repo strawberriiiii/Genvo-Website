@@ -21,9 +21,9 @@
             xPos += xDelta;
 
             // Create text
-            var fontSize = 12;
+            const fontSize = 12;
 
-            var text = createPlaneText(g.nickname, {
+            const text = createPlaneText(g.nickname, {
                 fontsize: fontSize,
                 borderColor: g.species.colour,
                 backgroundColor: g.species.subColour,
@@ -234,11 +234,6 @@
 
     }
     recurseNodesS(GeneTree._speciesRoot);
-
-
-
-
-
 
 
     //Initialize camera position centering the tree

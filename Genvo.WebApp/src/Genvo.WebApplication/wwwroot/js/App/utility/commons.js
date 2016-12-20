@@ -28,3 +28,13 @@ function calculateArrayMax(a) {
 
     return res;
 }
+
+function posOnScreen(pos) {
+    const p = pos.clone();
+    const vector = p.project(camera);
+
+    vector.x = (vector.x + 1) / 2 * canvasSize.x;
+    vector.y = -(vector.y - 1) / 2 * canvasSize.y;
+
+    return vector;
+}
