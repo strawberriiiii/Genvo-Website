@@ -1039,12 +1039,12 @@ aside.clients img {
 
 .sidenav {
   height: 100%;
-  width: 270px;
+  width: 300px;
   position: fixed;
   z-index: 5;
   top: 0;
   left: 0;
-  background-color: #212121;
+  background-color: #12171C;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px; }
@@ -1082,6 +1082,33 @@ aside.clients img {
   font-size: 12px;
   position: relative;
   top: 45%; }
+
+.sidenav ul {
+  list-style-type: none; }
+
+.sidenav-item {
+  background-color: #12171C;
+  margin-bottom: 2px; }
+
+.sidenav-item-header {
+  background-color: #151e28;
+  color: #B0BEC5;
+  height: 50px;
+  vertical-align: middle; }
+
+.sidenav-item-title {
+  text-transform: uppercase;
+  font-size: 15px;
+  display: inline-block; }
+
+.sidenav-item-icon {
+  background-color: #0D1419;
+  display: inline-block;
+  padding-left: 25px;
+  padding-right: 25px; }
+
+.sidenav-item-body {
+  color: #E0F2F1; }
 
 @media screen and (max-height: 450px) {
   .sidenav {
