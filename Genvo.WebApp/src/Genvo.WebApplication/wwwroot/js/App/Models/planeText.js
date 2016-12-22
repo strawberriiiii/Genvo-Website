@@ -61,6 +61,7 @@ function createPlaneText( message, parameters )
         1+resolution);
 
 
+
     // Create text with following settings
     if (autotextcolour && backgroundColor.luminance() < 0.4){
         context.fillStyle = "rgba(245, 245, 245, 1.0)";
@@ -117,10 +118,10 @@ function getFontHeight(fontStyle) {
   var result = fontHeightCache[fontStyle];
 
   if (!result) {
-    var body = document.getElementsByTagName("body")[0];
-    var dummy = document.createElement("div");
+    const body = document.getElementsByTagName("body")[0];
+    const dummy = document.createElement("div");
 
-    var dummyText = document.createTextNode("MÉq");
+    const dummyText = document.createTextNode("MÉq");
     dummy.appendChild(dummyText);
     dummy.setAttribute("style", "font:" + fontStyle + ";position:absolute;top:0;left:0");
     body.appendChild(dummy);

@@ -50,15 +50,18 @@
 
 .sidenav {
     height: 100%;
-    width: 270px;
+    width: 300px;
     position: fixed;
     z-index: 5;
     top: 0;
     left: 0;
-    background-color: getColor(Grey, 900);
+    background-color: $blue-grey-middle;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
 }
 
 .sidenav a {
@@ -98,6 +101,68 @@
     font-size: 12px;
     position: relative;
     top: 45%;
+}
+
+.sidenav ul {
+    list-style-type: none;
+}
+
+.sidenav .icon-bar {
+    height: 100%;
+    width: 45px; 
+    background-color: $blue-grey-dark;
+    color: getColor(Blue Grey, 200);
+}
+
+.sidenav-item-icon {
+    padding: 15px;
+}
+
+.sidenav-item-icon .glyphicon {
+    font-size: 16px;
+    top: 17px;
+}
+
+.sidenav .item-bar {
+   background-color: $blue-grey-middle;
+   width: calc(100% - 45px);
+}
+
+.sidenav-item {
+    margin-bottom: 2px;
+}
+
+.sidenav-item-header {
+    background-color: $blue-grey-light;
+    color: getColor(Blue Grey, 200);
+    height: 50px;
+    padding-left: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-size: 15px;
+    align-self: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+}
+
+.sidenav-item-body {
+    color: getColor(Teal, 50);
+}
+
+.sidenav-item-body ul {
+    padding-left: 15px;
+}
+
+.sidenav-item-body li {
+    margin-bottom: 10px;
+}
+
+.sidenav-item-body li:first-child {
+    margin-top: 10px;
+}
+
+.sidenav-item-body li span {
+    margin-left: 10px;
 }
 
 @media screen and (max-height: 450px) {
