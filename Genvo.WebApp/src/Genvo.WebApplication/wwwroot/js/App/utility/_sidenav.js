@@ -29,3 +29,4 @@ function closeBottomNav() {
 
     document.getElementById("tool-drawer-bottom").style.height = "20px";
 }
+

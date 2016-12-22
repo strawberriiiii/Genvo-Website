@@ -23,7 +23,7 @@ class createGlowingEdge{
     }
 
     drawLine(segments, color) {
-        const opacity = 0.2;
+        const opacity = 0.5;
         const radious = 1;
         
         const glowMaterial = new THREE.MeshBasicMaterial({ opacity: opacity, transparent: true});

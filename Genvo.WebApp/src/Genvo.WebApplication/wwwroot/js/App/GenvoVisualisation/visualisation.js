@@ -5,7 +5,6 @@
 //-------------------------------------------------------------
 //TODO Check over theese variables to move them into the visualisation object
 var GeneTree = new GenvoTree();
-var composer = new Composer();
 
 var mousePos = new THREE.Vector3();
 var INTERSECTED;
@@ -36,8 +35,9 @@ GenvoVisualisation.prototype.init = function () {
     this.InitializeRenderer();
 
     // Composer setup
-    composer.createBloomPass(true, true);
-    composer.createFinalComposer();
+    this.composer = new Composer();
+    this.composer.createBloomPass(true, true);
+    this.composer.createFinalComposer();
 
     this.AddDndListeners();
 
@@ -140,11 +140,11 @@ GenvoVisualisation.prototype.InitializeCameraControlls = function(limitRotation)
 }
 
 GenvoVisualisation.prototype.InitializeRenderer = function() {
-    renderer = new THREE.WebGLRenderer({ antialias: false });
-    renderer.autoClear = false;
+    renderer = new THREE.WebGLRenderer({ antialias: true }); // preserveDrawingBuffer: true
+    renderer.autoClear = false; //Set to true to remove pipes
     renderer.setPixelRatio(this.resolution);
     renderer.setSize(this.canvasSize.x, this.canvasSize.y );
-    renderer.setClearColor(0x000000, 1); //0e293a
+    renderer.setClearColor(0x000000, 1); //0x0e293a //0x000000
     document.getElementById("Genvo-App").appendChild(renderer.domElement);
 }
 

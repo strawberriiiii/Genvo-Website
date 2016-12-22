@@ -9,10 +9,51 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/utility/utility.min.js",
+    "outputFileName": "wwwroot/js/App/utility.min.js",
     "inputFiles": [
-      "wwwwroot/js/DataStructures/genvoTree.js",
-      "wwwroot/js/utility/_sidenav.js"
+      "wwwroot/js/app/utility/_sidenav.js",
+      "wwwroot/js/app/utility/commons.js",
+      "wwwroot/js/app/utility/dndlisteners.js",
+      "wwwroot/js/app/utility/visualevents.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/App/GenvoVisualisation.min.js",
+    "inputFiles": [
+      "wwwroot/js/app/genvovisualisation/datastructures/genvotree.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/lib/threeJs/graphicExtras.js",
+    "inputFiles": [
+      "wwwroot/lib/threejs/graphics/copyshader.js",
+      "wwwroot/lib/threejs/graphics/horizontalblurshader.js",
+      "wwwroot/lib/threejs/graphics/verticalblurshader.js",
+      "wwwroot/lib/threejs/graphics/convolutionshader.js",
+
+      "wwwroot/lib/threejs/graphics/effectcomposer.js",
+      "wwwroot/lib/threejs/graphics/renderpass.js",
+      "wwwroot/lib/threejs/graphics/bloompass.js",
+      "wwwroot/lib/threejs/graphics/unrealbloompass.js",
+      "wwwroot/lib/threejs/graphics/unrealbloompass.js",
+      "wwwroot/lib/threejs/graphics/clearpass.js",
+      "wwwroot/lib/threejs/graphics/shaderpass.js",
+      "wwwroot/lib/threejs/graphics/maskpass.js",
+      "wwwroot/lib/threejs/graphics/savepass.js"
     ],
     // Optionally specify minification options
     "minify": {

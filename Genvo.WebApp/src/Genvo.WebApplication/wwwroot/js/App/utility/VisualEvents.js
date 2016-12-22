@@ -24,10 +24,7 @@ function onWindowResize() {
 
     camera.updateProjectionMatrix();
 
-
-    // Perspective
-    //camera.aspect = canvasSize.x / canvasSize.y;
-    //camera.updateProjectionMatrix();
-
     renderer.setSize(canvasSize.x, canvasSize.y);
+    visualisation.composer.final.setSize(canvasSize.x, canvasSize.y);
+    visualisation.composer.bloom.setSize(canvasSize.x, canvasSize.y);
 }

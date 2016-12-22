@@ -4,8 +4,8 @@
           .toString(16)
           .substring(1);
     }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
+    return s4() + s4() + "-" + s4() + "-" + s4() + "-" +
+      s4() + "-" + s4() + s4() + s4();
 }
 
 function calculateArrayMax(a) {
@@ -37,4 +37,14 @@ function posOnScreen(pos) {
     vector.y = -(vector.y - 1) / 2 * canvasSize.y;
 
     return vector;
+}
+
+var print = {
+    renderer: function (r, fileName) {
+        if (fileName === undefined) { fileName = "GenvoVisualisation" }
+        const link = document.createElement("a");
+        link.download = fileName+".png";
+        link.href = r.domElement.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        link.click();
+    }
 }

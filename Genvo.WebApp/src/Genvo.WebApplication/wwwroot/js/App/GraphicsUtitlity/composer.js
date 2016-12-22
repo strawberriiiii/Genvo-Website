@@ -12,15 +12,15 @@ Composer.prototype.createBloomPass = function(renderToScreen, needSwap){
     if (needSwap === undefined) { needSwap = false }
 
     // Create the bloom composer
-    this.bloom = new THREE.EffectComposer( renderer ); //, renderTargetGlow );
+    this.bloom = new THREE.EffectComposer(renderer); //, renderTargetGlow );
     this.bloom.addPass(new THREE.RenderPass(bloomEffectsLayerScene, camera));
-    this.bloom.addPass(new THREE.BloomPass(4, 25, 4, 256));
+    this.bloom.addPass(new THREE.BloomPass(4, 25, 4, 256*4)); //TODO Resolution setting here
 
     //const blur = this.createBlurShaderPass(); //Makes a fusss
     //this.bloom.addPass( blur.horizontal );
     //this.bloom.addPass(blur.vertical);
 
-    const shader = composer.additiveShader;
+    const shader = this.additiveShader;
     shader.uniforms[ "tAdd" ].value = this.bloom.renderTarget1;
 
     this.bloomPass = new THREE.ShaderPass( shader );

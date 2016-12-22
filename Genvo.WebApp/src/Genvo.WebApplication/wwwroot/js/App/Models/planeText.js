@@ -26,16 +26,16 @@ function createPlaneText( message, parameters )
 
     //var spriteAlignment = THREE.SpriteAlignment.topLeft;
 
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
 
-
+    var resolution = 5;
 
     // get size data (height depends only on font size)
     message = " " + message + " ";
-    var textWidth = Math.ceil(context.measureText( message ).width) * fontsize/10 * 5;
-    var textHeight = getFontHeight("Bold " + fontsize + "px " + fontface) * 5;
-    borderThickness *= 5;
+    var textWidth = Math.ceil(context.measureText( message ).width) * fontsize/10 * resolution;
+    var textHeight = getFontHeight("Bold " + fontsize + "px " + fontface) * resolution;
+    borderThickness *= resolution;
 
     // Set canvas width and height
     canvas.width = textWidth + 2 * borderThickness;
@@ -43,7 +43,7 @@ function createPlaneText( message, parameters )
 
 
     // Describe fontstyle
-    context.font = "Bold " + fontsize*5 + "px " + fontface;
+    context.font = "Bold " + fontsize*resolution + "px " + fontface;
 
     // background color
     context.fillStyle   = "rgba(" + backgroundColor._rgb[0] + "," + backgroundColor._rgb[1] + ","
@@ -58,7 +58,7 @@ function createPlaneText( message, parameters )
         borderThickness/2,
         textWidth + borderThickness,
         textHeight + borderThickness,
-        6);
+        1+resolution);
 
 
     // Create text with following settings
@@ -67,15 +67,15 @@ function createPlaneText( message, parameters )
     }else{
         context.fillStyle = "rgba(0, 0, 0, 1.0)";
     }
-    context.textAlign = 'left';
-    context.textBaseline = 'top';
+    context.textAlign = "left";
+    context.textBaseline = "top";
     context.fillText( message, borderThickness, borderThickness);
 
 
 
 
     // canvas contents will be used as a texture
-    var texture = new THREE.Texture(canvas)
+    var texture = new THREE.Texture(canvas);
     texture.needsUpdate = true;
     texture.minFilter = THREE.LinearFilter;
 
@@ -86,10 +86,10 @@ function createPlaneText( message, parameters )
         depthTest: true
     });
 
-    var geometry = new THREE.PlaneGeometry( (textWidth + borderThickness)/5, (textHeight + borderThickness)/5 );
+    var geometry = new THREE.PlaneGeometry( (textWidth + borderThickness)/resolution, (textHeight + borderThickness)/resolution );
     var plane = new THREE.Mesh( geometry, material );
 
-    plane.position.x = canvas.width / 2 / 5;
+    plane.position.x = canvas.width / 2 / resolution;
 
     return plane;
 }
@@ -117,12 +117,12 @@ function getFontHeight(fontStyle) {
   var result = fontHeightCache[fontStyle];
 
   if (!result) {
-    var body = document.getElementsByTagName('body')[0];
-    var dummy = document.createElement('div');
+    var body = document.getElementsByTagName("body")[0];
+    var dummy = document.createElement("div");
 
-    var dummyText = document.createTextNode('MÉq');
+    var dummyText = document.createTextNode("MÉq");
     dummy.appendChild(dummyText);
-    dummy.setAttribute('style', 'font:' + fontStyle + ';position:absolute;top:0;left:0');
+    dummy.setAttribute("style", "font:" + fontStyle + ";position:absolute;top:0;left:0");
     body.appendChild(dummy);
     result = dummy.offsetHeight;
 
